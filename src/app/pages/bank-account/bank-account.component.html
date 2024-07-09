@@ -1,0 +1,47 @@
+<mat-card class="cardWithShadow">
+  <mat-card-content>
+    <div class="container">
+      <h1 class="header-title">Gestion des comptes bancaires</h1>
+      <table class="table table-hover">
+        <thead class="thead-blue">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nom du compte</th>
+            <th scope="col">Devise</th>
+            <th scope="col">Solde initial</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let compte of comptes">
+            <td>{{ compte.id }}</td>
+            <td>{{ compte.name }}</td>
+            <td>{{ compte.Devise }}</td>
+            <td>{{ compte.Solde_initial }}</td>
+            <td>
+              <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" class="mat-menu-blue">
+                <button mat-menu-item>
+                  <mat-icon>edit</mat-icon>
+                  <span>Modifier</span>
+                </button>
+                <button mat-menu-item>
+                  <mat-icon>delete</mat-icon>
+                  <span>Supprimer</span>
+                </button>
+              </mat-menu>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="custom-text-right mt-3">
+        <button mat-flat-button color="primary">
+          <mat-icon>add</mat-icon>
+          Ajouter
+        </button>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

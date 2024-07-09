@@ -4,7 +4,7 @@ import { Routes } from '@angular/router';
 // pages
 import { AppIconsComponent } from './icons/icons.component';
 import { AppSamplePageComponent } from './sample-page/sample-page.component';
-
+import { UserProfileComponent } from '../user-profile/user-profile.component';
 export const ExtraRoutes: Routes = [
   {
     path: '',
@@ -17,6 +17,7 @@ export const ExtraRoutes: Routes = [
         path: 'sample-page',
         component: AppSamplePageComponent,
       },
+    
     ],
   },
 ];

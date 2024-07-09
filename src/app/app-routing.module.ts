@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BlankComponent } from './layouts/blank/blank.component';
 import { FullComponent } from './layouts/full/full.component';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+import {BankAccountComponent } from './pages/bank-account/bank-account.component';
+import { SettingsComponent } from './pages/settings/settings.component'; // Adjust the path as per your project structure
 
 const routes: Routes = [
   {
@@ -30,6 +33,18 @@ const routes: Routes = [
         loadChildren: () =>
           import('./pages/extra/extra.module').then((m) => m.ExtraModule),
       },
+      {
+        path: 'profile',
+        component: UserProfileComponent,
+      },
+      {
+        path: 'bank-account',
+        component: BankAccountComponent,
+      },
+      {
+        path: 'settings',
+        component: SettingsComponent ,
+      }
     ],
   },
   {
