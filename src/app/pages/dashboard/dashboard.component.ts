@@ -86,44 +86,7 @@ interface productcards {
   rprice: string;
 }
 
-const ELEMENT_DATA: productsData[] = [
-  {
-    id: 1,
-    imagePath: 'assets/images/profile/user-1.jpg',
-    uname: 'Sunil Joshi',
-    position: 'Web Designer',
-    productName: 'Elite Admin',
-    budget: 3.9,
-    priority: 'low',
-  },
-  {
-    id: 2,
-    imagePath: 'assets/images/profile/user-2.jpg',
-    uname: 'Andrew McDownland',
-    position: 'Project Manager',
-    productName: 'Real Homes Theme',
-    budget: 24.5,
-    priority: 'medium',
-  },
-  {
-    id: 3,
-    imagePath: 'assets/images/profile/user-3.jpg',
-    uname: 'Christopher Jamil',
-    position: 'Project Manager',
-    productName: 'MedicalPro Theme',
-    budget: 12.8,
-    priority: 'high',
-  },
-  {
-    id: 4,
-    imagePath: 'assets/images/profile/user-4.jpg',
-    uname: 'Nirav Joshi',
-    position: 'Frontend Engineer',
-    productName: 'Hosting Press HTML',
-    budget: 2.4,
-    priority: 'critical',
-  },
-];
+
 
 @Component({
   selector: 'app-dashboard',
@@ -137,103 +100,44 @@ export class AppDashboardComponent {
   public yearlyChart!: Partial<yearlyChart> | any;
   public monthlyChart!: Partial<monthlyChart> | any;
 
-  displayedColumns: string[] = ['assigned', 'name', 'priority', 'budget'];
-  dataSource = ELEMENT_DATA;
+  
 
   months: month[] = [
-    { value: 'mar', viewValue: 'March 2023' },
-    { value: 'apr', viewValue: 'April 2023' },
-    { value: 'june', viewValue: 'June 2023' },
+    { value: 'January', viewValue: 'January 2024' },
+    { value: 'February', viewValue: 'February 2024' },
+    { value: 'March', viewValue: 'March 2024' },
+    { value: 'April', viewValue: 'April 2024' },
+    { value: 'May', viewValue: 'May 2024' },
+    { value: 'June', viewValue: 'June 2024' },
+    { value: 'July', viewValue: 'July 2024' },
+    { value: 'August', viewValue: 'August 2024' },
+    { value: 'September', viewValue: 'September 2024' },
+    { value: 'October', viewValue: 'October 2024' },{ value: 'August', viewValue: 'August 2024' },
+    { value: 'November', viewValue: 'November 2024' },
+    { value: 'December', viewValue: 'December 2024' },
+    
   ];
 
-  // recent transaction
-  stats: stats[] = [
-    {
-      id: 1,
-      time: '09.30 am',
-      color: 'primary',
-      subtext: 'Payment received from John Doe of $385.90',
-    },
-    {
-      id: 2,
-      time: '10.30 am',
-      color: 'accent',
-      title: 'New sale recorded',
-      link: '#ML-3467',
-    },
-    {
-      id: 3,
-      time: '12.30 pm',
-      color: 'success',
-      subtext: 'Payment was made of $64.95 to Michael',
-    },
-    {
-      id: 4,
-      time: '12.30 pm',
-      color: 'warning',
-      title: 'New sale recorded',
-      link: '#ML-3467',
-    },
-    {
-      id: 5,
-      time: '12.30 pm',
-      color: 'error',
-      title: 'New arrival recorded',
-      link: '#ML-3467',
-    },
-    {
-      id: 6,
-      time: '12.30 pm',
-      color: 'success',
-      subtext: 'Payment Done',
-    },
-  ];
-
-  // ecommerce card
-  productcards: productcards[] = [
-    {
-      id: 1,
-      imgSrc: '/assets/images/products/s4.jpg',
-      title: 'Boat Headphone',
-      price: '285',
-      rprice: '375',
-    },
-    {
-      id: 2,
-      imgSrc: '/assets/images/products/s5.jpg',
-      title: 'MacBook Air Pro',
-      price: '285',
-      rprice: '375',
-    },
-    {
-      id: 3,
-      imgSrc: '/assets/images/products/s7.jpg',
-      title: 'Red Valvet Dress',
-      price: '285',
-      rprice: '375',
-    },
-    {
-      id: 4,
-      imgSrc: '/assets/images/products/s11.jpg',
-      title: 'Cute Soft Teddybear',
-      price: '285',
-      rprice: '375',
-    },
-  ];
-
+  
+  
   constructor() {
-    // sales overview chart
+    // Statistic chart
     this.salesOverviewChart = {
       series: [
         {
-          name: 'Eanings this month',
+          name: 'Solde',
           data: [355, 390, 300, 350, 390, 180, 355, 390],
           color: '#5D87FF',
         },
         {
-          name: 'Expense this month',
+          name: 'Débit',
           data: [280, 250, 325, 215, 250, 310, 280, 250],
           color: '#49BEFF',
+        },
+        {
+          name: 'Crédit',
+          data: [230, 240, 330, 220, 260, 340, 290, 270],
+          color: '#49BZFF',
         },
       ],
 
@@ -264,14 +168,14 @@ export class AppDashboardComponent {
       xaxis: {
         type: 'category',
         categories: [
-          '16/08',
-          '17/08',
-          '18/08',
-          '19/08',
-          '20/08',
-          '21/08',
-          '22/08',
-          '23/08',
+          'January 2024',
+          'February 2024',
+          'March 2024',
+          'April 2024',
+          'May 2024',
+          'June 2024',
+          'July 2024',
+          'August 2024',
         ],
         labels: {
           style: { cssClass: 'grey--text lighten-2--text fill-color' },
@@ -310,7 +214,7 @@ export class AppDashboardComponent {
       ],
     };
 
-    // yearly breakup chart
+    // yearly Statistic chart
     this.yearlyChart = {
       series: [38, 40, 25],
 
@@ -358,7 +262,7 @@ export class AppDashboardComponent {
       },
     };
 
-    // mohtly earnings chart
+    // mohtly Statistic chart
     this.monthlyChart = {
       series: [
         {
