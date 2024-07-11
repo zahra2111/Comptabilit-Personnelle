@@ -8,10 +8,10 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 // icons
 import { TablerIconsModule } from 'angular-tabler-icons';
 import * as TablerIcons from 'angular-tabler-icons/icons';
-import { AppConsultationComponent } from './consultation/consultation.component';
-
+import { AppDashboardComponent } from './dashboard/dashboard.component';
+import {BankAccountComponent} from './bank-account/bank-account.component';
 @NgModule({
-  declarations: [AppConsultationComponent],
+  declarations: [AppDashboardComponent,BankAccountComponent],
   imports: [
     CommonModule,
     MaterialModule,
