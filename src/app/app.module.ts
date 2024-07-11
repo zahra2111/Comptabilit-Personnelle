@@ -14,6 +14,10 @@ import * as TablerIcons from 'angular-tabler-icons/icons';
 import { MaterialModule } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { MatTableModule } from '@angular/material/table';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+
 //Import Layouts
 import { FullComponent } from './layouts/full/full.component';
 import { BlankComponent } from './layouts/blank/blank.component';
@@ -34,6 +38,7 @@ import { AppNavItemComponent } from './layouts/full/sidebar/nav-item/nav-item.co
     BrandingComponent,
     AppNavItemComponent,
   ],
+  
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -43,6 +48,9 @@ import { AppNavItemComponent } from './layouts/full/sidebar/nav-item/nav-item.co
     ReactiveFormsModule,
     MaterialModule,
     TablerIconsModule.pick(TablerIcons),
+    MatTableModule, // Angular Material table module
+    MatMenuModule, // Angular Material menu module
+    MatIconModule, // Angular Material icon module
   ],
   exports: [TablerIconsModule],
   bootstrap: [AppComponent],
