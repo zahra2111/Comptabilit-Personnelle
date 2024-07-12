@@ -7,7 +7,7 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Consulter les opérations',
     iconName: 'layout-dashboard',
-    route: '/dashboard',
+    route: '/consultation',
   },
   {
     displayName: 'Statistiques',
