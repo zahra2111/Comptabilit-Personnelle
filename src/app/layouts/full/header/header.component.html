@@ -23,15 +23,7 @@
   <!-- --------------------------------------------------------------- -->
   <!-- profile Dropdown -->
   <!-- --------------------------------------------------------------- -->
-  <a
-    mat-flat-button
-    color="primary"
-    href="https://adminmart.com/product/modernize-angular-admin-dashboard/"
-    target="_blank"
-    class="d-flex justify-content-center"
-  >
-    Download Free
-  </a>
+ 
   <button
     mat-icon-button
     [matMenuTriggerFor]="profilemenu"
@@ -45,20 +37,22 @@
   </button>
   
   <mat-menu #profilemenu="matMenu" class="topbar-dd cardWithShadow">
-    <button mat-menu-item>
+    <button mat-menu-item   (click)="onProfilClick()" >
       <mat-icon class="d-flex align-items-center"
-        ><i-tabler name="user" class="icon-18 d-flex"></i-tabler></mat-icon>My Profile
+        ><i-tabler name="user" class="icon-18 d-flex"></i-tabler></mat-icon>Profil
     </button>
-    <button mat-menu-item>
+    <button mat-menu-item   (click)="onBankClick()" >
       <mat-icon class="d-flex align-items-center"
-        ><i-tabler name="mail" class="icon-18 d-flex"></i-tabler></mat-icon> My Account
+        ><i-tabler name="book-2" class="icon-18 d-flex"></i-tabler></mat-icon> Compte bancaire
     </button>
-    <button mat-menu-item>
+
+  
+    <button mat-menu-item (click)="onSettingsClick()">
       <mat-icon class="d-flex align-items-center"><i-tabler
-          name="alarm"
+          name="settings"
           class="icon-18 d-flex"
-        ></i-tabler></mat-icon
-      >My Task
+        ></i-tabler></mat-icon 
+        >Paramètres
     </button>
 
     <div class="p-x-12 m-t-12">
@@ -67,7 +61,7 @@
         mat-stroked-button
         color="primary"
         class="w-100"
-        >Logout</a
+        >Se déconnecter</a
       >
     </div>
   </mat-menu>

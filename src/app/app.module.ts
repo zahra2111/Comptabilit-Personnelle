@@ -27,6 +27,9 @@ import { SidebarComponent } from './layouts/full/sidebar/sidebar.component';
 import { HeaderComponent } from './layouts/full/header/header.component';
 import { BrandingComponent } from './layouts/full/sidebar/branding.component';
 import { AppNavItemComponent } from './layouts/full/sidebar/nav-item/nav-item.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+import { SettingsComponent } from './pages/settings/settings.component'; // Adjust the path as per your project structure
 
 @NgModule({
   declarations: [
@@ -37,8 +40,7 @@ import { AppNavItemComponent } from './layouts/full/sidebar/nav-item/nav-item.co
     HeaderComponent,
     BrandingComponent,
     AppNavItemComponent,
-  ],
-  
+    UserProfileComponent,SettingsComponent  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -54,5 +56,8 @@ import { AppNavItemComponent } from './layouts/full/sidebar/nav-item/nav-item.co
   ],
   exports: [TablerIconsModule],
   bootstrap: [AppComponent],
+  providers: [
+    provideAnimationsAsync()
+  ],
 })
 export class AppModule {}
