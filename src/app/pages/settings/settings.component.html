@@ -1,0 +1,88 @@
+<mat-card class="cardWithShadow">
+    <mat-card-content class="card-content">
+      <div class="card">
+        <div class="section-title"><b>Feedback & Support</b></div>
+        <div class="section-text">If you have any questions, contact our customer service at <a href="mailto:support@webstbudget.it">support.it</a></div>
+        <hr class="divider">
+  
+        <div class="row align-items-center mt-3">
+          <div class="col-3">Language:</div>
+          <div class="col">
+            <select class="form-select" id="selectLanguage">
+              <option value="en">English</option>
+              <option value="it">Italiano</option>
+              <option value="pt">Português</option>
+              <option value="es">Español</option>
+              <!-- Add other language options as needed -->
+            </select>
+          </div>
+          <div class="col-auto">
+            <button class="btn-flat">Save</button>
+          </div>
+        </div>
+  
+        <hr class="divider">
+  
+        <div class="row align-items-center mt-3">
+          <div class="col-3">Currency:</div>
+          <div class="col">
+            <select class="form-select" id="selectCurrency">
+              <option value="AED">AED - د.إ</option>
+              <option value="ALL">ALL - L</option>
+              <!-- Add other currency options as needed -->
+            </select>
+          </div>
+          <div class="col-auto">
+            <button class="btn-flat">Save</button>
+          </div>
+        </div>
+  
+        <hr class="divider">
+  
+        <div class="section-title">General settings</div>
+  
+        <div class="row align-items-center mt-3">
+          <div class="col-5 col-md-4">First day of month:</div>
+          <div class="col">
+            <select class="form-select" id="selectFirstDayOfMonth">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <!-- Add other day options as needed -->
+            </select>
+          </div>
+        </div>
+  
+        <div class="row align-items-center mt-3">
+          <div class="col-5 col-md-4">First day of week:</div>
+          <div class="col">
+            <select class="form-select" id="selectFirstDayOfWeek">
+              <option value="0">Monday</option>
+              <option value="6">Sunday</option>
+              <!-- Add other day options as needed -->
+            </select>
+          </div>
+        </div>
+  
+        <div class="form-check mt-4">
+          <input class="form-check-input" type="checkbox" id="switchTransactionTime">
+          <label class="form-check-label" for="switchTransactionTime">Transactions - Set the time of the transactions</label>
+        </div>
+  
+        <div class="form-check mt-4">
+          <input class="form-check-input" type="checkbox" id="switchTransactionReminder">
+          <label class="form-check-label" for="switchTransactionReminder">Display a small icon to remind you to check the transactions with your bank statement</label>
+          <div class="mt-2">
+            <select class="form-select" id="selectTransactionReminderStatus">
+              <option value="0">Checked</option>
+              <option value="1">Not checked</option>
+            </select>
+          </div>
+        </div>
+  
+        <div class="mt-4">
+          <button class="btn-flat">Save</button>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  

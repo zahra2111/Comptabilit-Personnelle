@@ -6,7 +6,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -22,5 +22,18 @@ export class HeaderComponent {
 
   showFiller = false;
 
-  constructor(public dialog: MatDialog) {}
+  onProfilClick() {
+      this.router.navigate(['/profile']);
+    
+  }
+  
+  onBankClick() {
+    this.router.navigate(['/bank-account']);
+  
+}
+onSettingsClick() {
+  this.router.navigate(['/settings']);
+
+}
+  constructor(public dialog: MatDialog, public router: Router) {}
 }

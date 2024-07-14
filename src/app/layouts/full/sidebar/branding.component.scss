@@ -1,0 +1,15 @@
+.branding {
+    display: flex;
+    align-items: center;
+  }
+  
+  .branding img {
+    width: 50px; 
+    height: 50px; 
+  }
+  
+  .branding .brand-name {
+    margin-left: 5px; 
+    font-size: 1.5rem; 
+    color: #333; 
+  }
