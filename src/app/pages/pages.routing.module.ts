@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { AppConsultationComponent } from './consultation/consultation.component'
+import { AppDashboardComponent } from './dashboard/dashboard.component'
 
 export const PagesRoutes: Routes = [
   {
     path: '',
-    component: AppConsultationComponent,
+    component: AppDashboardComponent,
     data: {
       title: 'Starter Page',
     },
