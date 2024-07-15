@@ -9,9 +9,15 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import * as TablerIcons from 'angular-tabler-icons/icons';
 import { AppDashboardComponent } from './dashboard/dashboard.component';
+<<<<<<< HEAD
 import {BankAccountComponent} from './bank-account/bank-account.component';
 @NgModule({
   declarations: [AppDashboardComponent,BankAccountComponent],
+=======
+
+@NgModule({
+  declarations: [AppDashboardComponent],
+>>>>>>> ee0455bd9156b31bf407e0d38b4f70bff2a1a9c0
   imports: [
     CommonModule,
     MaterialModule,
