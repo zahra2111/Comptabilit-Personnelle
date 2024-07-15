@@ -1,6 +1,6 @@
-import { Routes } from '@angular/router';
-import { AppDashboardComponent } from './dashboard/dashboard.component'
 
+import { AppDashboardComponent } from './dashboard/dashboard.component'
+import { RouterModule, Routes } from '@angular/router';
 export const PagesRoutes: Routes = [
   {
     path: '',
@@ -10,3 +10,7 @@ export const PagesRoutes: Routes = [
     },
   },
 ];
+
+
+
+
