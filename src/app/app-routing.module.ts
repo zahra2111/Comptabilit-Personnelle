@@ -16,6 +16,7 @@ const routes: Routes = [
         redirectTo: '/dashboard',
         pathMatch: 'full',
       },
+      
       {
         path: 'dashboard',
         loadChildren: () =>
@@ -37,6 +38,7 @@ const routes: Routes = [
         path: 'profile',
         component: UserProfileComponent,
       },
+    
       {
         path: 'bank-account',
         component: BankAccountComponent,

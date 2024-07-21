@@ -26,6 +26,12 @@ import { AppNavItemComponent } from './layouts/full/sidebar/nav-item/nav-item.co
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { SettingsComponent } from './pages/settings/settings.component'; // Adjust the path as per your project structure
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { UserService } from './services/User/user.service';
+import { provideClientHydration } from '@angular/platform-browser';
+import {  HTTP_INTERCEPTORS } from '@angular/common/http';
+import { CompteBancaireService } from './services/CompteBancaire/compte-bancaire.service';
+import { AuthInterceptor } from './auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -36,21 +42,32 @@ import { SettingsComponent } from './pages/settings/settings.component'; // Adju
     HeaderComponent,
     BrandingComponent,
     AppNavItemComponent,
-    UserProfileComponent,SettingsComponent  ],
+    UserProfileComponent,
+    SettingsComponent,
+    
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
     TablerIconsModule.pick(TablerIcons),
   ],
-  exports: [TablerIconsModule],
-  bootstrap: [AppComponent],
+  exports: [
+    TablerIconsModule
+  ],
+  bootstrap: [
+    AppComponent
+  ],
   providers: [
-    provideAnimationsAsync()
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    provideClientHydration(),
+    UserService,
+    CompteBancaireService,
+     provideHttpClient(withFetch())
+
   ],
 })
 export class AppModule {}

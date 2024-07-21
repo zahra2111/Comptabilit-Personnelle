@@ -1,0 +1,127 @@
+/* General layout and styling */
+.blank-layout-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f4f8;
+  }
+  
+  .bg-gradient {
+    background: linear-gradient(135deg, #6e8efb 0%, #a777e3 100%);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .cardWithShadow {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color: #fff;
+  }
+  
+  .boxed-auth {
+    padding: 32px;
+    border-radius: 10px;
+  }
+  
+  .p-32 {
+    padding: 32px;
+  }
+  
+  .m-t-24 {
+    margin-top: 24px;
+  }
+  
+  .m-t-30 {
+    margin-top: 30px;
+  }
+  
+  /* Google signup/login button */
+  .google-signup-button, .google-login-button {
+    border-color: #4285f4;
+    color: #4285f4;
+  }
+  
+  .google-signup-button .m-r-8, .google-login-button .m-r-8 {
+    margin-right: 8px;
+  }
+  
+  /* OR divider */
+  .or-border {
+    text-align: center;
+    margin: 30px 0;
+    position: relative;
+  }
+  
+  .or-border::before,
+  .or-border::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 45%;
+    height: 1px;
+    background: #ddd;
+  }
+  
+  .or-border::before {
+    left: 0;
+  }
+  
+  .or-border::after {
+    right: 0;
+  }
+  
+  /* Form styling */
+  form {
+    margin-top: 30px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .btn-primary {
+    background-color: #4285f4;
+    border-color: #4285f4;
+    color: #fff;
+  }
+  
+  .btn-primary:hover {
+    background-color: #357ae8;
+    border-color: #357ae8;
+  }
+  
+  /* Already have an account link */
+  .f-w-500 {
+    font-weight: 500;
+  }
+  
+  .f-s-14 {
+    font-size: 14px;
+  }
+  
+  .text-primary {
+    color: #4285f4;
+  }
+  
+  .m-t-24 {
+    margin-top: 24px;
+  }
+  
