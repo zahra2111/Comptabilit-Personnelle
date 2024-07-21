@@ -20,7 +20,7 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Debiter',
     iconName: 'brand-mastercard',
-    route: '/ui-components/badge',
+    route: '/debiter', // Update the route to match your application
   },
   {
     displayName: 'Créditer',
