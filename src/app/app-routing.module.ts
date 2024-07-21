@@ -23,6 +23,11 @@ const routes: Routes = [
           import('./pages/pages.module').then((m) => m.PagesModule),
       },
       {
+        path: 'consultation',
+        loadChildren: () =>
+          import('./pages/consultation/consultation.module').then((m) => m.ConsultationModule),
+      },
+      {
         path: 'ui-components',
         loadChildren: () =>
           import('./pages/ui-components/ui-components.module').then(
