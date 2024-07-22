@@ -4,22 +4,24 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PopupService } from '../../services/popup.service'; // Adjust path as needed
 
 @Component({
-  selector: 'app-crediter-popup',
-  templateUrl: './crediter-popup.component.html',
-  styleUrls: ['./crediter-popup.component.scss']
+  selector: 'app-virement-popup',
+  standalone: true,
+  imports: [],
+  templateUrl: './virement-popup.component.html',
+  styleUrl: './virement-popup.component.scss'
 })
-export class CrediterPopupComponent implements OnInit {
-  creditForm: FormGroup;
+export class VirementPopupPopupComponent implements OnInit {
+  virementForm: FormGroup;
 
   constructor(private popupService: PopupService, private fb: FormBuilder) {
-    this.creditForm = this.fb.group({
+    this.virementForm = this.fb.group({
       date: ['', Validators.required],
       description: ['', Validators.required],
       mode: ['', Validators.required],
       tiers: ['', Validators.required],
       categories: ['', Validators.required],
       ref: ['', Validators.required],
-      type: ['credit', Validators.required]
+      type: ['debit', Validators.required]
     });
   }
 
@@ -30,8 +32,8 @@ export class CrediterPopupComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.creditForm.valid) {
-      console.log(this.creditForm.value);
+    if (this.virementForm.valid) {
+      console.log(this.virementForm.value);
       this.closePopup(); // Close popup after submission
     }
   }

@@ -23,14 +23,14 @@ export const navItems: NavItem[] = [
     route: '/debiter', // Update the route to match your application
   },
   {
-    displayName: 'Créditer',
+    displayName: 'Crediter',
     iconName: 'credit-card-pay',
-    route: '/ui-components/chips',
+    route: '/crediter',
   },
   {
     displayName: 'Virement',
     iconName: 'zoom-money',
-    route: '/ui-components/lists',
+    route: '/virement',
   },
   // {
   //   displayName: 'Menu',

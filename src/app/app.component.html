@@ -1,2 +1,9 @@
-<router-outlet></router-outlet>
+<router-outlet>Debiter</router-outlet>
 <app-debiter-popup *ngIf="isPopupOpen"></app-debiter-popup>
+
+<router-outlet>Crediter</router-outlet>
+<app-crediter-popup *ngIf="isPopupOpen"></app-crediter-popup>
+
+
+<router-outlet>Virement</router-outlet>
+<app-virement-popup *ngIf="isPopupOpen"></app-virement-popup>
