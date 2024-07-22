@@ -32,7 +32,7 @@ import { AppNavItemComponent } from './layouts/full/sidebar/nav-item/nav-item.co
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { DebiterPopupComponent } from './components/debiter-popup/debiter-popup.component'; // Adjust path as needed
-
+import { BankAccountComponent } from './pages/bank-account/bank-account.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +45,7 @@ import { DebiterPopupComponent } from './components/debiter-popup/debiter-popup.
     UserProfileComponent,
     SettingsComponent,
     DebiterPopupComponent, // Add the DebiterPopupComponent here
+    BankAccountComponent
   ],
   imports: [
     BrowserModule,
