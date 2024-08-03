@@ -2,12 +2,13 @@
   <mat-card-content>
     <div class="container">
       <h1 class="header-title">Gestion des comptes bancaires</h1>
+    
       <table class="table table-hover">
         <thead class="thead-blue">
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Nom du compte</th>
-            <th scope="col">Devise</th>
+            <th scope="col">Type</th>
             <th scope="col">Solde initial</th>
             <th scope="col">Actions</th>
           </tr>
@@ -15,19 +16,19 @@
         <tbody>
           <tr *ngFor="let compte of comptes">
             <td>{{ compte.id }}</td>
-            <td>{{ compte.name }}</td>
-            <td>{{ compte.Devise }}</td>
-            <td>{{ compte.Solde_initial }}</td>
+            <td>{{ compte.nom }}</td>
+            <td>{{ compte.type }}</td>
+            <td>{{ compte.initialSum | number: '1.2-2' }}</td>
             <td>
               <button mat-icon-button [matMenuTriggerFor]="menu">
                 <mat-icon>more_vert</mat-icon>
               </button>
               <mat-menu #menu="matMenu" class="mat-menu-blue">
-                <button mat-menu-item>
+                <button mat-menu-item (click)="openPopup(compte)">
                   <mat-icon>edit</mat-icon>
                   <span>Modifier</span>
                 </button>
-                <button mat-menu-item>
+                <button mat-menu-item (click)="deleteBankAccount(compte.id!)">
                   <mat-icon>delete</mat-icon>
                   <span>Supprimer</span>
                 </button>
@@ -37,7 +38,7 @@
         </tbody>
       </table>
       <div class="custom-text-right mt-3">
-        <button mat-flat-button color="primary">
+        <button mat-flat-button color="primary" (click)="openPopup()">
           <mat-icon>add</mat-icon>
           Ajouter
         </button>
@@ -45,3 +46,27 @@
     </div>
   </mat-card-content>
 </mat-card>
+
+<!-- Popup Overlay -->
+<div class="popup-overlay" *ngIf="showPopup" (click)="closePopup()">
+  <div class="popup-content" (click)="$event.stopPropagation()">
+    <h2>{{ editingBankAccount ? 'Modifier le compte bancaire' : 'Ajouter un compte bancaire' }}</h2>
+    <form #bankAccountForm="ngForm" (ngSubmit)="onSubmit(bankAccountForm)">
+      
+      <div class="form-group">
+        <label for="nom">Nom du compte</label>
+        <input type="text" id="nom" name="nom" [ngModel]="editingBankAccount?.nom" required>
+      </div>
+      <div class="form-group">
+        <label for="initialSum">Solde initial</label>
+        <input type="number" id="initialSum" name="initialSum" [ngModel]="editingBankAccount?.initialSum" step="0.01" required>
+      </div>
+      <div class="form-group">
+        <label for="type">Type</label>
+        <input type="text" id="type" name="type" [ngModel]="editingBankAccount?.type" required>
+      </div>
+      <button type="submit" [disabled]="!bankAccountForm.form.valid">Submit</button>
+      <button type="button" (click)="closePopup()">Close</button>
+    </form>
+  </div>
+</div>

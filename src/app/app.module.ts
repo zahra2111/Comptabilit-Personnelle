@@ -30,9 +30,14 @@ import { AppNavItemComponent } from './layouts/full/sidebar/nav-item/nav-item.co
 
 // Pages
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
-import { SettingsComponent } from './pages/settings/settings.component';
-import { DebiterPopupComponent } from './components/debiter-popup/debiter-popup.component'; // Adjust path as needed
-import { BankAccountComponent } from './pages/bank-account/bank-account.component';
+import { SettingsComponent } from './pages/settings/settings.component'; // Adjust the path as per your project structure
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { UserService } from './services/User/user.service';
+import { provideClientHydration } from '@angular/platform-browser';
+import {  HTTP_INTERCEPTORS } from '@angular/common/http';
+import { CompteBancaireService } from './services/CompteBancaire/compte-bancaire.service';
+import { AuthInterceptor } from './auth.interceptor';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,13 +49,11 @@ import { BankAccountComponent } from './pages/bank-account/bank-account.componen
     AppNavItemComponent,
     UserProfileComponent,
     SettingsComponent,
-    DebiterPopupComponent, // Add the DebiterPopupComponent here
-    BankAccountComponent
-  ],
+    
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
@@ -60,8 +63,19 @@ import { BankAccountComponent } from './pages/bank-account/bank-account.componen
     MatMenuModule,
     MatIconModule,
   ],
-  exports: [TablerIconsModule],
-  bootstrap: [AppComponent],
-  providers: [],
+  exports: [
+    TablerIconsModule
+  ],
+  bootstrap: [
+    AppComponent
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    provideClientHydration(),
+    UserService,
+    CompteBancaireService,
+     provideHttpClient(withFetch())
+
+  ],
 })
 export class AppModule {}

@@ -1,26 +1,28 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserService } from '../../../services/User/user.service';
+import { User } from '../../../services/User/user';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
+  styleUrl : './register.css'
 })
 export class AppSideRegisterComponent {
-  constructor(private router: Router) {}
 
-  form = new FormGroup({
-    uname: new FormControl('', [Validators.required, Validators.minLength(6)]),
-    email: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required]),
-  });
-
-  get f() {
-    return this.form.controls;
-  }
-
-  submit() {
-    // console.log(this.form.value);
-    this.router.navigate(['/dashboard']);
+  constructor(private router: Router, private userService: UserService) {}
+  onSubmit(form: NgForm) {
+    if (form.valid) {
+      const user = new User(form.value.nomPrenom, form.value.email, form.value.password);
+      this.userService.addUser(user)
+        .subscribe(response => {
+          console.log('User added successfully', response);
+          form.resetForm();
+          this.router.navigate(['/authentication/login']);
+        }, error => {
+          console.error('Error adding user', error);
+        });
+    }
   }
 }
