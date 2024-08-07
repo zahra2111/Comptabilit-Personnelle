@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CrediterPopupComponent } from './crediter-popup.component';
 
 describe('CrediterPopupComponent', () => {
@@ -8,7 +7,7 @@ describe('CrediterPopupComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CrediterPopupComponent]
+      declarations: [ CrediterPopupComponent ]
     })
     .compileComponents();
     

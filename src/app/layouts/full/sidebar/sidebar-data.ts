@@ -25,7 +25,7 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Créditer',
     iconName: 'credit-card-pay',
-    route: '/ui-components/chips',
+    route: '/crediter',
   },
   {
     displayName: 'Virement',

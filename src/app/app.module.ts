@@ -27,12 +27,15 @@ import { SidebarComponent } from './layouts/full/sidebar/sidebar.component';
 import { HeaderComponent } from './layouts/full/header/header.component';
 import { BrandingComponent } from './layouts/full/sidebar/branding.component';
 import { AppNavItemComponent } from './layouts/full/sidebar/nav-item/nav-item.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 // Pages
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { DebiterPopupComponent } from './components/debiter-popup/debiter-popup.component'; // Adjust path as needed
-
+import { CrediterPopupComponent } from './components/crediter-popup/crediter-popup.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'; // Adjust path as needed
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +48,7 @@ import { DebiterPopupComponent } from './components/debiter-popup/debiter-popup.
     UserProfileComponent,
     SettingsComponent,
     DebiterPopupComponent, // Add the DebiterPopupComponent here
+    CrediterPopupComponent, // Add the CrediterPopupComponent here
   ],
   imports: [
     BrowserModule,
@@ -58,9 +62,13 @@ import { DebiterPopupComponent } from './components/debiter-popup/debiter-popup.
     MatTableModule,
     MatMenuModule,
     MatIconModule,
+    MatSelectModule,
+    MatFormFieldModule,
   ],
   exports: [TablerIconsModule],
   bootstrap: [AppComponent],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
 })
 export class AppModule {}
