@@ -27,7 +27,6 @@ import { SidebarComponent } from './layouts/full/sidebar/sidebar.component';
 import { HeaderComponent } from './layouts/full/header/header.component';
 import { BrandingComponent } from './layouts/full/sidebar/branding.component';
 import { AppNavItemComponent } from './layouts/full/sidebar/nav-item/nav-item.component';
-
 // Pages
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { SettingsComponent } from './pages/settings/settings.component'; // Adjust the path as per your project structure
@@ -37,6 +36,9 @@ import { provideClientHydration } from '@angular/platform-browser';
 import {  HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CompteBancaireService } from './services/CompteBancaire/compte-bancaire.service';
 import { AuthInterceptor } from './auth.interceptor';
+import { BankAccountComponent } from './pages/bank-account/bank-account.component';
+import { DebiterPopupComponent } from './components/debiter-popup/debiter-popup.component';
+
 
 @NgModule({
   declarations: [
@@ -49,6 +51,9 @@ import { AuthInterceptor } from './auth.interceptor';
     AppNavItemComponent,
     UserProfileComponent,
     SettingsComponent,
+    BankAccountComponent,
+    DebiterPopupComponent,
+    
     
     ],
   imports: [
@@ -62,6 +67,7 @@ import { AuthInterceptor } from './auth.interceptor';
     MatTableModule,
     MatMenuModule,
     MatIconModule,
+    
   ],
   exports: [
     TablerIconsModule

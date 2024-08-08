@@ -8,12 +8,14 @@ import { PopupService } from './services/popup.service';
 })
 export class AppComponent implements OnInit {
   isPopupOpen = false;
+  isPopupOpen1 = false;
 
   constructor(private popupService: PopupService) {}
 
   ngOnInit() {
     this.popupService.popupState$.subscribe((state: boolean) => {
       this.isPopupOpen = state;
+      this.isPopupOpen1 = state;
     });
   }
 }

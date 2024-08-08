@@ -31,10 +31,13 @@ export class AppNavItemComponent implements OnChanges {
       this.popupService.openPopup();
       return;
     }
-
     if (!item.children || !item.children.length) {
       this.router.navigate([item.route]);
     }
+
+  
+      
+      
 
     // scroll
     document.querySelector('.page-wrapper')?.scroll({
