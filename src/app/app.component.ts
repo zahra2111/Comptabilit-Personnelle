@@ -7,13 +7,18 @@ import { PopupService } from './services/popup.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  isPopupOpen = false;
+  isCrediterPopupOpen = false;
+  isDebiterPopupOpen = false;
 
   constructor(private popupService: PopupService) {}
 
   ngOnInit() {
-    this.popupService.popupState$.subscribe((state: boolean) => {
-      this.isPopupOpen = state;
+    this.popupService.getPopupState('crediterPopup').subscribe((state: boolean) => {
+      this.isCrediterPopupOpen = state;
+    });
+
+    this.popupService.getPopupState('debiterPopup').subscribe((state: boolean) => {
+      this.isDebiterPopupOpen = state;
     });
   }
 }

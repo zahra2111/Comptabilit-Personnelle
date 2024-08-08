@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PopupService } from '../../services/popup.service'; // Adjust path as needed
@@ -10,6 +9,7 @@ import { PopupService } from '../../services/popup.service'; // Adjust path as n
 })
 export class CrediterPopupComponent implements OnInit {
   creditForm: FormGroup;
+  popupId = 'crediterPopup';
 
   constructor(private popupService: PopupService, private fb: FormBuilder) {
     this.creditForm = this.fb.group({
@@ -26,7 +26,7 @@ export class CrediterPopupComponent implements OnInit {
   ngOnInit(): void {}
 
   closePopup() {
-    this.popupService.closePopup();
+    this.popupService.closePopup(this.popupId);
   }
 
   onSubmit() {

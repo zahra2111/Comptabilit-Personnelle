@@ -22,13 +22,19 @@ export class AppNavItemComponent implements OnChanges {
   ngOnChanges() {
     this.navService.currentUrl.subscribe((url: string) => {
       if (this.item.route && url) {
+        // Add logic if needed
       }
     });
   }
 
   onItemSelected(item: NavItem) {
     if (item.route === '/debiter') {
-      this.popupService.openPopup();
+      this.popupService.openPopup('debiterPopup');
+      return;
+    }
+
+    if (item.route === '/crediter') {
+      this.popupService.openPopup('crediterPopup');
       return;
     }
 
