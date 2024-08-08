@@ -27,19 +27,15 @@ import { SidebarComponent } from './layouts/full/sidebar/sidebar.component';
 import { HeaderComponent } from './layouts/full/header/header.component';
 import { BrandingComponent } from './layouts/full/sidebar/branding.component';
 import { AppNavItemComponent } from './layouts/full/sidebar/nav-item/nav-item.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
 // Pages
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
-import { SettingsComponent } from './pages/settings/settings.component'; // Adjust the path as per your project structure
-import { provideHttpClient, withFetch } from '@angular/common/http';
-import { UserService } from './services/User/user.service';
-import { provideClientHydration } from '@angular/platform-browser';
-import {  HTTP_INTERCEPTORS } from '@angular/common/http';
-import { CompteBancaireService } from './services/CompteBancaire/compte-bancaire.service';
-import { AuthInterceptor } from './auth.interceptor';
-import { BankAccountComponent } from './pages/bank-account/bank-account.component';
-import { DebiterPopupComponent } from './components/debiter-popup/debiter-popup.component';
-
-
+import { SettingsComponent } from './pages/settings/settings.component';
+import { DebiterPopupComponent } from './components/debiter-popup/debiter-popup.component'; // Adjust path as needed
+import { CrediterPopupComponent } from './components/crediter-popup/crediter-popup.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'; // Adjust path as needed
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,11 +47,9 @@ import { DebiterPopupComponent } from './components/debiter-popup/debiter-popup.
     AppNavItemComponent,
     UserProfileComponent,
     SettingsComponent,
-    BankAccountComponent,
-    DebiterPopupComponent,
-    
-    
-    ],
+    DebiterPopupComponent, // Add the DebiterPopupComponent here
+    CrediterPopupComponent, // Add the CrediterPopupComponent here
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -67,21 +61,13 @@ import { DebiterPopupComponent } from './components/debiter-popup/debiter-popup.
     MatTableModule,
     MatMenuModule,
     MatIconModule,
-    
+    MatSelectModule,
+    MatFormFieldModule,
   ],
-  exports: [
-    TablerIconsModule
-  ],
-  bootstrap: [
-    AppComponent
-  ],
+  exports: [TablerIconsModule],
+  bootstrap: [AppComponent],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    provideClientHydration(),
-    UserService,
-    CompteBancaireService,
-     provideHttpClient(withFetch())
-
+    provideAnimationsAsync()
   ],
 })
 export class AppModule {}

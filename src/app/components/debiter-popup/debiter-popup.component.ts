@@ -9,6 +9,7 @@ import { PopupService } from '../../services/popup.service'; // Adjust path as n
 })
 export class DebiterPopupComponent implements OnInit {
   debitForm: FormGroup;
+  popupId = 'debiterPopup';
 
   constructor(private popupService: PopupService, private fb: FormBuilder) {
     this.debitForm = this.fb.group({
@@ -25,7 +26,7 @@ export class DebiterPopupComponent implements OnInit {
   ngOnInit(): void {}
 
   closePopup() {
-    this.popupService.closePopup();
+    this.popupService.closePopup(this.popupId);
   }
 
   onSubmit() {
