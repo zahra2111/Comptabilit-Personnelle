@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../services/auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -35,5 +36,9 @@ onSettingsClick() {
   this.router.navigate(['/settings']);
 
 }
-  constructor(public dialog: MatDialog, public router: Router) {}
+onLogout() {
+  this.authService.logout();
+}
+
+  constructor(private authService: AuthService,public dialog: MatDialog, public router: Router) {}
 }

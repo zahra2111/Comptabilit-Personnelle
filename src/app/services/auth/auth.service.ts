@@ -1,32 +1,106 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import{ jwtDecode} from 'jwt-decode'; // Corrected import
+import { Router } from '@angular/router';
+import { map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://127.0.0.1:8000/api/login'; // Ensure this matches your Symfony endpoint
 
-  constructor(private http: HttpClient) {}
+  private apiUrl = 'http://127.0.0.1:8000/api/login';
+  private currentUserUrl = 'http://127.0.0.1:8000/api/current_user';
+  private userdetailURL = 'http://127.0.0.1:8000/api/users/';
+  constructor(private http: HttpClient, private router: Router) {}
 
   login(username: string, password: string): Observable<any> {
     return this.http.post<any>(this.apiUrl, { username, password }).pipe(
       tap(response => {
-        // Store the token in localStorage
-        localStorage.setItem('authToken', response.token);
+        if (response.token) {
+          localStorage.setItem('authToken', response.token);
+        } else {
+          console.error('No token received from server');
+        }
       })
     );
   }
+ 
+  getUserInfoFromToken(): any {
+    const token = localStorage.getItem('authToken'); // Consistent use of localStorage
+    if (token) {
+      return jwtDecode(token);
+    }
+    return null;
+  }
 
-  // Optional: Method to check if the user is logged in
   isLoggedIn(): boolean {
-    return !!localStorage.getItem('authToken');
+    return !!localStorage.getItem('authToken'); // Consistent use of localStorage
   }
 
-  // Optional: Method to log out
-  logout(): void {
-    localStorage.removeItem('authToken');
+  logout() {
+    // Remove JWT token from local storage
+    localStorage.removeItem('authToken'); // Consistent key
+
+    // Redirect to login page
+    this.router.navigate(['/authentication/login']);
   }
+
+  getCurrentUser(): Observable<any> {
+    const token = localStorage.getItem('authToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.get<any>(this.currentUserUrl, { headers });
+  }
+  getUserById(userId: number): Observable<any> {
+    const token = localStorage.getItem('authToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.get<any>(`${this.userdetailURL}/${userId}`, { headers });
+  }
+
+  private changePasswordUrl = 'http://127.0.0.1:8000/api/change_password'; // Your Symfony endpoint
+  private registerURL = 'http://127.0.0.1:8000/api/regiter'; // Your Symfony endpoint
+  register(email: string, currentPassword: string, newPassword: string): Observable<any> {
+    const token = localStorage.getItem('authToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.post<any>(this.changePasswordUrl, 
+      { email, currentPassword, newPassword }, 
+      { headers }
+    );
+  }
+  changePassword(email: string, currentPassword: string, newPassword: string): Observable<any> {
+    const token = localStorage.getItem('authToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.post<any>(this.changePasswordUrl, 
+      { email, currentPassword, newPassword }, 
+      { headers }
+    );
+  }
+  // New method to get current user ID
+  getCurrentUserId(): Observable<number | null> {
+    return this.getCurrentUser().pipe(
+      map(user => {
+        if (user && user.id !== undefined) {
+          return user.id; // Extract and return the user ID
+        } else {
+          console.error('User ID not found');
+          return null;
+        }
+      })
+    );}
+ 
 }

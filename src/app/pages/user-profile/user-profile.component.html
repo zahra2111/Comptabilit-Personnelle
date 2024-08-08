@@ -1,130 +1,75 @@
-<!-- Your Angular Component HTML -->
 <mat-card class="cardWithShadow">
   <mat-card-content>
-
-    <!-- Upper Bar -->
-    <div class="container upper-bar d-flex justify-content-center">
-      <div class="col-xl-6 col-md-12">
-        <ul class="nav nav-tabs">
-          <li class="nav-item">
-            <button mat-menu-item (click)="activeTab = 'profile'" [ngClass]="{'active-tab': activeTab === 'profile'}">
-              <mat-icon class="d-flex align-items-center"><i-tabler name="user" class="icon-18 d-flex"></i-tabler></mat-icon> Profil
+    <!-- Profile Section -->
+    <div class="container profile-container">
+      <h2 class="text-center mb-4">Mon Profil</h2>
+      
+      <!-- Profile Information -->
+      <div class="profile-info card mb-4">
+        <div class="card-body">
+          <h4 class="card-title mb-3">Information Personnelle</h4>        
+          <div class="form-group mb-3">
+            <label for="email">Email</label>
+            <div *ngIf="userInfo">
+              <input id="email" [(ngModel)]="userInfo.email" type="email" class="form-control" />
+            </div> 
+          </div>
+          <div class="text-center"> 
+        <!--     <button mat-flat-button color="primary" (click)="saveChanges()"> -->
+          <button mat-flat-button color="primary" >
+              <mat-icon><i-tabler name="check" class="icon-18"></i-tabler></mat-icon>
+              Sauvegarder
             </button>
-          </li>
-          <li class="nav-item">
-            <button mat-menu-item (click)="activeTab = 'security'" [ngClass]="{'active-tab': activeTab === 'security'}">
-              <mat-icon class="d-flex align-items-center"><i-tabler name="lock" class="icon-18 d-flex"></i-tabler></mat-icon> Securité
-            </button>
-          </li>
-          
-        </ul>
-      </div>
-    </div>
-
-    <!-- Profile Content -->
-    <div *ngIf="activeTab === 'profile'">
-      <div class="col-xl-8 col-md-12 mx-auto">
-        <div class="card user-card-full">
-          <div class="row m-l-0 m-r-0">
-            <div class="col-sm-3 bg-c-lite-green user-profile">
-              <div class="card-block text-center text-white">
-                <div class="m-b-25">
-                  <img [src]="selectedFileUrl || '../../assets/images/profile/user-1.jpg'" class="img-radius" alt="User-Profile-Image" />
-                  <i class="mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16" (click)="fileInput.click()"></i>
-                  <input #fileInput type="file" style="display: none" (change)="onFileSelected($event)" accept="image/*" />
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-9">
-              <div class="card-block">
-                <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information Personnelle</h6>
-                <div class="row">
-                  <div class="col-sm-12">
-                    <p class="m-b-10 f-w-600">Nom et prénom</p>
-                    <input [(ngModel)]="userName" class="form-control text-muted f-w-400" />
-                  </div>
-
-                  <div class="col-sm-12">
-                    <br>
-                    <p class="m-b-10 f-w-600">Email</p>
-                    <input [(ngModel)]="userEmail" type="email" class="form-control text-muted f-w-400" />
-                  </div>
-
-                  <div class="button">
-                    <br>
-                    <div class="col-sm-12 custom-text-right mt-3">
-                      <button mat-flat-button color="primary" matTooltipClass="text-uppercase">
-                        <mat-icon class="d-flex align-items-center"><i-tabler name="check" class="icon-18 d-flex"></i-tabler></mat-icon>
-                        Sauvegarder les modifications
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
-      <div class="card">
-        <h5 class="card-header">Supprimer mon compte</h5>
+
+     <!-- Security Section -->
+<div class="security-section card mb-4">
+  <div class="card-body">
+    <h4 class="card-title mb-3">Changer mot de passe</h4>
+    <form (ngSubmit)="changePassword()">
+      <div class="form-group mb-3">
+        <label for="currentPassword">Mot de passe actuel</label>
+        <input type="password" class="form-control" id="currentPassword" [(ngModel)]="currentPassword" name="currentPassword" required>
+      </div>
+      <div class="form-group mb-3">
+        <label for="newPassword">Nouveau mot de passe</label>
+        <input type="password" class="form-control" id="newPassword" [(ngModel)]="newPassword" name="newPassword" required>
+      </div>
+      <div class="form-group mb-3">
+        <label for="confirmPassword">Confirmer nouveau mot de passe</label>
+        <input type="password" class="form-control" id="confirmPassword" [(ngModel)]="confirmPassword" name="confirmPassword" required>
+      </div>
+      <div class="text-center">
+        <button mat-flat-button color="primary" type="submit">
+          <mat-icon><i-tabler name="check" class="icon-18"></i-tabler></mat-icon>
+          Modifier le mot de passe
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+      
+      <!-- Account Deactivation -->
+      <div class="account-deactivation card">
         <div class="card-body">
-          <div class="mb-3 col-12 mb-0">
-            <div class="alert alert-warning">
-              <h6 class="alert-heading fw-medium mb-1">Etes-vous sûr de supprimer votre compte?</h6>
-              <p class="mb-0">Une fois votre compte supprimé, vous ne pourrez plus revenir en arrière. Soyez-en sûr, s'il vous plaît.</p>
-            </div>
+          <h4 class="card-title mb-3">Supprimer mon compte</h4>
+          <div class="alert alert-warning mb-4">
+            <h6 class="alert-heading fw-medium mb-1">Êtes-vous sûr de supprimer votre compte?</h6>
+            <p>Une fois votre compte supprimé, vous ne pourrez plus revenir en arrière. Soyez-en sûr, s'il vous plaît.</p>
           </div>
-          <form id="formAccountDeactivation" onsubmit="return false" class="fv-plugins-bootstrap5 fv-plugins-framework" novalidate="novalidate">
+          <form id="formAccountDeactivation" (ngSubmit)="deleteAccount()">
             <div class="form-check mb-3">
-              <input class="form-check-input" type="checkbox" name="accountActivation" id="accountActivation">
+              <input class="form-check-input" type="checkbox" [(ngModel)]="accountActivation" name="accountActivation" id="accountActivation">
               <label class="form-check-label" for="accountActivation">Je confirme la suppression de mon compte</label>
-              <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
             </div>
-            <div class="button-del">
-            <button type="submit" class="btn btn-danger deactivate-account">Supprimer</button>
-            <input type="hidden">
-          </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-danger" [disabled]="!accountActivation">Supprimer</button>
+            </div>
           </form>
         </div>
       </div>
-      
     </div>
-<!-- Account Deactivation Section -->
-
-    <!-- Security Content -->
-    <div *ngIf="activeTab === 'security'">
-      <div class="container">
-        <div class="row d-flex justify-content-center">
-          <div class="col-xl-6 col-md-12">
-            <div class="card user-card-full">
-              <div class="row m-l-0 m-r-0">
-                <div class="col-sm-12">
-                  <div class="card-block">
-                    <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Changer mot de passe</h6>
-                    <form>
-                      <div class="form-group">
-                        <label for="currentPassword">Mot de passe actuel</label>
-                        <input type="password" [(ngModel)]="pass" class="form-control" id="currentPassword" name="currentPassword" required>
-                      </div>
-                      <div class="form-group">
-                        <label for="newPassword">Nouveau mot de passe</label>
-                        <input type="password" class="form-control" id="newPassword" name="newPassword" required>
-                      </div>
-                      <div class="form-group">
-                        <label for="confirmPassword">Confirmer nouveau mot de passe</label>
-                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
-                      </div>
-                      <button type="submit" class="btn btn-primary"> Modifier mot de passe</button>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    
   </mat-card-content>
 </mat-card>

@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from '../../../services/User/user.service';
-import { User } from '../../../services/User/user';
 import { AuthService } from '../../../services/auth/auth.service';
 
 @Component({
@@ -10,10 +8,12 @@ import { AuthService } from '../../../services/auth/auth.service';
   styleUrls: ['./login.css']
 })
 export class AppSideLoginComponent {
-  username: string = ''; // Changed from email to username
+  username: string = '';
   password: string = '';
   errorMessage: string = '';
+
   constructor(private authService: AuthService, private router: Router) {}
+
   onLogin() {
     this.authService.login(this.username, this.password).subscribe({
       next: (response) => {

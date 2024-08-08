@@ -36,7 +36,13 @@ import { provideClientHydration } from '@angular/platform-browser';
 import {  HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CompteBancaireService } from './services/CompteBancaire/compte-bancaire.service';
 import { AuthInterceptor } from './auth.interceptor';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import {  HttpClient } from '@angular/common/http';
 
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http);
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,6 +67,13 @@ import { AuthInterceptor } from './auth.interceptor';
     MatTableModule, // Angular Material table module
     MatMenuModule, // Angular Material menu module
     MatIconModule, // Angular Material icon module
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
   ],
   exports: [
     TablerIconsModule

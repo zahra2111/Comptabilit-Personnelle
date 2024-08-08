@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CompteBancaireService } from '../../services/CompteBancaire/compte-bancaire.service';
 import { BankAccount } from '../../services/CompteBancaire/compteBancaire';
 import { NgForm } from '@angular/forms';
+import { AuthService } from '../../services/auth/auth.service';
+import { UserService } from '../../services/User/user.service';
 
 @Component({
   selector: 'app-bank-account',
@@ -9,21 +11,33 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./bank-account.component.css']
 })
 export class BankAccountComponent implements OnInit {
+
+  userInfo: any = {};
+
   comptes: BankAccount[] = [];
   showPopup: boolean = false;
   editingBankAccount: BankAccount | null = null;
+  userID: number = 0;
+  userId: number = 65;
 
-  constructor(private compteBancaireService: CompteBancaireService) {}
+  constructor(private compteBancaireService: CompteBancaireService,private authService: AuthService,private userService: UserService) {}
 
   ngOnInit(): void {
-    this.getComptes(); 
+    this.userService.getBanks(this.userId).subscribe(
+      bankAccounts => {
+        this.comptes = bankAccounts;
+      },
+      error => {
+        console.error('Error fetching bank accounts', error);
+      }
+    );
   }
 
-  getComptes(page: number = 1): void {
-    this.compteBancaireService.getCompteBancaires(page).subscribe(
+  getComptes(): void {
+    this.compteBancaireService.getCompteBancaires().subscribe(
       (response) => {
         console.log('API Response:', response);
-        this.comptes = response['hydra:member'];
+        this.comptes = response;
       },
       (error) => {
         console.error('Error fetching bank accounts:', error);
@@ -43,7 +57,7 @@ export class BankAccountComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     if (form.valid) {
-      const bank = new BankAccount(form.value.nom, parseFloat(form.value.initialSum), form.value.type);
+    const bank = new BankAccount(form.value.nom, parseFloat(form.value.initialSum), form.value.type, `api/users/${this.userID}`);
 
       if (this.editingBankAccount) {
         // Update existing bank account

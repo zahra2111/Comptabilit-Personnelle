@@ -8,12 +8,18 @@
           </div>
           <form (ngSubmit)="onLogin()" #loginForm="ngForm">
             <div class="form-group">
-              <label for="username">Username:</label>
-              <input matInput placeholder="Username" [(ngModel)]="username" name="username" required class="form-control"/>
+              <label for="username">Email:</label>
+              <input matInput placeholder="Username" [(ngModel)]="username" name="username" required class="form-control" />
+              <div *ngIf="loginForm.submitted && !loginForm.controls['username'].valid" class="text-danger">
+                Username is required.
+              </div>
             </div>
             <div class="form-group">
               <label for="password">Password:</label>
-              <input matInput placeholder="Password" [(ngModel)]="password" name="password" type="password" required class="form-control"/>
+              <input matInput placeholder="Password" [(ngModel)]="password" name="password" type="password" required minlength="6" class="form-control" />
+              <div *ngIf="loginForm.submitted && !loginForm.controls['password'].valid" class="text-danger">
+                Password (minimum 6 characters) is required.
+              </div>
             </div>
             <!-- Error message -->
             <div *ngIf="errorMessage" class="alert alert-danger">

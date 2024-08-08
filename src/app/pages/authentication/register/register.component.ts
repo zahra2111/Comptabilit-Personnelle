@@ -7,14 +7,17 @@ import { User } from '../../../services/User/user';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrl : './register.css'
+  styleUrl: './register.css'
 })
 export class AppSideRegisterComponent {
 
+  passwordsMatch: boolean = true;
+
   constructor(private router: Router, private userService: UserService) {}
+
   onSubmit(form: NgForm) {
-    if (form.valid) {
-      const user = new User(form.value.nomPrenom, form.value.email, form.value.password);
+    if (form.valid && this.checkPasswords(form)) {
+      const user = new User(form.value.nomPrenom, form.value.email, form.value.password,[]);
       this.userService.addUser(user)
         .subscribe(response => {
           console.log('User added successfully', response);
@@ -23,6 +26,16 @@ export class AppSideRegisterComponent {
         }, error => {
           console.error('Error adding user', error);
         });
+    }
+  }
+
+  checkPasswords(form: NgForm): boolean {
+    if (form.value.password === form.value.confirmPassword) {
+      this.passwordsMatch = true;
+      return true;
+    } else {
+      this.passwordsMatch = false;
+      return false;
     }
   }
 }
