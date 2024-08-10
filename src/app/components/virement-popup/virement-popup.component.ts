@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PopupService } from '../../services/popup.service'; // Adjust path as needed
+import { PopupService } from '../../services/popup.service';
 
 @Component({
   selector: 'app-virement-popup',
@@ -9,7 +9,6 @@ import { PopupService } from '../../services/popup.service'; // Adjust path as n
 })
 export class VirementPopupComponent implements OnInit {
   virementForm: FormGroup;
-  popupId = 'virementPopup';
 
   constructor(private popupService: PopupService, private fb: FormBuilder) {
     this.virementForm = this.fb.group({
@@ -19,6 +18,8 @@ export class VirementPopupComponent implements OnInit {
       tiers: ['', Validators.required],
       categories: ['', Validators.required],
       ref: ['', Validators.required],
+      duCompte: ['', Validators.required],
+      versLeCompte: ['', Validators.required],
       type: ['virement', Validators.required]
     });
   }
@@ -26,7 +27,7 @@ export class VirementPopupComponent implements OnInit {
   ngOnInit(): void {}
 
   closePopup() {
-    this.popupService.closePopup(this.popupId);
+    this.popupService.closePopup('virement');
   }
 
   onSubmit() {

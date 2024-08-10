@@ -31,31 +31,8 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Virement',
     iconName: 'zoom-money',
-    route: '/Virement',
+    route: '/virement',
   },
-  // {
-  //   displayName: 'Menu',
-  //   iconName: 'layout-navbar-expand',
-  //   route: '/components/menu',
-  // },
-  // {
-  //   displayName: 'Tooltips',
-  //   iconName: 'tooltip',
-  //   route: '/ui-components/tooltips',
-  // },
-  // {
-  //   navCap: 'Auth',
-  // },
-  // {
-  //   displayName: 'Login',
-  //   iconName: 'lock',
-  //   route: '/authentication/login',
-  // },
-  // {
-  //   displayName: 'Register',
-  //   iconName: 'user-plus',
-  //   route: '/authentication/register',
-  // },
   {
     navCap: 'Gestion Du Budget',
   },
@@ -81,11 +58,9 @@ export const navItems: NavItem[] = [
   {
     navCap: 'Gestion des modèles et des échéances',
   },
-  
-  
-  // {
-  //   displayName: 'Sample Page',
-  //   iconName: 'aperture',
-  //   route: '/extra/sample-page',
-  // },
+  {
+    displayName: 'Importer un relevé bancaire ',
+    iconName: 'file',
+    route: '/extra/icons',
+  },
 ];

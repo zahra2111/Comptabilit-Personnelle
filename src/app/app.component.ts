@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
   }
  
 
-  constructor(private popupService: PopupService) {}
+  constructor(public popupService: PopupService) {}
 
   ngOnInit() {
     this.popupService.getPopupState('virementPopup').subscribe((state: boolean) => {

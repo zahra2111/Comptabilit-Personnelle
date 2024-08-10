@@ -42,7 +42,7 @@ export class AppNavItemComponent implements OnChanges {
       this.popupService.openPopup('virementPopup');
       return;
     }
-    
+
     if (!item.children || !item.children.length) {
       this.router.navigate([item.route]);
     }

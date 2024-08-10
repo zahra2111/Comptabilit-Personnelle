@@ -1,18 +1,5 @@
 <router-outlet></router-outlet>
-<app-debiter-popup *ngIf="isDebiterPopupOpen"></app-debiter-popup>
-<app-crediter-popup *ngIf="isCrediterPopupOpen"></app-crediter-popup>
-<app-virement-popup *ngIf="isVirementPopupOpen"></app-virement-popup>
+<app-debiter-popup *ngIf="popupService.getPopupState('debiterPopup') | async"></app-debiter-popup>
+<app-crediter-popup *ngIf="popupService.getPopupState('crediterPopup') | async"></app-crediter-popup>
+<app-virement-popup *ngIf="popupService.getPopupState('virementPopup') | async"></app-virement-popup>
 
-<div class="container">
-    <h4>Importer un relevé bancaire</h4>
-    <button (click)="togglePopup()">Importer un relevé</button>
-  
-    <app-relever-popup *ngIf="showPopup" 
-                       (fileImported)="onFileImported($event)" 
-                       (popupClosed)="togglePopup()">
-    </app-relever-popup>
-  
-    <div *ngIf="importedFile">
-      <h2>Fichier importé : {{ importedFile.name }}</h2>
-    </div>
-  </div>
