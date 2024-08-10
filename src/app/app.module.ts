@@ -35,7 +35,11 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
 import { SettingsComponent } from './pages/settings/settings.component';
 import { DebiterPopupComponent } from './components/debiter-popup/debiter-popup.component'; // Adjust path as needed
 import { CrediterPopupComponent } from './components/crediter-popup/crediter-popup.component';
+import { VirementPopupComponent } from './components/virement-popup/virement-popup.component';
+
+
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'; // Adjust path as needed
+import { ReleverPopupComponent } from './relever-popup/relever-popup.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,6 +53,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     SettingsComponent,
     DebiterPopupComponent, // Add the DebiterPopupComponent here
     CrediterPopupComponent, // Add the CrediterPopupComponent here
+    VirementPopupComponent, // Add the VirementPopupComponent here
+     
   ],
   imports: [
     BrowserModule,
@@ -63,6 +69,9 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     MatIconModule,
     MatSelectModule,
     MatFormFieldModule,
+    HttpClientModule,
+    ReleverPopupComponent,
+    
   ],
   exports: [TablerIconsModule],
   bootstrap: [AppComponent],

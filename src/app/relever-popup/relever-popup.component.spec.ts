@@ -1,17 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { VirementPopupComponent } from './virement-popup.component';
 
-describe('VirementPopupComponent', () => {
-  let component: VirementPopupComponent;
-  let fixture: ComponentFixture<VirementPopupComponent>;
+import { ReleverPopupComponent } from './relever-popup.component';
+
+describe('ReleverPopupComponent', () => {
+  let component: ReleverPopupComponent;
+  let fixture: ComponentFixture<ReleverPopupComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ VirementPopupComponent ]
+      imports: [ReleverPopupComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(VirementPopupComponent);
+    fixture = TestBed.createComponent(ReleverPopupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

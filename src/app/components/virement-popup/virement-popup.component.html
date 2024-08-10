@@ -1,1 +1,41 @@
 <p>virement-popup works!</p>
+<div class="popup-overlay" (click)="closePopup()">
+    <div class="popup-content" (click)="$event.stopPropagation()">
+      <h2>Virement</h2>
+      <form [formGroup]="virementForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="date">Date</label>
+          <input id="date" formControlName="date" type="date" />
+        </div>
+  
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input id="description" formControlName="description" type="text" />
+        </div>
+  
+        <div class="form-group">
+          <label for="mode">Mode de paiement</label>
+          <input id="mode" formControlName="mode" type="text" />
+        </div>
+  
+        <div class="form-group">
+          <label for="tiers">Tiers</label>
+          <input id="tiers" formControlName="tiers" type="text" />
+        </div>
+  
+        <div class="form-group">
+          <label for="categories">Categories</label>
+          <input id="categories" formControlName="categories" type="text" />
+        </div>
+  
+        <div class="form-group">
+          <label for="ref">Ref</label>
+          <input id="ref" formControlName="ref" type="text" />
+        </div>
+  
+        <button type="submit">Submit</button>
+        <button type="button" (click)="closePopup()">Close</button>
+      </form>
+    </div>
+  </div>
+  

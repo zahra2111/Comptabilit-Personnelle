@@ -37,6 +37,12 @@ export class AppNavItemComponent implements OnChanges {
       this.popupService.openPopup('crediterPopup');
       return;
     }
+
+    if (item.route === '/virement') {
+      this.popupService.openPopup('virementPopup');
+      return;
+    }
+    
     if (!item.children || !item.children.length) {
       this.router.navigate([item.route]);
     }

@@ -31,12 +31,12 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Virement',
     iconName: 'zoom-money',
-    route: '/components/Virement',
+    route: '/Virement',
   },
   // {
   //   displayName: 'Menu',
   //   iconName: 'layout-navbar-expand',
-  //   route: '/ui-components/menu',
+  //   route: '/components/menu',
   // },
   // {
   //   displayName: 'Tooltips',
@@ -81,11 +81,8 @@ export const navItems: NavItem[] = [
   {
     navCap: 'Gestion des modèles et des échéances',
   },
-  {
-    displayName: 'Importer un relevé bancaire ',
-    iconName: 'file',
-    route: '/extra/icons',
-  },
+  
+  
   // {
   //   displayName: 'Sample Page',
   //   iconName: 'aperture',
