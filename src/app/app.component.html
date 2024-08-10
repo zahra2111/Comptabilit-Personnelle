@@ -1,3 +1,5 @@
 <router-outlet></router-outlet>
-<app-debiter-popup *ngIf="isDebiterPopupOpen"></app-debiter-popup>
-<app-crediter-popup *ngIf="isCrediterPopupOpen"></app-crediter-popup>
+<app-debiter-popup *ngIf="popupService.getPopupState('debiterPopup') | async"></app-debiter-popup>
+<app-crediter-popup *ngIf="popupService.getPopupState('crediterPopup') | async"></app-crediter-popup>
+<app-virement-popup *ngIf="popupService.getPopupState('virementPopup') | async"></app-virement-popup>
+

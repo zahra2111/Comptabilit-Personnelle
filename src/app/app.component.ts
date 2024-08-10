@@ -10,7 +10,7 @@ export class AppComponent implements OnInit {
   isCrediterPopupOpen = false;
   isDebiterPopupOpen = false;
 
-  constructor(private popupService: PopupService) {}
+  constructor(public popupService: PopupService) {}
 
   ngOnInit() {
     this.popupService.getPopupState('crediterPopup').subscribe((state: boolean) => {
