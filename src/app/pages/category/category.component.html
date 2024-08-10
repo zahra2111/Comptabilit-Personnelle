@@ -1,0 +1,30 @@
+<div class="category-container">
+    <h2>{{ 'MANAGE_CATEGORIES' | translate }}</h2>
+  
+    <!-- Add New Category Form -->
+    <div class="category-form">
+      <input type="text" placeholder="{{ 'ENTER_CATEGORY_NAME' | translate }}" [(ngModel)]="newCategory.nom" class="category-input" />
+      <button (click)="addCategory()" class="category-button">{{ 'ADD_CATEGORY' | translate }}</button>
+    </div>
+  
+    <!-- Error Message -->
+    <p *ngIf="errorMessage" class="error-message">{{ 'ERROR_MESSAGE' | translate }}</p>
+  
+    <!-- Loading Spinner -->
+    <div *ngIf="isLoading" class="spinner-container">
+      <div class="spinner"></div>
+    </div>
+  
+    <!-- Category List -->
+    <ul *ngIf="!isLoading && categories.length > 0" class="category-list">
+      <li *ngFor="let category of categories" class="category-item">
+        <span>{{ category.nom }}</span>
+        <button (click)="deleteCategory(category.id)" class="delete-button">{{ 'DELETE' | translate }}</button>
+      </li>
+    </ul>
+  
+    <!-- No Categories Message -->
+    <p *ngIf="!isLoading && categories.length === 0" class="no-categories-message">
+      {{ 'NO_CATEGORIES_FOUND' | translate }}
+    </p>  </div>
+  

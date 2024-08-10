@@ -16,6 +16,7 @@ export class CompteBancaireService {
 
   userInfo: any = {};
   constructor(private http: HttpClient, private authService: AuthService) { }
+  
   getCompteBancaires(): Observable<any> {
     return this.authService.getCurrentUser().pipe(
       switchMap((user: User) => {

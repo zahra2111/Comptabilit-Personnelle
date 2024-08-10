@@ -1,6 +1,5 @@
 import { Component ,OnInit,} from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { SettingsComponent } from '../settings/settings.component'; // Adjust the path as per your project structure
 import { UserService } from '../../services/User/user.service';
 import { User } from '../../services/User/user';
 import { Router } from '@angular/router'; // Import Router

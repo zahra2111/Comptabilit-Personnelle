@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -6,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Comptabilité Personnelle';
+  constructor(private translate: TranslateService) {
+    const savedLanguage = localStorage.getItem('language') || 'en';
+    this.translate.setDefaultLang('en');
+    this.translate.use(savedLanguage);
+  }
+
+  switchLanguage(lang: string) {
+    this.translate.use(lang);
+    localStorage.setItem('language', lang); // Store the selected language
+  }
 }

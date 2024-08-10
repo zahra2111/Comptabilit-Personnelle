@@ -1,0 +1,42 @@
+<h1 mat-dialog-title>Add New Budget</h1>
+<div mat-dialog-content>
+  <form [formGroup]="budgetForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Amount</mat-label>
+      <input matInput formControlName="montant" placeholder="Enter budget amount">
+      <mat-error *ngIf="budgetForm.get('montant')?.hasError('required')">Amount is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Start Date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="APartirDe">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="budgetForm.get('APartirDe')?.hasError('required')">Start Date is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Duration</mat-label>
+      <mat-select formControlName="duree">
+        <mat-option value="daily">Daily</mat-option>
+        <mat-option value="weekly">Weekly</mat-option>
+        <mat-option value="monthly">Monthly</mat-option>
+        <mat-option value="yearly">Yearly</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Category</mat-label>
+      <mat-select formControlName="category">
+        <mat-option *ngFor="let category of data.categories" [value]="category.nom">
+          {{ category.nom }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div mat-dialog-actions>
+      <button mat-button (click)="onNoClick()">Cancel</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="budgetForm.invalid">Add Budget</button>
+    </div>
+  </form>
+</div>

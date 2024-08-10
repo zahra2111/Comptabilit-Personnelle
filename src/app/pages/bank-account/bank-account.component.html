@@ -1,21 +1,25 @@
 <mat-card class="cardWithShadow">
   <mat-card-content>
     <div class="container">
-      <h1 class="header-title">Gestion des comptes bancaires</h1>
-    
+      <div class="search-container">
+        <mat-form-field appearance="fill">
+          <mat-label>{{ 'SEARCH' | translate }}</mat-label>
+          <input matInput [(ngModel)]="searchQuery" placeholder="{{ 'SEARCH_PLACEHOLDER' | translate }}">
+        </mat-form-field>
+      </div>
       <table class="table table-hover">
         <thead class="thead-blue">
           <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Nom du compte</th>
-            <th scope="col">Type</th>
-            <th scope="col">Solde initial</th>
-            <th scope="col">Actions</th>
+            <th scope="col">{{ 'ID' | translate }}</th>
+            <th scope="col">{{ 'ACCOUNT_NAME' | translate }}</th>
+            <th scope="col">{{ 'TYPE' | translate }}</th>
+            <th scope="col">{{ 'INITIAL_BALANCE' | translate }}</th>
+            <th scope="col">{{ 'ACTIONS' | translate }}</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let compte of comptes">
-            <td>{{ compte.id }}</td>
+          <tr *ngFor="let compte of filteredComptes(); let i = index">
+            <td>{{ i + 1 }}</td> <!-- Sequential number starting from 1 -->
             <td>{{ compte.nom }}</td>
             <td>{{ compte.type }}</td>
             <td>{{ compte.initialSum | number: '1.2-2' }}</td>
@@ -26,21 +30,22 @@
               <mat-menu #menu="matMenu" class="mat-menu-blue">
                 <button mat-menu-item (click)="openPopup(compte)">
                   <mat-icon>edit</mat-icon>
-                  <span>Modifier</span>
+                  <span>{{ 'EDIT' | translate }}</span>
                 </button>
                 <button mat-menu-item (click)="deleteBankAccount(compte.id!)">
                   <mat-icon>delete</mat-icon>
-                  <span>Supprimer</span>
+                  <span>{{ 'DELETE' | translate }}</span>
                 </button>
               </mat-menu>
             </td>
           </tr>
         </tbody>
       </table>
+
       <div class="custom-text-right mt-3">
         <button mat-flat-button color="primary" (click)="openPopup()">
           <mat-icon>add</mat-icon>
-          Ajouter
+          {{ 'ADD' | translate }}
         </button>
       </div>
     </div>
@@ -49,24 +54,24 @@
 
 <div class="popup-overlay" *ngIf="showPopup" (click)="closePopup()">
   <div class="popup-content" (click)="$event.stopPropagation()">
-    <h2>{{ editingBankAccount ? 'Modifier le compte bancaire' : 'Ajouter un compte bancaire' }}</h2>
+    <h2>{{ editingBankAccount ? ('EDIT_BANK_ACCOUNT' | translate) : ('ADD_BANK_ACCOUNT' | translate) }}</h2>
     <form #bankAccountForm="ngForm" (ngSubmit)="onSubmit(bankAccountForm)">
       
       <div class="form-group">
-        <label for="nom">Nom du compte</label>
+        <label for="nom">{{ 'ACCOUNT_NAME_LABEL' | translate }}</label>
         <input type="text" id="nom" name="nom" [ngModel]="editingBankAccount?.nom" required>
       </div>
       <div class="form-group">
-        <label for="initialSum">Solde initial</label>
+        <label for="initialSum">{{ 'INITIAL_BALANCE_LABEL' | translate }}</label>
         <input type="number" id="initialSum" name="initialSum" [ngModel]="editingBankAccount?.initialSum" step="0.01" required>
       </div>
       <div class="form-group">
-        <label for="type">Type</label>
+        <label for="type">{{ 'TYPE_LABEL' | translate }}</label>
         <input type="text" id="type" name="type" [ngModel]="editingBankAccount?.type" required>
       </div>
       <div class="form-buttons">
-        <button type="submit" [disabled]="!bankAccountForm.form.valid">Submit</button>
-        <button type="button" (click)="closePopup()">Close</button>
+        <button type="submit" [disabled]="!bankAccountForm.form.valid">{{ 'SUBMIT' | translate }}</button>
+        <button type="button" (click)="closePopup()">{{ 'CLOSE' | translate }}</button>
       </div>
     </form>
   </div>

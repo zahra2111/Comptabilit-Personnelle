@@ -1,0 +1,58 @@
+.budget-management {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.budget-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+  gap: 16px; 
+}
+
+.budget-item-card {
+  padding: 16px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2); 
+}
+
+.budget-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.budget-amount, .budget-date {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.budget-icon {
+  font-size: 24px;
+  color: #3f51b5; /* Use a color that fits your theme */
+}
+
+.budget-details {
+  margin-top: 12px;
+}
+
+.budget-category, .budget-repeats {
+  font-size: 1rem;
+  margin-bottom: 4px;
+  color: #666666;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: flex-end; 
+  margin-top: 8px;
+}
+
+.add-budget-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}

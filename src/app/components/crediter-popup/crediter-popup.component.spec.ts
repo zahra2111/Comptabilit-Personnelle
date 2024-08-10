@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { CrediterPopupComponent } from './crediter-popup.component';
 
-import { SettingsComponent } from './settings.component';
-
-describe('SettingsComponent', () => {
-  let component: SettingsComponent;
-  let fixture: ComponentFixture<SettingsComponent>;
+describe('CrediterPopupComponent', () => {
+  let component: CrediterPopupComponent;
+  let fixture: ComponentFixture<CrediterPopupComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SettingsComponent]
+      declarations: [ CrediterPopupComponent ]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(SettingsComponent);
+    fixture = TestBed.createComponent(CrediterPopupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

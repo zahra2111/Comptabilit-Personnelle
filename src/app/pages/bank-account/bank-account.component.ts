@@ -4,6 +4,7 @@ import { BankAccount } from '../../services/CompteBancaire/compteBancaire';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
 import { UserService } from '../../services/User/user.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-bank-account',
@@ -20,9 +21,23 @@ export class BankAccountComponent implements OnInit {
   userID: number = 0;
   userId: number = 65;
 
-  constructor(private compteBancaireService: CompteBancaireService,private authService: AuthService,private userService: UserService) {}
+  constructor(private translate: TranslateService,private compteBancaireService: CompteBancaireService,private authService: AuthService,private userService: UserService) {}
+  searchQuery: string = '';
 
+  // Method to filter bank accounts based on search query
+  filteredComptes() {
+    if (!this.searchQuery) {
+      return this.comptes;
+    }
+    const query = this.searchQuery.toLowerCase();
+    return this.comptes.filter(compte =>
+      compte.nom.toLowerCase().includes(query) ||
+      compte.type.toLowerCase().includes(query)
+    );
+  }
   ngOnInit(): void {
+    this.translate.setDefaultLang('en');
+
     this.userService.getBanks(this.userId).subscribe(
       bankAccounts => {
         this.comptes = bankAccounts;

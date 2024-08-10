@@ -1,21 +1,29 @@
-<div mat-subheader *ngIf="item.navCap" class="nav-caption">
-  {{ item.navCap }}
+<div>
+  <a
+    mat-list-item
+    (click)="onItemSelected(item)"
+    [ngClass]="{
+      'mat-toolbar mat-primary activeMenu': item.route
+        ? router.isActive(item.route, true)
+        : false,
+      'expandable': item.children
+    }"
+    class="menu-list-item"
+  >
+    <i-tabler
+      class="routeIcon"
+      name="{{ item.iconName }}"
+      matListItemIcon
+    ></i-tabler>
+    <span class="hide-menu">{{ item.displayName | translate }}</span>
+    <i-tabler *ngIf="item.children" class="expand-icon" name="chevron-down"></i-tabler>
+  </a>
+  
+  <div *ngIf="item.children && isExpanded" class="submenu">
+    <app-nav-item
+      *ngFor="let child of item.children"
+      [item]="child"
+      [depth]="depth + 1"
+    ></app-nav-item>
+  </div>
 </div>
-<a
-  mat-list-item
-  (click)="onItemSelected(item)"
-  [ngClass]="{
-    'mat-toolbar mat-primary activeMenu': item.route
-      ? router.isActive(item.route, true)
-      : false,
-  }"
-  class="menu-list-item"
-  *ngIf="!item.navCap"
->
-  <i-tabler
-    class="routeIcon"
-    name="{{ item.iconName }}"
-    matListItemIcon
-  ></i-tabler>
-  <span class="hide-menu">{{ item.displayName }}</span>
-</a>

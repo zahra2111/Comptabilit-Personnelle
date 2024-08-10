@@ -1,0 +1,36 @@
+<div class="budget-management">
+  <h2 class="mat-title">Budget List</h2>
+
+  <div class="budget-list">
+    <ng-container *ngFor="let budget of budgets">
+      <mat-card class="budget-item-card">
+        <mat-card-content>
+          <div class="budget-header">
+            <div class="budget-amount">
+              <mat-icon class="budget-icon">attach_money</mat-icon>
+              <span>{{ budget.montant }}</span>
+            </div>
+            <div class="budget-date">
+              <mat-icon class="budget-icon">event</mat-icon>
+              <span>{{ budget.APartirDe | date:'MMM d, y' }}</span>
+            </div>
+          </div>
+          <div class="budget-details">
+            <p class="budget-category">Category: {{ budget.category }}</p>
+            <p class="budget-repeats">Repeats: {{ budget.duree }}</p>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-icon-button color="warn" (click)="deleteBudget(budget?.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </ng-container>
+  </div>
+
+  <!-- Add Budget Button -->
+  <button mat-fab color="primary" class="add-budget-button" (click)="openAddBudgetDialog()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>

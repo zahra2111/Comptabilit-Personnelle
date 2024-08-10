@@ -17,7 +17,7 @@ export class AppSideRegisterComponent {
 
   onSubmit(form: NgForm) {
     if (form.valid && this.checkPasswords(form)) {
-      const user = new User(form.value.nomPrenom, form.value.email, form.value.password,[]);
+      const user = new User(form.value.nomPrenom, form.value.email, form.value.password,[],[],[]);
       this.userService.addUser(user)
         .subscribe(response => {
           console.log('User added successfully', response);

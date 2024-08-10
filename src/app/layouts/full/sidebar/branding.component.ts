@@ -4,9 +4,11 @@ import { Component } from '@angular/core';
   selector: 'app-branding',
   template: `
   <div class="branding">
+  <div class="logo-container">
   <img src="./assets/images/logos/favicon.png" alt="logo" />
-  <span class="brand-name">Ma comptabilité</span>
-</div>
+  <span class="brand-name">BudgetPro</span>
+  </div>
+  </div>
   `,
   styleUrls: ['./branding.component.scss']
 })

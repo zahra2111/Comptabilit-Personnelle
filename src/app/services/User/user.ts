@@ -6,6 +6,10 @@ export class User {
     public email: string,
     public plainPassword: string,
     public banks: string[],
+    public budgets: string[],
+    public categories: string[],
+
+    
     public id?: number 
   ) {}
 }

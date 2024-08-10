@@ -22,8 +22,7 @@ const TRANSACTION_DATA: Transaction[] = [
 
 @Component({
   selector: 'app-Consultation',
-  templateUrl: './consultation.component.html',
-  encapsulation: ViewEncapsulation.None,
+  templateUrl: './consultation.component.html'
 })
 export class AppConsultationComponent {
   displayedColumns: string[] = ['date', 'description', 'paymentMode', 'tiers', 'categories', 'ref', 'debit', 'credit', 'actions'];

@@ -1,0 +1,38 @@
+.flex-layout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Ensure the sidebar takes the full viewport height */
+  }
+  
+  .sidebar-list {
+    flex: 1; /* Takes up available space */
+  }
+  .line-break::after {
+  content: '\A'; /* New line character */
+  white-space: pre; /* Preserve new lines */
+}
+  .sidebar-footer {
+    padding: 16px;
+    display: flex;
+    flex-direction: row; /* Align buttons side by side */
+    align-items: center;
+    justify-content: center; /* Center the buttons horizontally */
+    background-color: #f1f1f1; /* Light background color */
+    border-top: 1px solid #e0e0e0; /* Subtle border for separation */
+  }
+  
+  .sidebar-footer button {
+    margin: 0 8px; /* Space between buttons */
+    color: #007bff; /* Blue color for text */
+    border: 1px solid #007bff; /* Blue border for buttons */
+    background-color: transparent;
+  }
+  
+  .sidebar-footer button:hover {
+    background-color: #e0e0e0; /* Light grey background on hover */
+  }
+  
+  .sidebar-footer button.mat-button {
+    font-weight: 500; /* Professional font weight */
+  }
+  

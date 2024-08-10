@@ -2,92 +2,64 @@ import { NavItem } from './nav-item/nav-item';
 
 export const navItems: NavItem[] = [
   {
-    navCap: 'Recherche et consultation',
-  },
-  {
-    displayName: 'Consulter les opérations',
-    iconName: 'layout-dashboard',
-    route: '/consultation',
-  },
-  {
-    displayName: 'Statistiques',
+    displayName: 'OVERVIEW',
     iconName: 'chart-dots-2',
     route: '/dashboard',
   },
   {
-    navCap: 'Gestion des opérations bancaires',
+    displayName: 'ACCOUNTS',
+    iconName: 'book-2',
+    route: '/bank-account',
   },
   {
-    displayName: 'Debiter',
-    iconName: 'brand-mastercard',
-    route: '/ui-components/badge',
-  },
-  {
-    displayName: 'Créditer',
-    iconName: 'credit-card-pay',
-    route: '/ui-components/chips',
-  },
-  {
-    displayName: 'Virement',
-    iconName: 'zoom-money',
-    route: '/ui-components/lists',
-  },
-  // {
-  //   displayName: 'Menu',
-  //   iconName: 'layout-navbar-expand',
-  //   route: '/ui-components/menu',
-  // },
-  // {
-  //   displayName: 'Tooltips',
-  //   iconName: 'tooltip',
-  //   route: '/ui-components/tooltips',
-  // },
-  // {
-  //   navCap: 'Auth',
-  // },
-  // {
-  //   displayName: 'Login',
-  //   iconName: 'lock',
-  //   route: '/authentication/login',
-  // },
-  // {
-  //   displayName: 'Register',
-  //   iconName: 'user-plus',
-  //   route: '/authentication/register',
-  // },
-  {
-    navCap: 'Gestion Du Budget',
-  },
-  {
-    displayName: 'Impression et exportation', 
-    iconName: 'currency-euro',
-    route: '/extra/icons',
-  },
-  {
-    displayName: 'Modifier les monatants budgétaires', 
+    displayName: 'BUDGETS',
     iconName: 'moneybag',
-    route: '/extra/icons',
-  },  {
-    displayName: 'Selection des periodes budgétaires', 
-    iconName: 'clock-2',
-    route: '/extra/icons',
+    route: '/budgets',
+  },
+ { 
+  displayName: 'TRANSACTIONS',
+  iconName: 'credit-card-pay',
+  children: [
+    {
+      displayName: 'Consulter',
+      iconName: 'search',
+      route: '/consultation', // Update the route to match your application
+    },
+    {
+      displayName: 'DEBIT',
+      iconName: 'minus',
+      route: '/debiter', // Update the route to match your application
+    },
+    {
+      displayName: 'CREDIT',
+      iconName: 'plus',
+      route: '/crediter',
+    },
+  ]},
+  {
+    displayName: 'PREFERENCES',
+    iconName: 'ballpen',
+    children: [
+      {
+        displayName: 'CATEGORIES',
+        iconName: 'category',
+        route: '/category',
+      },
+      {
+        displayName: 'TEMPLATES',
+        iconName: 'box-model',
+        route: '/budget/expenses',
+      },
+      {
+        displayName: 'TIERS',
+        iconName: 'users',
+        route: '/budget/expenses',
+      },
+    ],
   },
   {
-    displayName: 'Gestion des depenses et revenus', 
-    iconName: 'report-money',
-    route: '/extra/icons',
+    displayName: 'EXPORT',
+    iconName: 'pdf',
+    route: '/operations/transfer',
   },
-  {
-    navCap: 'Gestion des modèles et des échéances',
-  },
-  {
-    displayName: 'Importer un relevé bancaire ',
-    iconName: 'file',
-    route: '/extra/icons',
-  },
-  // {
-  //   displayName: 'Sample Page',
-  //   iconName: 'aperture',
-  //   route: '/extra/sample-page',
-  // },
 ];

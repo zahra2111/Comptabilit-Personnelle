@@ -3,20 +3,23 @@ import { RouterModule, Routes } from '@angular/router';
 import { BlankComponent } from './layouts/blank/blank.component';
 import { FullComponent } from './layouts/full/full.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
-import {BankAccountComponent } from './pages/bank-account/bank-account.component';
-import { SettingsComponent } from './pages/settings/settings.component'; // Adjust the path as per your project structure
+import { BankAccountComponent } from './pages/bank-account/bank-account.component';
+import { DebiterPopupComponent } from './components/debiter-popup/debiter-popup.component'; // Adjust path as needed
+import { CrediterPopupComponent } from './components/crediter-popup/crediter-popup.component';
+import { BudgetComponent } from './pages/budget/budget.component';
+import { CategoryComponent } from './pages/category/category.component';
+import { TierComponent } from './pages/tier/tier.component';
 
 const routes: Routes = [
   {
     path: '',
+    redirectTo: '/authentification/login',
+    pathMatch: 'full',
+  },
+  {
+    path: '',
     component: FullComponent,
     children: [
-      {
-        path: '',
-        redirectTo: '/dashboard',
-        pathMatch: 'full',
-      },
-      
       {
         path: 'dashboard',
         loadChildren: () =>
@@ -43,14 +46,30 @@ const routes: Routes = [
         path: 'profile',
         component: UserProfileComponent,
       },
-    
+      {
+        path: 'budgets',
+        component: BudgetComponent,
+      },
+      {
+        path: 'debiter',
+        component: DebiterPopupComponent,
+      },
+      {
+        path: 'crediter',
+        component: CrediterPopupComponent,
+      },
       {
         path: 'bank-account',
         component: BankAccountComponent,
       },
       {
-        path: 'settings',
-        component: SettingsComponent ,
+        path: 'category',
+        component: CategoryComponent,
+      }
+      ,
+      {
+        path: 'tier',
+        component: TierComponent,
       }
     ],
   },
@@ -59,14 +78,14 @@ const routes: Routes = [
     component: BlankComponent,
     children: [
       {
-        path: 'authentication',
+        path: 'authentification',
         loadChildren: () =>
           import('./pages/authentication/authentication.module').then(
             (m) => m.AuthenticationModule
           ),
       },
     ],
-  },
+  }
 ];
 
 @NgModule({

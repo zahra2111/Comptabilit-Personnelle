@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import{ jwtDecode} from 'jwt-decode'; // Corrected import
 import { Router } from '@angular/router';
-import { map, tap } from 'rxjs/operators';
+import { map, tap,catchError  } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -90,17 +90,20 @@ export class AuthService {
       { headers }
     );
   }
-  // New method to get current user ID
-  getCurrentUserId(): Observable<number | null> {
+  getCurrentUserId(): Observable<number> {
     return this.getCurrentUser().pipe(
       map(user => {
         if (user && user.id !== undefined) {
           return user.id; // Extract and return the user ID
         } else {
           console.error('User ID not found');
-          return null;
+          return 0; // Return a default value or handle the error case as needed
         }
+      }),
+      catchError(error => {
+        console.error('Error fetching user ID:', error);
+        return of(0); // Handle errors and return a default value
       })
-    );}
- 
+    );
+  }
 }

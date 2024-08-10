@@ -27,17 +27,10 @@ export class HeaderComponent {
       this.router.navigate(['/profile']);
     
   }
-  
-  onBankClick() {
-    this.router.navigate(['/bank-account']);
-  
-}
-onSettingsClick() {
-  this.router.navigate(['/settings']);
-
-}
 onLogout() {
   this.authService.logout();
+  this.router.navigate(['/authentification/login']);
+
 }
 
   constructor(private authService: AuthService,public dialog: MatDialog, public router: Router) {}

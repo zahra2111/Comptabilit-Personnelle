@@ -29,7 +29,6 @@ import { BrandingComponent } from './layouts/full/sidebar/branding.component';
 import { AppNavItemComponent } from './layouts/full/sidebar/nav-item/nav-item.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
-import { SettingsComponent } from './pages/settings/settings.component'; // Adjust the path as per your project structure
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { UserService } from './services/User/user.service';
 import { provideClientHydration } from '@angular/platform-browser';
@@ -37,10 +36,23 @@ import {  HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CompteBancaireService } from './services/CompteBancaire/compte-bancaire.service';
 import { AuthInterceptor } from './auth.interceptor';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import {  HttpClient } from '@angular/common/http';
-
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+import {  HttpClient } from '@angular/common/http';
+import { BankAccountComponent } from './pages/bank-account/bank-account.component';
+import { DebiterPopupComponent } from './components/debiter-popup/debiter-popup.component'; // Adjust path as needed
+import { CrediterPopupComponent } from './components/crediter-popup/crediter-popup.component';
+import { PopupService } from './services/popup.service'; // Import the service
+import {BudgetService} from './services/Budget/budget.service';
+import { BudgetComponent } from './pages/budget/budget.component';
+import { MatDatepickerModule } from '@angular/material/datepicker'; // Ensure this is imported
+import { MatNativeDateModule } from '@angular/material/core'; // Ensure this is imported
+import { MatSelectModule } from '@angular/material/select'; // Import MatSelectModule
+import { CategoryComponent } from './pages/category/category.component';
+import { TierComponent } from './pages/tier/tier.component';
+import { AddbudgetComponent } from './pages/addbudget/addbudget/addbudget.component';
+
+
+export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 @NgModule({
@@ -53,10 +65,19 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     BrandingComponent,
     AppNavItemComponent,
     UserProfileComponent,
-    SettingsComponent,
+    BankAccountComponent, 
+    DebiterPopupComponent, // Add the DebiterPopupComponent here
+    CrediterPopupComponent,
+    BudgetComponent,
+    CategoryComponent,
+    TierComponent,
+    AddbudgetComponent
     
     ],
   imports: [
+    MatNativeDateModule, // Ensure this is included
+    MatSelectModule, // Include MatSelectModule
+
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -76,7 +97,11 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     }),
   ],
   exports: [
-    TablerIconsModule
+    TablerIconsModule,
+    MatNativeDateModule, // Ensure this is included
+    MatSelectModule // Include MatSelectModule
+
+
   ],
   bootstrap: [
     AppComponent
@@ -85,9 +110,14 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     provideClientHydration(),
     UserService,
-    CompteBancaireService,
-     provideHttpClient(withFetch())
+     CompteBancaireService,
+     provideHttpClient(withFetch()), 
+     PopupService ,
+     BudgetService
 
   ],
+  
 })
-export class AppModule {}
+export class AppModule {
+  
+}

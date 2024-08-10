@@ -1,10 +1,14 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable , forkJoin } from 'rxjs';
+import { Observable , forkJoin,of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { Budget } from '../Budget/budget';
+import { map, catchError } from 'rxjs/operators';
+import {  throwError, } from 'rxjs';
 
 import { User } from './user';
 import { BankAccount } from '../CompteBancaire/compteBancaire';
+import { Category } from '../category/category';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +22,18 @@ export class UserService {
     return this.http.get<any>(this.apiUrl);
   }
   constructor(private http: HttpClient) { }
+  getCurrentUserId(): Observable<number> {
+    return this.getCurrentUser().pipe(
+      map(user => {
+        console.log('Fetched user:', user); // Log the user response
+        return user.id ?? -1;
+      }),
+      catchError(error => {
+        console.error('Error fetching current user ID:', error);
+        return of(-1); // Return a default value or handle the error as needed
+      })
+    );
+  }
 
   getUsers(page: number = 1): Observable<any> {
     const url = `${this.apiUrl}?page=${page}`;
@@ -32,7 +48,20 @@ export class UserService {
     console.log(body);
     return this.http.post<any>(this.apiUrl, body, { headers });
   }
-
+  
+  getCategories(userId: number): Observable<Category[]> {
+    return this.http.get<{ categories: string[] }>(`${this.apiUrl}/${userId}`).pipe(
+      switchMap(response => {
+        console.log('Categories response:', response); // Log response to check structure
+        const categoryRequests = response.categories.map(url => {
+          const categoryUrl = url.startsWith('/api') ? `${this.bankApiUrl}${url}` : `${this.bankApiUrl}/${url}`;
+          console.log(`Fetching category from: ${categoryUrl}`);
+          return this.http.get<Category>(categoryUrl);
+        });
+        return forkJoin(categoryRequests);
+      })
+    );
+  }
   getBanks(userId: number): Observable<BankAccount[]> {
     return this.http.get<{ bankAccounts: string[] }>(`${this.apiUrl}/${userId}`).pipe(
       switchMap(response => {
@@ -45,6 +74,19 @@ export class UserService {
       })
     );
   }
+  getBudgets(userId: number): Observable<Budget[]> {
+    return this.http.get<{ budgets: string[] }>(`${this.apiUrl}/${userId}`).pipe(
+      switchMap(response => {
+        const budgetRequests = response.budgets.map(url => {
+          const budgetUrl = url.startsWith('/api') ? `${this.bankApiUrl}${url}` : `${this.bankApiUrl}/${url}`;
+          console.log(`Fetching budget from: ${budgetUrl}`);
+          return this.http.get<Budget>(budgetUrl);
+        });
+        return forkJoin(budgetRequests);
+      })
+    );
+  }
+  
   getUserDetails(userId: number): Observable<any> {
     const url = `${this.apiUrl}/${userId}`;
     return this.http.get<any>(url);
