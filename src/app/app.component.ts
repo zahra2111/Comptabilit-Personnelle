@@ -11,6 +11,33 @@ export class AppComponent implements OnInit {
   isVirementPopupOpen = false;
   isCrediterPopupOpen = false;
   isDebiterPopupOpen = false;
+  showImpressionExportationPopup = false;
+  showModifierMontantsPopup = false;
+  showSelectionPeriodePopup = false;
+  showGestionDepensesRevenusPopup = false;
+  openImpressionExportationPopup() {
+    this.showImpressionExportationPopup = true;
+  }
+
+  openModifierMontantsPopup() {
+    this.showModifierMontantsPopup = true;
+  }
+
+  openSelectionPeriodePopup() {
+    this.showSelectionPeriodePopup = true;
+  }
+
+  openGestionDepensesRevenusPopup() {
+    this.showGestionDepensesRevenusPopup = true;
+  }
+
+  closeAllPopups() {
+    this.showImpressionExportationPopup = false;
+    this.showModifierMontantsPopup = false;
+    this.showSelectionPeriodePopup = false;
+    this.showGestionDepensesRevenusPopup = false;
+  }
+
   showPopup = false;
   importedFile: File | null = null;
 

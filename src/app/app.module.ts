@@ -39,7 +39,15 @@ import { VirementPopupComponent } from './components/virement-popup/virement-pop
 
 
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'; // Adjust path as needed
-import { VirementPopupComponent } from './components/virement-popup/virement-popup.component'; // Adjust path as needed
+import { ReleverPopupComponent } from './relever-popup/relever-popup.component';
+
+
+
+import { ImpressionExportationDeRapportPopupComponent } from './budget/impression-exportation-de-rapport-popup/impression-exportation-de-rapport-popup.component';
+import { ModifierMontantsBudgetairePopupComponent } from './budget/modifier-montants-budgetaire-popup/modifier-montants-budgetaire-popup.component';
+import { SelectionPeriodeBudgetPopupComponent } from './budget/selection-periode-budget-popup/selection-periode-budget-popup.component';
+import { GestionDepensesRevenusPopupComponent } from './budget/gestion-depenses-revenus-popup/gestion-depenses-revenus-popup.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +62,12 @@ import { VirementPopupComponent } from './components/virement-popup/virement-pop
     DebiterPopupComponent, // Add the DebiterPopupComponent here
     CrediterPopupComponent, // Add the CrediterPopupComponent here
     VirementPopupComponent,
-
+    
+   
+    ImpressionExportationDeRapportPopupComponent,
+    ModifierMontantsBudgetairePopupComponent,
+    SelectionPeriodeBudgetPopupComponent,
+    GestionDepensesRevenusPopupComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,7 +84,6 @@ import { VirementPopupComponent } from './components/virement-popup/virement-pop
     MatFormFieldModule,
     HttpClientModule,
     ReleverPopupComponent,
-    
   ],
   exports: [TablerIconsModule],
   bootstrap: [AppComponent],

@@ -35,32 +35,29 @@ export const navItems: NavItem[] = [
   },
   {
     navCap: 'Gestion Du Budget',
+    
   },
   {
     displayName: 'Impression et exportation', 
     iconName: 'currency-euro',
-    route: '/extra/icons',
+    route: '/impression-exportation-de-rapport-popup',
   },
   {
     displayName: 'Modifier les monatants budgétaires', 
     iconName: 'moneybag',
-    route: '/extra/icons',
+    route: '/modifier-montants-budgetaire-popup',
   },  {
     displayName: 'Selection des periodes budgétaires', 
     iconName: 'clock-2',
-    route: '/extra/icons',
+    route: '/selection-periode-budget-popup',
   },
   {
     displayName: 'Gestion des depenses et revenus', 
     iconName: 'report-money',
-    route: '/extra/icons',
+    route: '/gestion-depenses-revenus-popup',
   },
   {
     navCap: 'Gestion des modèles et des échéances',
   },
-  {
-    displayName: 'Importer un relevé bancaire ',
-    iconName: 'file',
-    route: '/extra/icons',
-  },
+ 
 ];

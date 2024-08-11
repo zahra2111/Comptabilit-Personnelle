@@ -43,12 +43,34 @@ export class AppNavItemComponent implements OnChanges {
       return;
     }
 
+
+
+    if (item.route === '/impression-exportation-de-rapport-popup') {
+      this.popupService.openPopup('impression-exportation-de-rapport-popup');
+      return;
+    }
+
+    if (item.route === '/modifier-montants-budgetaire-popup') {
+      this.popupService.openPopup('modifier-montants-budgetaire-popup');
+      return;
+    }
+    if (item.route === '/selection-periode-budget-popup') {
+      this.popupService.openPopup('selection-periode-budget-popup');
+      return;
+    }
+    if (item.route === '/gestion-depenses-revenus-popup') {
+      this.popupService.openPopup('gestion-depenses-revenus-popup');
+      return;
+    }
+
+
+
+
     if (!item.children || !item.children.length) {
       this.router.navigate([item.route]);
     }
 
-  
-      
+    
       
 
     // scroll

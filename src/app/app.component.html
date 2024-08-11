@@ -3,3 +3,52 @@
 <app-crediter-popup *ngIf="popupService.getPopupState('crediterPopup') | async"></app-crediter-popup>
 <app-virement-popup *ngIf="popupService.getPopupState('virementPopup') | async"></app-virement-popup>
 
+
+
+<div class="container">
+    <h4>Importer un relevé bancaire</h4>
+    <button (click)="togglePopup()">Importer un relevé</button>
+  
+    <app-relever-popup *ngIf="showPopup" 
+                       (fileImported)="onFileImported($event)" 
+                       (popupClosed)="togglePopup()">
+    </app-relever-popup>
+  
+    <div *ngIf="importedFile">
+      <h2>Fichier importé : {{ importedFile.name }}</h2>
+    </div>
+  </div>
+
+  
+
+  
+  <div>
+    <h1>Gestion du Budget</h1>
+    <button (click)="openImpressionExportationPopup()">Impression/Exportation</button>
+    <button (click)="openModifierMontantsPopup()">Modifier Montants Budgétaires</button>
+    <button (click)="openSelectionPeriodePopup()">Sélectionner Période</button>
+    <button (click)="openGestionDepensesRevenusPopup()">Gérer Dépenses/Revenus</button>
+  
+    <app-impression-exportation-de-rapport-popup 
+      *ngIf="showImpressionExportationPopup" 
+      (close)="closeAllPopups()">
+    </app-impression-exportation-de-rapport-popup>
+  
+    <app-modifier-montants-budgetaire-popup 
+      *ngIf="showModifierMontantsPopup" 
+      (close)="closeAllPopups()">
+    </app-modifier-montants-budgetaire-popup>
+  
+    <app-selection-periode-budget-popup 
+      *ngIf="showSelectionPeriodePopup" 
+      (close)="closeAllPopups()">
+    </app-selection-periode-budget-popup>
+  
+    <app-gestion-depenses-revenus-popup 
+      *ngIf="showGestionDepensesRevenusPopup" 
+      (close)="closeAllPopups()">
+    </app-gestion-depenses-revenus-popup>
+  </div>
+    
+  
+    
