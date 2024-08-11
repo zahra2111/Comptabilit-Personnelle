@@ -1,0 +1,25 @@
+<div class="popup-overlay" (click)="closePopup()">
+    <div class="popup-content" (click)="$event.stopPropagation()">
+      <h2>Modèles</h2>
+      <form [formGroup]="modeleForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="name">Nom du Modèle</label>
+          <input id="name" formControlName="name" type="text" />
+        </div>
+  
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input id="description" formControlName="description" type="text" />
+        </div>
+  
+        <div class="form-group">
+          <label for="amount">Montant</label>
+          <input id="amount" formControlName="amount" type="number" />
+        </div>
+  
+        <button type="submit">Submit</button>
+        <button type="button" (click)="closePopup()">Close</button>
+      </form>
+    </div>
+  </div>
+  

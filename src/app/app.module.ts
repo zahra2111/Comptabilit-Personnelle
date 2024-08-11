@@ -37,6 +37,10 @@ import { DebiterPopupComponent } from './components/debiter-popup/debiter-popup.
 import { CrediterPopupComponent } from './components/crediter-popup/crediter-popup.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'; // Adjust path as needed
 import { VirementPopupComponent } from './components/virement-popup/virement-popup.component'; // Adjust path as needed
+import { ModelePopupComponent } from './components/modele-popup/modele-popup.component'; // Adjust path as needed
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +55,7 @@ import { VirementPopupComponent } from './components/virement-popup/virement-pop
     DebiterPopupComponent, // Add the DebiterPopupComponent here
     CrediterPopupComponent, // Add the CrediterPopupComponent here
     VirementPopupComponent,
+    ModelePopupComponent,
 
   ],
   imports: [
