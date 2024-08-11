@@ -38,6 +38,7 @@ import { CrediterPopupComponent } from './components/crediter-popup/crediter-pop
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'; // Adjust path as needed
 import { VirementPopupComponent } from './components/virement-popup/virement-popup.component'; // Adjust path as needed
 import { ModelePopupComponent } from './components/modele-popup/modele-popup.component'; // Adjust path as needed
+import { EcheancePopupComponent } from './components/echeance-popup/echeance-popup.component';
 
 
 
@@ -56,6 +57,8 @@ import { ModelePopupComponent } from './components/modele-popup/modele-popup.com
     CrediterPopupComponent, // Add the CrediterPopupComponent here
     VirementPopupComponent,
     ModelePopupComponent,
+    EcheancePopupComponent,
+
 
   ],
   imports: [

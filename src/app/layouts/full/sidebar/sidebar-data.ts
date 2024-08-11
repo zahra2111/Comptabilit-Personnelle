@@ -71,6 +71,6 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Echéances ',
     iconName: 'file',
-    route: '',
+    route: '/echeance',
   },
 ];
