@@ -1,5 +1,5 @@
 <div class="budget-management">
-  <h2 class="mat-title">Budget List</h2>
+  <h2 class="mat-title">{{ 'BUDGET.LIST' | translate }}</h2>
 
   <!-- Spinner to show while loading -->
   <mat-spinner *ngIf="isLoading" class="loading-spinner"></mat-spinner>
@@ -20,8 +20,8 @@
             </div>
           </div>
           <div class="budget-details">
-            <p class="budget-category">Category: {{ budget.category }}</p>
-            <p class="budget-repeats">Repeats: {{ budget.duree }}</p>
+            <p class="budget-category">{{ 'BUDGET.CATEGORY' | translate }}: {{ budget.category }}</p>
+            <p class="budget-repeats">{{ 'BUDGET.REPEATS' | translate }}: {{ budget.duree | translate }}</p>
           </div>
         </mat-card-content>
         <mat-card-actions>
@@ -36,5 +36,6 @@
   <!-- Add Budget Button -->
   <button mat-fab color="primary" class="add-budget-button" (click)="openAddBudgetDialog()">
     <mat-icon>add</mat-icon>
+    <span class="sr-only">{{ 'BUDGET.ADD_BUDGET' | translate }}</span>
   </button>
 </div>

@@ -1,0 +1,6 @@
+<h2 mat-dialog-title>{{ 'DELETE_BUDGET' | translate }}</h2>
+<mat-dialog-content>{{ 'DELETE_CONFIRMATION_MESSAGE_BUDGET' | translate }}</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancelClick()">{{ 'CANCEL' | translate }}</button>
+  <button mat-raised-button color="warn" (click)="onConfirmClick()">{{ 'DELETE' | translate }}</button>
+</mat-dialog-actions>

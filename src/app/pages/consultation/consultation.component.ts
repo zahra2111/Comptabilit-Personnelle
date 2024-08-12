@@ -8,6 +8,10 @@ import { CrediterPopupComponent } from '../crediter-popup/crediter-popup.compone
 import { VirementPopupComponent } from '../virement-popup/virement-popup.component';
 import { UserService } from '../../services/User/user.service';
 import { TierService } from '../../services/tier/tier.service';
+import { CompteBancaireService } from '../../services/CompteBancaire/compte-bancaire.service';
+import { ConfirmDeleteComponent } from '../confirm-delete/confirm-delete.component'; // Update the import path as needed
+import { TranslateService } from '@ngx-translate/core';
+
 import { MatSnackBar } from '@angular/material/snack-bar';
 import * as TablerIcons from 'angular-tabler-icons/icons';
 
@@ -17,7 +21,7 @@ import * as TablerIcons from 'angular-tabler-icons/icons';
   styleUrls: ['./consultation.component.scss']
 })
 export class AppConsultationComponent implements OnInit {
-  displayedColumns: string[] = ['n°', 'date', 'description', 'paymentMode', 'Montant', 'tiers', 'actions'];
+  displayedColumns: string[] = ['n°', 'date', 'description', 'paymentMode','Compte', 'Montant', 'tiers', 'actions'];
   editIcon = TablerIcons.IconEdit;
   trashIcon = TablerIcons.IconTrash;
   transactions: Transaction[] = [];
@@ -28,12 +32,16 @@ export class AppConsultationComponent implements OnInit {
   filteredTransactions: Transaction[] = [];
   tiers: string[] = []; // Initialize with actual tiers
   selectedTier: string | null = null;
-
+  bankName: string | null = null;
   constructor(
+    private translate: TranslateService,
+
     public dialog: MatDialog,
     private authService: AuthService,
     private transactionService: TransactionService,
     private userService: UserService,
+    private compteService: CompteBancaireService,
+
     private tierService: TierService,
     private snackBar: MatSnackBar
   ) { }
@@ -44,6 +52,7 @@ export class AppConsultationComponent implements OnInit {
       this.userIden = id;
       console.log('User ID:', this.userIden);
     });
+    this.translate.setDefaultLang('fr');
   }
 
   fetchTierDetails(transactions: Transaction[]): void {
@@ -161,14 +170,30 @@ export class AppConsultationComponent implements OnInit {
       }
     });
   }
-
   loadTransactions(): void {
+    this.isLoading = true; // Start the spinner
     this.authService.getCurrentUserId().subscribe(userId => {
       if (userId) {
         this.userService.getTransactions(userId).subscribe(transactions => {
           this.transactions = transactions;
           this.filteredTransactions = transactions;
           this.fetchTierDetails(transactions);
+          
+          // Fetch bank details for each transaction
+          transactions.forEach(transaction => {
+            const bankIri = transaction.Compte;
+            if (bankIri) {
+              this.compteService.getBankByIri(bankIri).subscribe(bankDetails => {
+                this.bankName = bankDetails.nom; // Assuming `name` is the property of bank details
+              }, error => {
+                console.error('Error fetching bank name:', error);
+                transaction.Compte = 'Unknown'; // Fallback in case of error
+              });
+            } else {
+              transaction.Compte = 'Unknown'; // Handle case where bank IRI is not available
+            }
+          });
+  
           this.isLoading = false;
         }, error => {
           console.error('Error fetching transactions:', error);
@@ -184,6 +209,7 @@ export class AppConsultationComponent implements OnInit {
       this.isLoading = false;
     });
   }
+  
 
   filterByDate(date: Date | null): void {
     this.selectedDate = date;
@@ -207,23 +233,34 @@ export class AppConsultationComponent implements OnInit {
     console.log('Modifier clicked for:', transaction);
   }
 
-  supprimerTransaction(transaction: Transaction) {
-    if (transaction.id !== undefined) {
-      const confirmDelete = confirm(`Are you sure you want to delete transaction ${transaction.id}?`);
+  supprimerTransaction(transaction: Transaction): void {
+    if (transaction.id !== undefined) { // Check if transaction.id is not undefined
+      const dialogRef = this.dialog.open(ConfirmDeleteComponent, {
+        width: '300px',
+        data: {
+          title: 'DELETE_CONFIRMATION_TRANSACTION',
+          message: `Are you sure you want to delete transaction ${transaction.id}?`
+        }
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.transactionService.deleteTransaction(transaction.id as number).subscribe({ // Assert the type as number
+            next: () => {
+              this.transactions = this.transactions.filter(t => t.id !== transaction.id);
+              this.loadTransactions();
+              this.snackBar.open(this.translate.instant('TRANSACTION_DELETE_SUCCESS'), this.translate.instant('CLOSE'), { duration: 2000 });
 
-      if (confirmDelete) {
-        this.transactionService.deleteTransaction(transaction.id).subscribe({
-          next: () => {
-            this.transactions = this.transactions.filter(t => t.id !== transaction.id);
-            console.log('Transaction deleted:', transaction);
-          },
-          error: (error) => {
-            console.error('Error deleting transaction:', error);
-          }
-        });
-      }
+            },
+            error: (error) => {
+              console.error('Error deleting transaction:', error);
+            }
+          });
+        }
+      });
     } else {
       console.error('Transaction ID is undefined. Cannot delete the transaction.');
     }
   }
+  
 }

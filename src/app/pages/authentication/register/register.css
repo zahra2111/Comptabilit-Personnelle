@@ -124,3 +124,14 @@ form {
 .m-t-24 {
   margin-top: 24px;
 }
+
+.brand-name {
+  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif; 
+  font-size: 40px;
+  font-weight: 500; 
+  color: #0044cc; 
+  text-transform: none;
+    letter-spacing: 0.5px;
+  margin: 0; 
+  display: inline-block; 
+}

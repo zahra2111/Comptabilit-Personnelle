@@ -17,7 +17,7 @@ export const navItems: NavItem[] = [
     route: '/budgets',
   },
  { 
-  displayName: 'TRANSACTIONS',
+  displayName: 'TRANSACTIONSs',
   iconName: 'credit-card-pay',
   route: '/consultation'
 },

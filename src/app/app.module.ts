@@ -57,20 +57,23 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {AppConsultationComponent }from './pages/consultation/consultation.component';
-
+import {ConfirmDialogComponent } from './pages/tier/confirm-dialog/confirm-dialog.component';
 import { VirementPopupComponent } from './pages/virement-popup/virement-popup.component'; // Adjust path as needed
-
+import { ConfirmDeleteBudgeComponent }from './pages/budget/confirm-delete-budge/confirm-delete-budge.component'
+import { ConfirmDeleteComponent } from"./pages/confirm-delete/confirm-delete.component";
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 @NgModule({
   declarations: [
     AppConsultationComponent,
+    ConfirmDeleteComponent,
     VirementPopupComponent,
     AppComponent,
     FullComponent,
     BlankComponent,
     SidebarComponent,
+    ConfirmDialogComponent,
     HeaderComponent,
     BrandingComponent,
     AppNavItemComponent,
@@ -82,7 +85,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     CategoryComponent,
     TierComponent,
     AddbudgetComponent,
-    AddTierComponent
+    AddTierComponent,
+    ConfirmDeleteBudgeComponent
     
     ],
   imports: [

@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddTierComponent } from '../addtier/add-tier/add-tier.component';
 import { MatSnackBar } from '@angular/material/snack-bar'; // Optional for showing messages
 import { AuthService } from '../../services/auth/auth.service';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component'; // Adjust the path as necessary
 
 @Component({
   selector: 'app-tier',
@@ -58,13 +59,19 @@ export class TierComponent implements OnInit {
     });
   }
 
-  deleteTier(tierId: number | undefined): void {
-    if (tierId === undefined) {
-      console.error('Tier ID is undefined');
-      return;
-    }
-  
-    if (confirm('Are you sure you want to delete this tier?')) {
+ 
+deleteTier(tierId: number | undefined): void {
+  if (tierId === undefined) {
+    console.error('Tier ID is undefined');
+    return;
+  }
+
+  const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+    width: '300px'
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    if (result) {
       this.tierService.deleteTier(tierId).subscribe(
         () => {
           this.tiers = this.tiers.filter(tier => tier.id !== tierId);
@@ -76,7 +83,8 @@ export class TierComponent implements OnInit {
         }
       );
     }
-  }
+  });
+}
   
   loadTiers(): void {
     this.isLoading = true;

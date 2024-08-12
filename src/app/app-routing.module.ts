@@ -11,7 +11,7 @@ import { CategoryComponent } from './pages/category/category.component';
 import { TierComponent } from './pages/tier/tier.component';
 import {AppConsultationComponent }from './pages/consultation/consultation.component';
 import { VirementPopupComponent } from './pages/virement-popup/virement-popup.component'; // Adjust path as needed
-
+import {AppSideRegisterComponent } from './pages/authentication/register/register.component'
 const routes: Routes = [
   {
     path: '',
@@ -90,6 +90,10 @@ const routes: Routes = [
           import('./pages/authentication/authentication.module').then(
             (m) => m.AuthenticationModule
           ),
+      },
+      {
+        path: 'authentification/register',
+        component: AppSideRegisterComponent,
       },
     ],
   }

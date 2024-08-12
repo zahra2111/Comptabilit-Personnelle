@@ -10,6 +10,14 @@
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
     gap: 16px; 
   }
+  .mat-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  button {
+    margin-left: 8px;
+  }
   
   .tier-item-card {
     padding: 16px;

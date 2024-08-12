@@ -5,6 +5,8 @@
         <mat-card-content class="p-32">
           <div class="text-center">
             <img src="./assets/images/logos/favicon.png" width="50" alt="logo" />
+            <span class="brand-name">BudgetPro</span>
+
           </div>
           <form (ngSubmit)="onSubmit(userForm)" #userForm="ngForm">
             <div class="form-group">
@@ -31,7 +33,7 @@
             <button type="submit" class="btn btn-primary w-100">S'inscrire</button>
           </form>
           <span class="d-block f-w-500 text-center m-t-24">Vous avez déjà un compte?
-            <a [routerLink]="['/authentication/login']" class="text-decoration-none text-primary f-w-500 f-s-14">Se connecter</a>
+            <a [routerLink]="['/authentification/login']" class="text-decoration-none text-primary f-w-500 f-s-14">Se connecter</a>
           </span>
         </mat-card-content>
       </mat-card>

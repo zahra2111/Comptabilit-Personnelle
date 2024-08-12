@@ -4,6 +4,8 @@ export class BankAccount {
       public nom: string,
       public initialSum: number,
       public type: string,
+      public monnaie: string,
+
       public usr: string, // Use IRI for user reference
       public id?: number 
       

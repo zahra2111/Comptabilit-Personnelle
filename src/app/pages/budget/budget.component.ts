@@ -8,6 +8,8 @@ import { AuthService } from '../../services/auth/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddbudgetComponent } from '../addbudget/addbudget/addbudget.component';
 import { MatSnackBar } from '@angular/material/snack-bar'; // Optional for showing messages
+import { ConfirmDeleteBudgeComponent } from './confirm-delete-budge/confirm-delete-budge.component'; // Adjust the path as necessary
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-budget',
@@ -27,7 +29,9 @@ export class BudgetComponent implements OnInit {
     private budgetService: BudgetService,
     private userService: UserService,
     private authService: AuthService
-    , private snackBar: MatSnackBar
+    , private snackBar: MatSnackBar,
+    private translate: TranslateService
+
   ) {}
 
   ngOnInit(): void {
@@ -37,6 +41,8 @@ export class BudgetComponent implements OnInit {
       this.userIden = id;
       console.log('User ID:', this.userIden);
     });
+    this.translate.setDefaultLang('fr');
+
   }
 
   openAddBudgetDialog(): void {
@@ -60,8 +66,12 @@ export class BudgetComponent implements OnInit {
               this.budgetService.addBudget(b)
                 .subscribe(response => {
                   console.log('budget added successfully', response);
+                  this.snackBar.open(this.translate.instant('BUDGET_ADD_SUCCESS') || 'Default message', this.translate.instant('CLOSE'), { duration: 2000 });
+
                   this.loadBudgets();
                 }, error => {
+                  this.snackBar.open(this.translate.instant('BUDGET_ADD_FAIL'), this.translate.instant('CLOSE'), { duration: 2000 });
+
                   console.error('Error adding budget', error);
                 });
             }
@@ -70,23 +80,34 @@ export class BudgetComponent implements OnInit {
       });}
       deleteBudget(budgetId: number | undefined): void {
         if (budgetId === undefined) {
-          console.error('Budget ID is undefined');
+          console.error(this.translate.instant('ERROR_BUDGET_ID_UNDEFINED'));
           return;
         }
       
-        if (confirm('Are you sure you want to delete this budget?')) {
-          this.budgetService.deleteBudget(budgetId).subscribe(
-            () => {
-              this.budgets = this.budgets.filter(budget => budget.id !== budgetId);
-              this.snackBar.open('Budget deleted successfully', 'Close', { duration: 2000 });
-            },
-            error => {
-              console.error('Error deleting budget', error);
-              this.snackBar.open('Error deleting budget', 'Close', { duration: 2000 });
-            }
-          );
-        }
+        const dialogRef = this.dialog.open(ConfirmDeleteBudgeComponent, {
+          width: '300px'
+        });
+      
+        dialogRef.afterClosed().subscribe(result => {
+          if (result) {
+            this.budgetService.deleteBudget(budgetId).subscribe(
+              () => {
+                this.budgets = this.budgets.filter(budget => budget.id !== budgetId);
+                this.snackBar.open(this.translate.instant('BUDGET_DELETE_SUCCESS'), this.translate.instant('CLOSE'), { duration: 2000 });
+                this.loadBudgets();
+
+              },
+              error => {
+                console.error(this.translate.instant('ERROR_DELETING_BUDGET'), error);
+
+                this.snackBar.open(this.translate.instant('ERROR_DELETING_BUDGET'), this.translate.instant('CLOSE'), { duration: 2000 });
+              }
+            );
+          }
+        });
       }
+      
+    
       
   loadBudgets(): void {
     this.isLoading = true;

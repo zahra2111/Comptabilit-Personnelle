@@ -1,29 +1,27 @@
-<h1 mat-dialog-title>Add New Tier</h1>
+<h1 mat-dialog-title>{{ 'TIER.ADD_NEW' | translate }}</h1>
 <div mat-dialog-content>
   <form [formGroup]="tierForm" (ngSubmit)="onSubmit()">
     <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Name</mat-label>
-      <input matInput formControlName="nom" placeholder="Enter tier name">
-      <mat-error *ngIf="tierForm.get('nom')?.hasError('required')">Name is required</mat-error>
+      <mat-label>{{ 'TIER.NAME' | translate }}</mat-label>
+      <input matInput formControlName="nom" [placeholder]="'TIER.NAME_PLACEHOLDER' | translate">
+      <mat-error *ngIf="tierForm.get('nom')?.hasError('required')">{{ 'TIER.NAME_REQUIRED' | translate }}</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Address</mat-label>
-      <input matInput formControlName="adresse" placeholder="Enter address">
-      <mat-error *ngIf="tierForm.get('adresse')?.hasError('required')">Address is required</mat-error>
+      <mat-label>{{ 'TIER.ADDRESS' | translate }}</mat-label>
+      <input matInput formControlName="adresse" [placeholder]="'TIER.ADDRESS_PLACEHOLDER' | translate">
+      <mat-error *ngIf="tierForm.get('adresse')?.hasError('required')">{{ 'TIER.ADDRESS_REQUIRED' | translate }}</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Comment</mat-label>
-      <textarea matInput formControlName="commentaire" placeholder="Enter comment"></textarea>
-      <mat-error *ngIf="tierForm.get('commentaire')?.hasError('required')">Comment is required</mat-error>
+      <mat-label>{{ 'TIER.COMMENT' | translate }}</mat-label>
+      <textarea matInput formControlName="commentaire" [placeholder]="'TIER.COMMENT_PLACEHOLDER' | translate"></textarea>
+      <mat-error *ngIf="tierForm.get('commentaire')?.hasError('required')">{{ 'TIER.COMMENT_REQUIRED' | translate }}</mat-error>
     </mat-form-field>
-
-
 
     <div mat-dialog-actions>
-      <button mat-button (click)="onNoClick()">Cancel</button>
-      <button mat-raised-button color="primary" type="submit" [disabled]="tierForm.invalid">Add Tier</button>
+      <button mat-button (click)="onNoClick()">{{ 'TIER.CANCEL' | translate }}</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="tierForm.invalid">{{ 'TIER.ADD' | translate }}</button>
     </div>
   </form>
 </div>

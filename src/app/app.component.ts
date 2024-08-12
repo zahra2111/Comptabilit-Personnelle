@@ -9,7 +9,7 @@ export class AppComponent {
   title = 'Comptabilité Personnelle';
   constructor(private translate: TranslateService) {
     const savedLanguage = localStorage.getItem('language') || 'en';
-    this.translate.setDefaultLang('en');
+    this.translate.setDefaultLang('fr');
     this.translate.use(savedLanguage);
   }
 

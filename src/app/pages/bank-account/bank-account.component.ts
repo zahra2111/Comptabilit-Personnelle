@@ -5,6 +5,9 @@ import { NgForm } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
 import { UserService } from '../../services/User/user.service';
 import { TranslateService } from '@ngx-translate/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDeleteComponent } from '../confirm-delete/confirm-delete.component'; // Update the import path as needed
+import { MatSnackBar } from '@angular/material/snack-bar'; // Optional for showing messages
 
 @Component({
   selector: 'app-bank-account',
@@ -20,7 +23,14 @@ export class BankAccountComponent implements OnInit {
   editingBankAccount: BankAccount | null = null;
   userId: number| 0 = 0;
 
-  constructor(private translate: TranslateService,private compteBancaireService: CompteBancaireService,private authService: AuthService,private userService: UserService)
+  constructor(
+    private translate: TranslateService,
+    private compteBancaireService: CompteBancaireService,
+    private authService: AuthService,
+    private userService: UserService,
+    private dialog: MatDialog ,// Inject MatDialog
+    private snackBar: MatSnackBar,
+  )
    {
  
    }
@@ -36,9 +46,10 @@ export class BankAccountComponent implements OnInit {
       compte.nom.toLowerCase().includes(query) ||
       compte.type.toLowerCase().includes(query)
     );
+    
   }
   ngOnInit(): void {
-    this.translate.setDefaultLang('en');
+    this.translate.setDefaultLang('fr');
 
     this.getComptes();
     this.authService.getCurrentUserId().subscribe(id => {
@@ -79,7 +90,7 @@ export class BankAccountComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     if (form.valid) {
-    const bank = new BankAccount(form.value.nom, parseFloat(form.value.initialSum), form.value.type, `api/users/${this.userId}`);
+    const bank = new BankAccount(form.value.nom, parseFloat(form.value.initialSum), form.value.type, form.value.monnie , `api/users/${this.userId}`);
 
       if (this.editingBankAccount) {
         // Update existing bank account
@@ -106,16 +117,27 @@ export class BankAccountComponent implements OnInit {
       form.resetForm();
     }
   }
-
   deleteBankAccount(id: number): void {
-    if (confirm('Are you sure you want to delete this bank account?')) {
-      this.compteBancaireService.deleteCompteBancaire(id)
-        .subscribe(response => {
-          console.log('Bank account deleted successfully', response);
-          this.getComptes(); // Refresh the list
-        }, error => {
-          console.error('Error deleting bank account', error);
-        });
-    }
+    const dialogRef = this.dialog.open(ConfirmDeleteComponent, {
+      width: '300px',
+      data: {
+        title: 'DELETE_CONFIRMATION_COMPTE',
+        message: 'DELETE_CONFIRMATION_MESSAGE_BANK'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.compteBancaireService.deleteCompteBancaire(id)
+          .subscribe(response => {
+            this.snackBar.open(this.translate.instant('BANK_DELETE_SUCCESS'), this.translate.instant('CLOSE'), { duration: 2000 });
+            this.getComptes(); // Refresh the list
+          }, error => {
+            this.snackBar.open(this.translate.instant('BANK_DELETE_FAIL'), this.translate.instant('CLOSE'), { duration: 2000 });
+
+            console.error('Error deleting bank account', error);
+          });
+      }
+    });
   }
 }

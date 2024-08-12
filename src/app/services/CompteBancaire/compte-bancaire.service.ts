@@ -17,6 +17,14 @@ export class CompteBancaireService {
   userInfo: any = {};
   constructor(private http: HttpClient, private authService: AuthService) { }
   
+  getBankByIri(iri: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${this.extractBankIdFromIri(iri)}`);
+  }
+
+  private extractBankIdFromIri(iri: string): string {
+    const matches = iri.match(/\/api\/banks\/(\d+)/);
+    return matches ? matches[1] : '';
+  }
   getCompteBancaires(): Observable<any> {
     return this.authService.getCurrentUser().pipe(
       switchMap((user: User) => {
