@@ -45,8 +45,9 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Modifier les monatants budgétaires', 
     iconName: 'moneybag',
-    route: '/modifier-montants-budgetaire-popup',
-  },  {
+    route: '/extra/icons',
+  },
+  {
     displayName: 'Selection des periodes budgétaires', 
     iconName: 'clock-2',
     route: '/selection-periode-budget-popup',
@@ -59,5 +60,19 @@ export const navItems: NavItem[] = [
   {
     navCap: 'Gestion des modèles et des échéances',
   },
- 
+  {
+    displayName: 'Importer un relevé bancaire ',
+    iconName: 'file',
+    route: '/extra/icons',
+  },
+  {
+    displayName: 'Ajout d un Modèles ',
+    iconName: 'file',
+    route: '/modele',
+  },
+  {
+    displayName: 'Echéances ',
+    iconName: 'file',
+    route: '/echeance',
+  },
 ];
