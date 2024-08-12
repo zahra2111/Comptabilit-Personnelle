@@ -1,0 +1,55 @@
+.button-container {
+    position: fixed;
+    bottom: 20px; /* Distance from the bottom */
+    right: 20px;  /* Distance from the right */
+    display: flex; /* Flexbox for vertical alignment */
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 20px; /* Space between buttons */
+    z-index: 1000; /* Ensure buttons are on top of other content */
+  }
+  
+  /* Style for the Crediter button */
+  .crediter-button {
+    background-color: #34c16d; /* Green color for Crediter */
+  }
+  
+  /* Style for the Debiter button */
+  .debiter-button {
+    background-color: #e23030; /* Red color for Debiter */
+  }
+  .filter-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0; /* Adjust margin as needed */
+  }
+  
+  .filter-buttons {
+    display: flex;
+  }
+  /* Style for the Virement button */
+  .virement-button {
+    background-color: #3888dd; /* Example color for Virement */
+  }
+  .spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px; /* Adjust height as needed */
+  }
+/* Custom tooltip styles */
+.mat-tooltip {
+    background-color: #333 !important; /* Dark background color */
+    color: #fff !important; /* White text color */
+    font-size: 14px !important; /* Font size */
+    border-radius: 4px !important; /* Rounded corners */
+    padding: 8px 12px !important; /* Padding around text */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important; /* Shadow effect */
+    max-width: 150px !important; /* Maximum width */
+    z-index: 1000 !important; /* Ensure tooltip appears on top */
+  }
+  
+  /* Tooltip arrow customization */
+  .mat-tooltip-arrow {
+    color: #333 !important; /* Arrow color (match the tooltip background) */
+  }

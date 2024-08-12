@@ -18,10 +18,12 @@ export class BankAccountComponent implements OnInit {
   comptes: BankAccount[] = [];
   showPopup: boolean = false;
   editingBankAccount: BankAccount | null = null;
-  userID: number = 0;
-  userId: number = 65;
+  userId: number| 0 = 0;
 
-  constructor(private translate: TranslateService,private compteBancaireService: CompteBancaireService,private authService: AuthService,private userService: UserService) {}
+  constructor(private translate: TranslateService,private compteBancaireService: CompteBancaireService,private authService: AuthService,private userService: UserService)
+   {
+ 
+   }
   searchQuery: string = '';
 
   // Method to filter bank accounts based on search query
@@ -38,27 +40,32 @@ export class BankAccountComponent implements OnInit {
   ngOnInit(): void {
     this.translate.setDefaultLang('en');
 
-    this.userService.getBanks(this.userId).subscribe(
-      bankAccounts => {
-        this.comptes = bankAccounts;
-      },
-      error => {
-        console.error('Error fetching bank accounts', error);
-      }
-    );
+    this.getComptes();
+    this.authService.getCurrentUserId().subscribe(id => {
+      this.userId = id;
+      console.log('User ID:', this.userId);
+    });
   }
 
   getComptes(): void {
-    this.compteBancaireService.getCompteBancaires().subscribe(
-      (response) => {
-        console.log('API Response:', response);
-        this.comptes = response;
-      },
-      (error) => {
-        console.error('Error fetching bank accounts:', error);
+    this.authService.getCurrentUserId().subscribe(userId => {
+      if (userId) {
+        this.userService.getBanks(userId).subscribe(budgets => {
+          this.comptes = budgets;
+        }, error => {
+          console.error('Error fetching budgets:', error);
+     
+        });
+      } else {
+        console.error('User ID is not available');
+  
       }
-    );
+    }, error => {
+      console.error('Error fetching user ID:', error);
+  
+    });
   }
+
 
   openPopup(bankAccount?: BankAccount): void {
     this.editingBankAccount = bankAccount ? { ...bankAccount } : null;
@@ -72,7 +79,7 @@ export class BankAccountComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     if (form.valid) {
-    const bank = new BankAccount(form.value.nom, parseFloat(form.value.initialSum), form.value.type, `api/users/${this.userID}`);
+    const bank = new BankAccount(form.value.nom, parseFloat(form.value.initialSum), form.value.type, `api/users/${this.userId}`);
 
       if (this.editingBankAccount) {
         // Update existing bank account

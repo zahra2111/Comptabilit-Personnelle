@@ -1,56 +1,76 @@
-<mat-card class="cardWithShadow">
-  <mat-card-content>
-    <div class="container">
-      <div class="search-container">
-        <mat-form-field appearance="fill">
-          <mat-label>{{ 'SEARCH' | translate }}</mat-label>
-          <input matInput [(ngModel)]="searchQuery" placeholder="{{ 'SEARCH_PLACEHOLDER' | translate }}">
-        </mat-form-field>
-      </div>
-      <table class="table table-hover">
-        <thead class="thead-blue">
-          <tr>
-            <th scope="col">{{ 'ID' | translate }}</th>
-            <th scope="col">{{ 'ACCOUNT_NAME' | translate }}</th>
-            <th scope="col">{{ 'TYPE' | translate }}</th>
-            <th scope="col">{{ 'INITIAL_BALANCE' | translate }}</th>
-            <th scope="col">{{ 'ACTIONS' | translate }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let compte of filteredComptes(); let i = index">
-            <td>{{ i + 1 }}</td> <!-- Sequential number starting from 1 -->
-            <td>{{ compte.nom }}</td>
-            <td>{{ compte.type }}</td>
-            <td>{{ compte.initialSum | number: '1.2-2' }}</td>
-            <td>
-              <button mat-icon-button [matMenuTriggerFor]="menu">
-                <mat-icon>more_vert</mat-icon>
-              </button>
-              <mat-menu #menu="matMenu" class="mat-menu-blue">
-                <button mat-menu-item (click)="openPopup(compte)">
-                  <mat-icon>edit</mat-icon>
-                  <span>{{ 'EDIT' | translate }}</span>
-                </button>
-                <button mat-menu-item (click)="deleteBankAccount(compte.id!)">
-                  <mat-icon>delete</mat-icon>
-                  <span>{{ 'DELETE' | translate }}</span>
-                </button>
-              </mat-menu>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+<div class="row">
+  <div class="col-lg-12">
+    <mat-card class="cardWithShadow">
+      <mat-card-content class="p-24">
+        <mat-card-title>{{ 'ACCOUNTS' | translate }}</mat-card-title>
+         <!-- Search Container Moved Up -->
+         <div class="search-container">
+          <mat-form-field class="search-field" appearance="fill">
+            <mat-label>{{ 'SEARCH' | translate }}</mat-label>
+            <input matInput [(ngModel)]="searchQuery" placeholder="{{ 'SEARCH_PLACEHOLDER' | translate }}">
+          </mat-form-field>
+        </div>
+        <div class="table-responsive m-t-16">
+          <table mat-table [dataSource]="filteredComptes()" class="w-100">
 
-      <div class="custom-text-right mt-3">
-        <button mat-flat-button color="primary" (click)="openPopup()">
-          <mat-icon>add</mat-icon>
-          {{ 'ADD' | translate }}
-        </button>
-      </div>
-    </div>
-  </mat-card-content>
-</mat-card>
+            <!-- ID Column -->
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef>{{ 'ID' | translate }}</th>
+              <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>
+            </ng-container>
+
+            <!-- Account Name Column -->
+            <ng-container matColumnDef="nom">
+              <th mat-header-cell *matHeaderCellDef>{{ 'ACCOUNT_NAME' | translate }}</th>
+              <td mat-cell *matCellDef="let element">{{ element.nom }}</td>
+            </ng-container>
+
+            <!-- Type Column -->
+            <ng-container matColumnDef="type">
+              <th mat-header-cell *matHeaderCellDef>{{ 'TYPE' | translate }}</th>
+              <td mat-cell *matCellDef="let element">{{ element.type }}</td>
+            </ng-container>
+
+            <!-- Initial Balance Column -->
+            <ng-container matColumnDef="initialSum">
+              <th mat-header-cell *matHeaderCellDef>{{ 'INITIAL_BALANCE' | translate }}</th>
+              <td mat-cell *matCellDef="let element">{{ element.initialSum | number: '1.2-2' }}</td>
+            </ng-container>
+
+            <!-- Actions Column -->
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef>{{ 'ACTIONS' | translate }}</th>
+              <td mat-cell *matCellDef="let element">
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu" class="mat-menu-blue">
+                  <button mat-menu-item (click)="openPopup(element)">
+                    <mat-icon>edit</mat-icon>
+                    <span>{{ 'EDIT' | translate }}</span>
+                  </button>
+                  <button mat-menu-item (click)="deleteBankAccount(element.id!)">
+                    <mat-icon>delete</mat-icon>
+                    <span>{{ 'DELETE' | translate }}</span>
+                  </button>
+                </mat-menu>
+              </td>
+            </ng-container>
+
+            <!-- Header and Row Declarations -->
+            <tr mat-header-row *matHeaderRowDef="['id', 'nom', 'type', 'initialSum', 'actions']"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['id', 'nom', 'type', 'initialSum', 'actions'];"></tr>
+          </table>
+        </div>
+
+      
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+<button mat-fab color="primary" class="add-tier-button" (click)="openPopup()">
+  <mat-icon>add</mat-icon>
+</button>
 
 <div class="popup-overlay" *ngIf="showPopup" (click)="closePopup()">
   <div class="popup-content" (click)="$event.stopPropagation()">
@@ -69,9 +89,10 @@
         <label for="type">{{ 'TYPE_LABEL' | translate }}</label>
         <input type="text" id="type" name="type" [ngModel]="editingBankAccount?.type" required>
       </div>
-      <div class="form-buttons">
-        <button type="submit" [disabled]="!bankAccountForm.form.valid">{{ 'SUBMIT' | translate }}</button>
-        <button type="button" (click)="closePopup()">{{ 'CLOSE' | translate }}</button>
+
+      <div mat-dialog-actions>
+        <button mat-button (click)="closePopup()">{{ 'CLOSE' | translate }}</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!bankAccountForm.form.valid">{{ 'SUBMIT' | translate }}</button>
       </div>
     </form>
   </div>

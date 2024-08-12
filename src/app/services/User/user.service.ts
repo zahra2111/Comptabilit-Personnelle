@@ -7,6 +7,8 @@ import { map, catchError } from 'rxjs/operators';
 import {  throwError, } from 'rxjs';
 
 import { User } from './user';
+import { Transaction } from '../transaction/Transaction';
+
 import { BankAccount } from '../CompteBancaire/compteBancaire';
 import { Category } from '../category/category';
 
@@ -81,6 +83,18 @@ export class UserService {
           const budgetUrl = url.startsWith('/api') ? `${this.bankApiUrl}${url}` : `${this.bankApiUrl}/${url}`;
           console.log(`Fetching budget from: ${budgetUrl}`);
           return this.http.get<Budget>(budgetUrl);
+        });
+        return forkJoin(budgetRequests);
+      })
+    );
+  }
+  getTransactions(userId: number): Observable<Transaction[]> {
+    return this.http.get<{ transactions: string[] }>(`${this.apiUrl}/${userId}`).pipe(
+      switchMap(response => {
+        const budgetRequests = response.transactions.map(url => {
+          const budgetUrl = url.startsWith('/api') ? `${this.bankApiUrl}${url}` : `${this.bankApiUrl}/${url}`;
+          console.log(`Fetching transactions from: ${budgetUrl}`);
+          return this.http.get<Transaction>(budgetUrl);
         });
         return forkJoin(budgetRequests);
       })

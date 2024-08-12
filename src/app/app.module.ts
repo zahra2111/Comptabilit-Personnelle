@@ -39,8 +39,8 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import {  HttpClient } from '@angular/common/http';
 import { BankAccountComponent } from './pages/bank-account/bank-account.component';
-import { DebiterPopupComponent } from './components/debiter-popup/debiter-popup.component'; // Adjust path as needed
-import { CrediterPopupComponent } from './components/crediter-popup/crediter-popup.component';
+import { DebiterPopupComponent } from './pages/debiter-popup/debiter-popup.component'; // Adjust path as needed
+import { CrediterPopupComponent } from './pages/crediter-popup/crediter-popup.component';
 import { PopupService } from './services/popup.service'; // Import the service
 import {BudgetService} from './services/Budget/budget.service';
 import { BudgetComponent } from './pages/budget/budget.component';
@@ -50,13 +50,23 @@ import { MatSelectModule } from '@angular/material/select'; // Import MatSelectM
 import { CategoryComponent } from './pages/category/category.component';
 import { TierComponent } from './pages/tier/tier.component';
 import { AddbudgetComponent } from './pages/addbudget/addbudget/addbudget.component';
+import { AddTierComponent } from './pages/addtier/add-tier/add-tier.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {AppConsultationComponent }from './pages/consultation/consultation.component';
 
+import { VirementPopupComponent } from './pages/virement-popup/virement-popup.component'; // Adjust path as needed
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 @NgModule({
   declarations: [
+    AppConsultationComponent,
+    VirementPopupComponent,
     AppComponent,
     FullComponent,
     BlankComponent,
@@ -71,14 +81,19 @@ export function HttpLoaderFactory(http: HttpClient) {
     BudgetComponent,
     CategoryComponent,
     TierComponent,
-    AddbudgetComponent
+    AddbudgetComponent,
+    AddTierComponent
     
     ],
   imports: [
     MatNativeDateModule, // Ensure this is included
     MatSelectModule, // Include MatSelectModule
-
+    MatFormFieldModule,
     BrowserModule,
+    MatInputModule,
+    MatSnackBarModule,
+    MatButtonModule,
+    MatDialogModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
@@ -106,6 +121,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   bootstrap: [
     AppComponent
   ],
+
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     provideClientHydration(),

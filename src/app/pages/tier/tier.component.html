@@ -1,1 +1,36 @@
-<p>tier works!</p>
+<div class="tier-management">
+    <h2 class="mat-title">Tier List</h2>
+  
+    <div class="tier-list">
+      <ng-container *ngFor="let tier of tiers">
+        <mat-card class="tier-item-card">
+          <mat-card-content>
+            <div class="tier-header">
+              <div class="tier-name">
+                <mat-icon class="tier-icon">account_circle</mat-icon>
+                <span>{{ tier.nom }}</span>
+              </div>
+              <div class="tier-address">
+                <mat-icon class="tier-icon">place</mat-icon>
+                <span>{{ tier.adresse }}</span>
+              </div>
+            </div>
+            <div class="tier-details">
+              <p class="tier-comment">{{ tier.commentaire }}</p>
+            </div>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-icon-button color="warn" (click)="deleteTier(tier?.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </ng-container>
+    </div>
+  
+    <!-- Add Tier Button -->
+    <button mat-fab color="primary" class="add-tier-button" (click)="openAddTierDialog()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+  

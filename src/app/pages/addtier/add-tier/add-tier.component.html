@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>Add New Tier</h1>
+<div mat-dialog-content>
+  <form [formGroup]="tierForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="nom" placeholder="Enter tier name">
+      <mat-error *ngIf="tierForm.get('nom')?.hasError('required')">Name is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Address</mat-label>
+      <input matInput formControlName="adresse" placeholder="Enter address">
+      <mat-error *ngIf="tierForm.get('adresse')?.hasError('required')">Address is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Comment</mat-label>
+      <textarea matInput formControlName="commentaire" placeholder="Enter comment"></textarea>
+      <mat-error *ngIf="tierForm.get('commentaire')?.hasError('required')">Comment is required</mat-error>
+    </mat-form-field>
+
+
+
+    <div mat-dialog-actions>
+      <button mat-button (click)="onNoClick()">Cancel</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="tierForm.invalid">Add Tier</button>
+    </div>
+  </form>
+</div>

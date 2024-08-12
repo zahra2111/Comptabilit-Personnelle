@@ -1,7 +1,11 @@
 <div class="budget-management">
   <h2 class="mat-title">Budget List</h2>
 
-  <div class="budget-list">
+  <!-- Spinner to show while loading -->
+  <mat-spinner *ngIf="isLoading" class="loading-spinner"></mat-spinner>
+
+  <!-- Budget List -->
+  <div class="budget-list" *ngIf="!isLoading">
     <ng-container *ngFor="let budget of budgets">
       <mat-card class="budget-item-card">
         <mat-card-content>

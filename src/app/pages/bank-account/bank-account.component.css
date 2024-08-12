@@ -130,7 +130,12 @@
   width: 100%;
   max-width: 300px;
 }
-
+.add-tier-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000; /* Ensure it's above other elements */
+}
 /* Table styling */
 .table {
   width: 100%;
@@ -194,7 +199,13 @@
   gap: 10px;
 }
 .search-container {
-  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+
+}
+
+.search-field {
+  width: 30%; 
 }
 
 .mat-form-field {

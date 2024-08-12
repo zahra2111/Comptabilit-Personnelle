@@ -10,7 +10,12 @@
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
   gap: 16px; 
 }
-
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px; // Adjust height as needed
+}
 .budget-item-card {
   padding: 16px;
   background-color: #ffffff;

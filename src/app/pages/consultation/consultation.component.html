@@ -3,67 +3,81 @@
     <mat-card class="cardWithShadow">
       <mat-card-content class="p-24">
         <mat-card-title>Transactions</mat-card-title>
-        <div class="table-responsive m-t-16">
-          <table mat-table [dataSource]="dataSource" class="w-100">
+        <!-- Filter Buttons -->
+        <div class="filter-container">
+          <div class="filter-buttons">
+            <mat-form-field appearance="fill">
+              <mat-label>Date</mat-label>
+              <input matInput [matDatepicker]="picker" (dateChange)="filterByDate($event.value)">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            
+            <mat-form-field appearance="fill">
+              <mat-label>Tiers</mat-label>
+              <mat-select (selectionChange)="filterByTiers($event.value)">
+                <mat-option *ngFor="let tier of tiers" [value]="tier">{{ tier }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
 
-            <!-- Date Column -->
+        <!-- Spinner while loading -->
+        <div *ngIf="isLoading" class="spinner-container">
+          <mat-spinner></mat-spinner>
+        </div>
+
+        <div class="table-responsive m-t-16" *ngIf="!isLoading">
+          <table mat-table [dataSource]="filteredTransactions" class="w-100">
+            <!-- Define columns here -->
+            <ng-container matColumnDef="n°">
+              <th mat-header-cell *matHeaderCellDef>Numéro</th>
+              <td mat-cell *matCellDef="let transaction; let i = index">{{ i + 1 }}</td>
+            </ng-container>
+
             <ng-container matColumnDef="date">
               <th mat-header-cell *matHeaderCellDef>Date</th>
-              <td mat-cell *matCellDef="let element">{{ element.date }}</td>
+              <td mat-cell *matCellDef="let transaction">{{ transaction.date | date }}</td>
             </ng-container>
 
-            <!-- Description Column -->
-            <ng-container matColumnDef="description">
-              <th mat-header-cell *matHeaderCellDef>Description</th>
-              <td mat-cell *matCellDef="let element">{{ element.description }}</td>
-            </ng-container>
-
-            <!-- Payment Mode Column -->
             <ng-container matColumnDef="paymentMode">
               <th mat-header-cell *matHeaderCellDef>Mode de paiement</th>
-              <td mat-cell *matCellDef="let element">{{ element.paymentMode }}</td>
+              <td mat-cell *matCellDef="let transaction">credit card</td>
             </ng-container>
 
-            <!-- Tiers Column -->
+            <ng-container matColumnDef="Montant">
+              <th mat-header-cell *matHeaderCellDef>Montant</th>
+              <td mat-cell *matCellDef="let transaction">
+                <ng-container *ngIf="transaction.type === 'debit'; else credit">
+                  -{{ transaction.amount }}$
+                </ng-container>
+                <ng-template #credit>
+                  +{{ transaction.amount }}$
+                </ng-template>
+              </td>
+            </ng-container>
+
             <ng-container matColumnDef="tiers">
               <th mat-header-cell *matHeaderCellDef>Tiers</th>
-              <td mat-cell *matCellDef="let element">{{ element.tiers }}</td>
+              <td mat-cell *matCellDef="let transaction">
+                {{ tierMap[transaction.tiers] || 'Loading...' }}
+              </td>
             </ng-container>
 
-            <!-- Categories Column -->
-            <ng-container matColumnDef="categories">
-              <th mat-header-cell *matHeaderCellDef>Categories</th>
-              <td mat-cell *matCellDef="let element">{{ element.categories }}</td>
+            <ng-container matColumnDef="description">
+              <th mat-header-cell *matHeaderCellDef>Description</th>
+              <td mat-cell *matCellDef="let transaction">{{ transaction.notes }}</td>
             </ng-container>
 
-            <!-- Ref Column -->
-            <ng-container matColumnDef="ref">
-              <th mat-header-cell *matHeaderCellDef>Ref</th>
-              <td mat-cell *matCellDef="let element">{{ element.ref }}</td>
-            </ng-container>
-
-            <!-- Debit Column -->
-            <ng-container matColumnDef="debit">
-              <th mat-header-cell *matHeaderCellDef>Debit</th>
-              <td mat-cell *matCellDef="let element">{{ element.debit }}</td>
-            </ng-container>
-
-            <!-- Credit Column -->
-            <ng-container matColumnDef="credit">
-              <th mat-header-cell *matHeaderCellDef>Credit</th>
-              <td mat-cell *matCellDef="let element">{{ element.credit }}</td>
-            </ng-container>
-
-            <!-- Actions Column -->
             <ng-container matColumnDef="actions">
               <th mat-header-cell *matHeaderCellDef>Actions</th>
-              <td mat-cell *matCellDef="let element">
+              <td mat-cell *matCellDef="let transaction">
                 <mat-menu #menu="matMenu">
-                  <button mat-menu-item (click)="modifierTransaction(element)">
+                  <button mat-menu-item (click)="modifierTransaction(transaction)">
                     <mat-icon>edit</mat-icon>
                     <span>Modifier</span>
                   </button>
-                  <button mat-menu-item (click)="supprimerTransaction(element)">
+                  <button mat-menu-item (click)="supprimerTransaction(transaction)">
                     <mat-icon>delete</mat-icon>
                     <span>Supprimer</span>
                   </button>
@@ -74,7 +88,6 @@
               </td>
             </ng-container>
 
-            <!-- Header and Row Declarations -->
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>
@@ -82,4 +95,18 @@
       </mat-card-content>
     </mat-card>
   </div>
+</div>
+
+<div class="button-container">
+  <button mat-fab color="primary" class="crediter-button" (click)="openAddCreditDialog()" matTooltip="Crediter" matTooltipPosition="left">
+    <mat-icon>add</mat-icon>
+  </button>
+
+  <button mat-fab color="primary" class="debiter-button" (click)="openAddDebitDialog()" matTooltip="Debiter" matTooltipPosition="left">
+    <mat-icon>remove</mat-icon>
+  </button>
+
+  <button mat-fab color="primary" class="virement-button" (click)="openAddVirementDialog()" matTooltip="Virement" matTooltipPosition="left">
+    <mat-icon>swap_horiz</mat-icon>
+  </button>
 </div>

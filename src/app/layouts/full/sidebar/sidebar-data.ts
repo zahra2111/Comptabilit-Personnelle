@@ -19,23 +19,8 @@ export const navItems: NavItem[] = [
  { 
   displayName: 'TRANSACTIONS',
   iconName: 'credit-card-pay',
-  children: [
-    {
-      displayName: 'Consulter',
-      iconName: 'search',
-      route: '/consultation', // Update the route to match your application
-    },
-    {
-      displayName: 'DEBIT',
-      iconName: 'minus',
-      route: '/debiter', // Update the route to match your application
-    },
-    {
-      displayName: 'CREDIT',
-      iconName: 'plus',
-      route: '/crediter',
-    },
-  ]},
+  route: '/consultation'
+},
   {
     displayName: 'PREFERENCES',
     iconName: 'ballpen',
@@ -53,7 +38,7 @@ export const navItems: NavItem[] = [
       {
         displayName: 'TIERS',
         iconName: 'users',
-        route: '/budget/expenses',
+        route: '/tier',
       },
     ],
   },

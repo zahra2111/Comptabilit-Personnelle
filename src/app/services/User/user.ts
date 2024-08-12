@@ -8,6 +8,7 @@ export class User {
     public banks: string[],
     public budgets: string[],
     public categories: string[],
+    public transactions: string[],
 
     
     public id?: number 
