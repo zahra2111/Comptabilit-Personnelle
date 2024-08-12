@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PopupService } from '../../services/popup.service'; // Adjust the path as needed
+import { PopupService } from '../../services/popup.service';
+
+interface Modele {
+  id: number;
+  name: string;
+  description: string;
+}
 
 @Component({
   selector: 'app-modele-popup',
@@ -10,12 +16,16 @@ import { PopupService } from '../../services/popup.service'; // Adjust the path 
 export class ModelePopupComponent implements OnInit {
   modeleForm: FormGroup;
   popupId = 'modelePopup';
+  modeles: Modele[] = [
+    { id: 1, name: 'Modèle 1', description: 'Description 1' },
+    { id: 2, name: 'Modèle 2', description: 'Description 2' }
+    // Add more sample data as needed
+  ];
 
   constructor(private popupService: PopupService, private fb: FormBuilder) {
     this.modeleForm = this.fb.group({
       name: ['', Validators.required],
-      description: ['', Validators.required],
-      amount: ['', Validators.required]
+      description: ['', Validators.required]
     });
   }
 
