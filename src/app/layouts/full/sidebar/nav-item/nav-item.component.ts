@@ -42,6 +42,28 @@ export class AppNavItemComponent implements OnChanges {
       this.popupService.openPopup('virementPopup');
       return;
     }
+    
+    if (item.route === '/exporter') {
+      this.popupService.openPopup('exporterPopup');
+      return;
+    }
+    if (item.route === '/gerer') {
+      this.popupService.openPopup('gererPopup');
+      return;
+    }
+    if (item.route === '/modifier') {
+      this.popupService.openPopup('modifierPopup');
+      return;
+    }
+    if (item.route === '/selectioner') {
+      this.popupService.openPopup('selectionerPopup');
+      return;
+    }
+    
+    if (item.route === '/relever') {
+      this.popupService.openPopup('releverPopup');
+      return;
+    }
     if (item.route === '/modele') {
       this.popupService.openPopup('modelePopup');
       return;
@@ -51,27 +73,7 @@ export class AppNavItemComponent implements OnChanges {
       return;
     }
 
-
-
-    if (item.route === '/impression-exportation-de-rapport-popup') {
-      this.popupService.openPopup('impression-exportation-de-rapport-popup');
-      return;
-    }
-
-    if (item.route === '/modifier-montants-budgetaire-popup') {
-      this.popupService.openPopup('modifier-montants-budgetaire-popup');
-      return;
-    }
-    if (item.route === '/selection-periode-budget-popup') {
-      this.popupService.openPopup('selection-periode-budget-popup');
-      return;
-    }
-    if (item.route === '/gestion-depenses-revenus-popup') {
-      this.popupService.openPopup('gestion-depenses-revenus-popup');
-      return;
-    }
-
-
+   
 
 
     if (!item.children || !item.children.length) {

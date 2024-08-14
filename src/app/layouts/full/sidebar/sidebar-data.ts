@@ -40,22 +40,22 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Impression et exportation', 
     iconName: 'currency-euro',
-    route: '/impression-exportation-de-rapport-popup',
+    route: '/exporter',
   },
   {
     displayName: 'Modifier les monatants budgétaires', 
     iconName: 'moneybag',
-    route: '/extra/icons',
+    route: '/modifier',
   },
   {
     displayName: 'Selection des periodes budgétaires', 
     iconName: 'clock-2',
-    route: '/selection-periode-budget-popup',
+    route: '/selectioner',
   },
   {
     displayName: 'Gestion des depenses et revenus', 
     iconName: 'report-money',
-    route: '/gestion-depenses-revenus-popup',
+    route: '/gerer',
   },
   {
     navCap: 'Gestion des modèles et des échéances',
@@ -63,7 +63,7 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Importer un relevé bancaire ',
     iconName: 'file',
-    route: '/extra/icons',
+    route: '/relever',
   },
   {
     displayName: 'Ajout d un Modèles ',

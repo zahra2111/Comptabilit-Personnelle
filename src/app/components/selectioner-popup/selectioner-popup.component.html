@@ -1,0 +1,54 @@
+<div class="popup-overlay" (click)="closePopup()">
+    <div class="popup-content" (click)="$event.stopPropagation()">
+      <h2>Sélectionner une Période Budgétaire</h2>
+      <form [formGroup]="selectionerForm" (ngSubmit)="onSelect()">
+        <div class="form-group">
+          <label for="periode">Choisissez la Période</label>
+          <select id="periode" formControlName="periode">
+            <option value="semaine">Semaine</option>
+            <option value="mois">Mois</option>
+            <option value="trimestre">Trimestre</option>
+            <option value="annee">Année</option>
+          </select>
+        </div>
+  
+        <div class="form-group" >
+          <label for="mois">Sélectionnez le Mois</label>
+          <select id="mois" formControlName="mois">
+            <option value="janvier">Janvier</option>
+            <option value="fevrier">Février</option>
+            <option value="mars">Mars</option>
+            <option value="avril">Avril</option>
+            <option value="mai">Mai</option>
+            <option value="juin">Juin</option>
+            <option value="juillet">Juillet</option>
+            <option value="aout">Août</option>
+            <option value="septembre">Septembre</option>
+            <option value="octobre">Octobre</option>
+            <option value="novembre">Novembre</option>
+            <option value="decembre">Décembre</option>
+          </select>
+        </div>
+  
+        <div class="form-group" >
+          <label for="trimestre">Sélectionnez le Trimestre</label>
+          <select id="trimestre" formControlName="trimestre">
+            <option value="T1">T1 (Janvier - Mars)</option>
+            <option value="T2">T2 (Avril - Juin)</option>
+            <option value="T3">T3 (Juillet - Septembre)</option>
+            <option value="T4">T4 (Octobre - Décembre)</option>
+          </select>
+        </div>
+  
+        <div class="form-group" >
+          <label for="annee">Sélectionnez l'Année</label>
+          <input id="annee" formControlName="annee" type="number" placeholder="Entrez l'année" />
+        </div>
+  
+        <button type="submit">Sélectionner</button>
+        <button type="button" (click)="closePopup()">Fermer</button>
+      </form>
+  
+      
+    </div>
+  </div>

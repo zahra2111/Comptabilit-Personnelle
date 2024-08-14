@@ -1,0 +1,38 @@
+<div class="popup-overlay" (click)="closePopup()">
+    <div class="popup-content" (click)="$event.stopPropagation()">
+      <h2>Importer un relevé bancaire</h2>
+      <form [formGroup]="releverForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="file">Choisissez un fichier</label>
+          <input id="file" type="file" (change)="onFileSelected($event)" />
+        </div>
+  
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input id="description" formControlName="description" type="text" placeholder="Entrez une description" />
+        </div>
+  
+        <button type="submit">Importer</button>
+        <button type="button" (click)="closePopup()">Fermer</button>
+      </form>
+  
+      <h3>Relevés Bancaires Importés</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Description</th>
+            <th>Date d'Importation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let releve of releves">
+            <td>{{ releve.id }}</td>
+            <td>{{ releve.description }}</td>
+            <td>{{ releve.importDate | date }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

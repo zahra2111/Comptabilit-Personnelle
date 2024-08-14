@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-
+ 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -35,13 +35,22 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
 import { SettingsComponent } from './pages/settings/settings.component';
 import { DebiterPopupComponent } from './components/debiter-popup/debiter-popup.component'; // Adjust path as needed
 import { CrediterPopupComponent } from './components/crediter-popup/crediter-popup.component';
-import { VirementPopupComponent } from './components/virement-popup/virement-popup.component';
+import { ReleverPopupComponent } from './components/relever-popup/relever-popup.component';
 
+
+import { ExporterPopupComponent } from './components/exporter-popup/exporter-popup.component';
+import { GererPopupComponent } from './components/gerer-popup/gerer-popup.component';
+import { ModifierPopupComponent } from './components/modifier-popup/modifier-popup.component';
+import { SelectionerPopupComponent } from './components/selectioner-popup/selectioner-popup.component';
 
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'; // Adjust path as needed
 import { VirementPopupComponent } from './components/virement-popup/virement-popup.component'; // Adjust path as needed
 import { ModelePopupComponent } from './components/modele-popup/modele-popup.component'; // Adjust path as needed
 import { EcheancePopupComponent } from './components/echeance-popup/echeance-popup.component';
+
+
+
+
 
 
 
@@ -61,6 +70,13 @@ import { EcheancePopupComponent } from './components/echeance-popup/echeance-pop
     VirementPopupComponent,
     ModelePopupComponent,
     EcheancePopupComponent,
+    ReleverPopupComponent,
+    ExporterPopupComponent,
+    GererPopupComponent,
+    ModifierPopupComponent,
+    SelectionerPopupComponent,
+    
+    
 
 
   ],
@@ -78,8 +94,10 @@ import { EcheancePopupComponent } from './components/echeance-popup/echeance-pop
     MatSelectModule,
     MatFormFieldModule,
     HttpClientModule,
-    ReleverPopupComponent,
-  ],
+    
+    
+    
+  ], 
   exports: [TablerIconsModule],
   bootstrap: [AppComponent],
   providers: [

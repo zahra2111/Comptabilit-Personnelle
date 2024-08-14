@@ -3,5 +3,12 @@
 <app-crediter-popup *ngIf="popupService.getPopupState('crediterPopup') | async"></app-crediter-popup>
 <app-virement-popup *ngIf="popupService.getPopupState('virementPopup') | async"></app-virement-popup>
 
+<app-relever-popup *ngIf="popupService.getPopupState('releverPopup') | async"></app-relever-popup>
 <app-modele-popup *ngIf="popupService.getPopupState('modelePopup') | async"></app-modele-popup>
 <app-echeance-popup *ngIf="popupService.getPopupState('echeancePopup') | async"></app-echeance-popup>
+
+
+<app-exporter-popup *ngIf="popupService.getPopupState('exporterPopup') | async"></app-exporter-popup>
+<app-gerer-popup *ngIf="popupService.getPopupState('gererPopup') | async"></app-gerer-popup>
+<app-modifier-popup *ngIf="popupService.getPopupState('modifierPopup') | async"></app-modifier-popup>
+<app-selectioner-popup *ngIf="popupService.getPopupState('selectionerPopup') | async"></app-selectioner-popup>

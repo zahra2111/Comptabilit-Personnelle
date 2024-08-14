@@ -1,0 +1,40 @@
+<div class="popup-overlay" (click)="closePopup()">
+    <div class="popup-content" (click)="$event.stopPropagation()">
+      <h2>Gérer Dépenses et Revenus</h2>
+      <form [formGroup]="gererForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="type">Type</label>
+          <select id="type" formControlName="type">
+            <option value="depense">Dépense</option>
+            <option value="revenu">Revenu</option>
+          </select>
+        </div>
+  
+        <div class="form-group">
+          <label for="montant">Montant</label>
+          <input id="montant" formControlName="montant" type="number" placeholder="Entrez le montant" />
+        </div>
+  
+        <div class="form-group">
+          <label for="categorie">Catégorie</label>
+          <select id="categorie" formControlName="categorie">
+            <option value="loyer">Loyer</option>
+            <option value="courses">Courses</option>
+            <option value="transport">Transport</option>
+            <option value="loisirs">Loisirs</option>
+            <option value="autre">Autre</option>
+          </select>
+        </div>
+  
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input id="description" formControlName="description" type="text" placeholder="Entrez une description" />
+        </div>
+  
+        <button type="submit">Enregistrer</button>
+        <button type="button" (click)="closePopup()">Fermer</button>
+      </form>
+  
+      
+    </div>
+  </div>

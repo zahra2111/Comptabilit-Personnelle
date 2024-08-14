@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ReleverPopupComponent } from './relever-popup.component';
+import { ExporterPopupComponent } from './exporter-popup.component';
 
-describe('ReleverPopupComponent', () => {
-  let component: ReleverPopupComponent;
-  let fixture: ComponentFixture<ReleverPopupComponent>;
+describe('ExporterPopupComponent', () => {
+  let component: ExporterPopupComponent;
+  let fixture: ComponentFixture<ExporterPopupComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ReleverPopupComponent]
+      imports: [ExporterPopupComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(ReleverPopupComponent);
+    fixture = TestBed.createComponent(ExporterPopupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,26 @@
+<div class="popup-overlay" (click)="closePopup()">
+    <div class="popup-content" (click)="$event.stopPropagation()">
+      <h2>Modifier Montants Budgétaires</h2>
+      <form [formGroup]="modifierForm" (ngSubmit)="onUpdate()">
+        <div class="form-group">
+          <label for="itemId">ID de l'Élément</label>
+          <input id="itemId" formControlName="itemId" type="text" placeholder="Entrez l'ID de l'élément" />
+        </div>
+  
+        <div class="form-group">
+          <label for="montant">Nouveau Montant</label>
+          <input id="montant" formControlName="montant" type="number" placeholder="Entrez le nouveau montant" />
+        </div>
+  
+        <div class="form-group">
+          <label for="description">Nouvelle Description</label>
+          <input id="description" formControlName="description" type="text" placeholder="Entrez une nouvelle description" />
+        </div>
+  
+        <button type="submit">Mettre à Jour</button>
+        <button type="button" (click)="closePopup()">Fermer</button>
+      </form>
+  
+      
+    </div>
+  </div>

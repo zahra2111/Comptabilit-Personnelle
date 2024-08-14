@@ -9,6 +9,7 @@ import { PopupService } from '../../services/popup.service';
 })
 export class VirementPopupComponent implements OnInit {
   virementForm: FormGroup;
+  popupId = 'virementPopup';
 
   constructor(private popupService: PopupService, private fb: FormBuilder) {
     this.virementForm = this.fb.group({
@@ -25,15 +26,14 @@ export class VirementPopupComponent implements OnInit {
   }
 
   ngOnInit(): void {}
-
-  closePopup() {
-    this.popupService.closePopup('virement');
-  }
-
+  
   onSubmit() {
     if (this.virementForm.valid) {
       console.log(this.virementForm.value);
       this.closePopup(); // Close popup after submission
     }
+  }
+  closePopup() {
+    this.popupService.closePopup(this.popupId);
   }
 }

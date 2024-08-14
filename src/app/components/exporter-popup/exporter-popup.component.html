@@ -1,0 +1,29 @@
+<div class="popup-overlay" (click)="closePopup()">
+    <div class="popup-content" (click)="$event.stopPropagation()">
+      <h2>Impression et exportation un Rapport de Budget</h2>
+      <form [formGroup]="exporterForm" (ngSubmit)="onExport()">
+        <div class="form-group">
+          <label for="reportType">Type de Rapport</label>
+          <select id="reportType" formControlName="reportType">
+            <option value="monthly">Mensuel</option>
+            <option value="yearly">Annuel</option>
+            <option value="custom">Personnalisé</option>
+          </select>
+        </div>
+  
+        <div class="form-group" >
+          <label for="startDate">Date de Début</label>
+          <input id="startDate" type="date" formControlName="startDate" />
+          
+          <label for="endDate">Date de Fin</label>
+          <input id="endDate" type="date" formControlName="endDate" />
+        </div>
+  
+        <button type="submit">Exporter</button>
+        <button type="button" (click)="printReport()">Imprimer</button>
+        <button type="button" (click)="closePopup()">Fermer</button>
+      </form>
+  
+      
+    </div>
+  </div>

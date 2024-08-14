@@ -11,45 +11,19 @@ export class AppComponent implements OnInit {
   isVirementPopupOpen = false;
   isCrediterPopupOpen = false;
   isDebiterPopupOpen = false;
-  showImpressionExportationPopup = false;
-  showModifierMontantsPopup = false;
-  showSelectionPeriodePopup = false;
-  showGestionDepensesRevenusPopup = false;
-  openImpressionExportationPopup() {
-    this.showImpressionExportationPopup = true;
+  
+
+  onBankStatementImported(data: any) {
+    console.log('Relevé bancaire importé:', data);
+    // Effectuez ici les actions nécessaires après l'importation
   }
 
-  openModifierMontantsPopup() {
-    this.showModifierMontantsPopup = true;
-  }
 
-  openSelectionPeriodePopup() {
-    this.showSelectionPeriodePopup = true;
-  }
+  
 
-  openGestionDepensesRevenusPopup() {
-    this.showGestionDepensesRevenusPopup = true;
-  }
 
-  closeAllPopups() {
-    this.showImpressionExportationPopup = false;
-    this.showModifierMontantsPopup = false;
-    this.showSelectionPeriodePopup = false;
-    this.showGestionDepensesRevenusPopup = false;
-  }
-
-  showPopup = false;
-  importedFile: File | null = null;
-
-  togglePopup(): void {
-    this.showPopup = !this.showPopup;
-  }
-
-  onFileImported(file: File): void {
-    this.importedFile = file;
-    // Ici, vous pouvez envoyer le fichier à votre serveur
-    console.log('Fichier importé:', file.name);
-  }
+  
+  
  
 
   constructor(public popupService: PopupService) {}
@@ -65,8 +39,7 @@ export class AppComponent implements OnInit {
     this.popupService.getPopupState('debiterPopup').subscribe((state: boolean) => {
       this.isDebiterPopupOpen = state;
     });
-    
-
+   
     
 }
     
