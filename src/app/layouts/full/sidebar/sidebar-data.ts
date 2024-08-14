@@ -75,4 +75,9 @@ export const navItems: NavItem[] = [
     iconName: 'file',
     route: '/echeance',
   },
+  {
+    displayName: 'Imprimer ',
+    iconName: 'file',
+    route: '/imprimer',
+  },
 ];

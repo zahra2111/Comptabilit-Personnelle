@@ -13,6 +13,8 @@ import { GererPopupComponent } from './components/gerer-popup/gerer-popup.compon
 import { ModifierPopupComponent } from './components/modifier-popup/modifier-popup.component';
 import { SelectionerPopupComponent } from './components/selectioner-popup/selectioner-popup.component';
 
+import { ImprimerPopupComponent } from './components/imprimer-popup/imprimer-popup.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -62,6 +64,10 @@ const routes: Routes = [
       {
         path: 'selectioner',
         component: SelectionerPopupComponent,
+      },
+      {
+        path: 'imprimer',
+        component: ImprimerPopupComponent,
       },
       
       

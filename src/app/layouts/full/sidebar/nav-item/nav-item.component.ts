@@ -72,6 +72,11 @@ export class AppNavItemComponent implements OnChanges {
       this.popupService.openPopup('echeancePopup');
       return;
     }
+    if (item.route === '/imprimer') {
+      this.popupService.openPopup('imprimerPopup');
+      return;
+    }
+
 
    
 

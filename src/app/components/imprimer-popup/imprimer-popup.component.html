@@ -1,0 +1,69 @@
+<div class="popup-overlay" (click)="closePopup()">
+    <div class="popup-content" (click)="$event.stopPropagation()">
+      <h2>Imprimer </h2>
+      <form (ngSubmit)="onPrint()">
+        <div class="form-group date-range">
+          <label for="fromDate">Du</label>
+          <input id="fromDate" type="date" [(ngModel)]="fromDate" name="fromDate">
+          <label for="toDate">Au</label>
+          <input id="toDate" type="date" [(ngModel)]="toDate" name="toDate">
+        </div>
+        
+        <div class="form-group bank-accounts">
+            
+          <h3>Comptes bancaires</h3>
+          <div class="account-option">
+            <input type="checkbox" id="account1" [(ngModel)]="accountSelected" name="accountSelected">
+            <label for="account1">Compte</label>
+          </div>
+        </div>
+        
+        <div class="form-group operation-types">
+          <h3>Opérations</h3>
+          <label>
+            <input type="radio" name="operationType" [(ngModel)]="operationType" value="toutes">
+            Toutes
+          </label>
+          <label>
+            <input type="radio" name="operationType" [(ngModel)]="operationType" value="nonPointees">
+            Les opérations non pointées
+          </label>
+          <label>
+            <input type="radio" name="operationType" [(ngModel)]="operationType" value="pointees">
+            Les opérations pointées
+          </label>
+        </div>
+        
+        <div class="form-group print-options">
+          <h3>Options d'impression</h3>
+          <ul>
+            
+            <li><button type="button" (click)="printByDate()">Date</button></li>
+            
+            <li><button type="button" (click)="printByCategory()">Catégorie</button></li>
+            
+            <li><button type="button" (click)="printByPaymentMode()">Mode de paiement</button></li>
+            
+            <li><button type="button" (click)="printByThirdParty()">Tiers</button></li>
+            
+            <li><button type="button" (click)="printTotalByCategory()">Total des catégories</button></li>
+         
+            <li><button type="button" (click)="printTotalByThirdParty()">Total des tiers</button></li>
+            
+            <li><button type="button" (click)="printTotalByPaymentMode()">Total des modes de paiements</button></li>
+            
+          </ul>
+        </div>
+  
+        <div class="actions">
+            
+          <button type="button" (click)="exportToExcel()">Exporter vers Excel</button>
+          
+          <button type="button" (click)="exportToPDF()">Exporter en PDF</button>
+          
+          <button type="submit">Imprimer</button>
+          <button type="button" (click)="closePopup()">Fermer</button>
+        </div>
+      </form>
+    </div>
+  </div>

@@ -49,6 +49,7 @@ import { ModelePopupComponent } from './components/modele-popup/modele-popup.com
 import { EcheancePopupComponent } from './components/echeance-popup/echeance-popup.component';
 
 
+import { ImprimerPopupComponent } from './components/imprimer-popup/imprimer-popup.component';
 
 
 
@@ -75,6 +76,7 @@ import { EcheancePopupComponent } from './components/echeance-popup/echeance-pop
     GererPopupComponent,
     ModifierPopupComponent,
     SelectionerPopupComponent,
+    ImprimerPopupComponent,
     
     
 
