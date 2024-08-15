@@ -1,0 +1,42 @@
+<h1 mat-dialog-title>{{ 'ADD_NEW_BUDGET' | translate }}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="budgetForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>{{ 'AMOUNT' | translate }}</mat-label>
+      <input matInput formControlName="montant" [placeholder]="'ENTER_BUDGET_AMOUNT' | translate">
+      <mat-error *ngIf="budgetForm.get('montant')?.hasError('required')">{{ 'AMOUNT_REQUIRED' | translate }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>{{ 'START_DATE' | translate }}</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="APartirDe">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="budgetForm.get('APartirDe')?.hasError('required')">{{ 'START_DATE_REQUIRED' | translate }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>{{ 'DURATION' | translate }}</mat-label>
+      <mat-select formControlName="duree">
+        <mat-option value="daily">{{ 'DAILY' | translate }}</mat-option>
+        <mat-option value="weekly">{{ 'WEEKLY' | translate }}</mat-option>
+        <mat-option value="monthly">{{ 'MONTHLY' | translate }}</mat-option>
+        <mat-option value="yearly">{{ 'YEARLY' | translate }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>{{ 'CATEGORY' | translate }}</mat-label>
+      <mat-select formControlName="category">
+        <mat-option *ngFor="let category of data.categories" [value]="category.nom">
+          {{ category.nom }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div mat-dialog-actions>
+      <button mat-button (click)="onNoClick()">{{ 'CANCEL' | translate }}</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="budgetForm.invalid">{{ 'ADD_BUDGET' | translate }}</button>
+    </div>
+  </form>
+</div>

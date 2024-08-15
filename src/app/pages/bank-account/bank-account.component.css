@@ -1,0 +1,263 @@
+/* Popup Overlay Styles */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center; /* Align items to the left */
+    align-items: flex-start; /* Align items to the top */
+    padding: 20px; /* Add padding to give space from edges */
+    z-index: 1000;
+  }
+  
+  
+  .popup-content {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 500px;
+    padding: 20px;
+    position: relative;
+  }
+  
+  .popup-content h2 {
+    color: #333333;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-size: 14px;
+    color: #555555;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .form-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .form-buttons button {
+    background: #4eacc2; /* Light blue color */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .form-buttons button:hover {
+    background: #4682B4; /* Darker blue on hover */
+  }
+  
+  .form-buttons button:disabled {
+    background: #b0e0e6; /* Lighter blue when disabled */
+    cursor: not-allowed;
+  }
+  /* General layout and styling */
+.blank-layout-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f4f8;
+}
+
+.bg-gradient {
+  background: linear-gradient(135deg, #6e8efb 0%, #a777e3 100%);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardWithShadow {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.boxed-auth {
+  padding: 32px;
+  border-radius: 10px;
+}
+
+.p-32 {
+  padding: 32px;
+}
+
+.m-t-24 {
+  margin-top: 24px;
+}
+
+.m-t-30 {
+  margin-top: 30px;
+}
+
+/* Search and filter section */
+.search-filter-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 300px;
+}
+.add-tier-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000; /* Ensure it's above other elements */
+}
+/* Table styling */
+.table {
+  width: 100%;
+}
+.wide-notes {
+  width: 100%; /* Make the entire form group take full width */
+}.custom-select-container {
+  position: relative;
+  width: 100%; /* Make the container take full width */
+}
+
+mat-select {
+  width: 100%; /* Ensure mat-select takes full width */
+  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif; /* Consistent font */
+  font-size: 14px; /* Adjust font size as needed */
+  padding: 8px 12px; /* Adjust padding for better spacing */
+  border: 1px solid #ccc; /* Border for better visibility */
+  border-radius: 4px; /* Rounded corners */
+  box-shadow: none; /* Remove default shadow */
+}
+.wide-notes textarea::placeholder {
+  color: #666; /* Lighter color for the placeholder text */
+  font-size: 14px; /* Font size to match the textarea text */
+}
+mat-select .mat-select-trigger {
+  padding: 0; /* Adjust padding inside the trigger */
+}
+.optional-note {
+  font-size: 12px; /* Adjust font size for optional note */
+  color: #666; /* Slightly lighter color for the optional note */
+  margin-top: 5px; /* Space above the note */
+}
+mat-option {
+  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif; /* Consistent font for options */
+  font-size: 14px; /* Adjust font size as needed */
+}
+
+mat-select:hover {
+  border-color: #0044cc; /* Border color on hover */
+}
+
+mat-select:focus {
+  outline: none; /* Remove default outline */
+}
+
+.wide-notes textarea {
+  width: 100%; /* Make the textarea take the full width of its container */
+  min-height: 100px; /* Adjust the height as needed */
+  padding: 10px; /* Add some padding for better readability */
+  box-sizing: border-box; /* Ensure padding doesn't affect the width */
+  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif; /* Use consistent font */
+  font-size: 14px;
+  border-radius: 4px; /* Optional: Add some rounding to the corners */
+  border: 1px solid #ccc; /* Optional: Add a border */
+}
+.table-hover tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+.thead-blue {
+  background-color: #5686e6;
+  color: white;
+}
+
+/* Add button alignment */
+.custom-text-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Popup overlay and content */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.search-container {
+  display: flex;
+  justify-content: center;
+
+}
+
+.search-field {
+  width: 30%; 
+}
+
+.mat-form-field {
+  width: 100%;
+}

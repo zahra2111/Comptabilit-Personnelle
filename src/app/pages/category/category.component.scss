@@ -1,0 +1,84 @@
+.category-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center all content horizontally */
+  gap: 16px;
+}
+
+.search-container {
+  width: 100%; /* Ensure it takes full width of the container */
+  max-width: 600px; /* Set a max-width to control the width of the search field */
+  margin-bottom: 2px;
+  display: flex;
+  justify-content: center; /* Center the search field horizontally */
+}
+
+.search-field {
+  width: 100%; /* Make the search field fill the width of its container */
+}
+
+.add-category-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  max-width: 600px; /* Match the max-width of the search container */
+  margin-bottom: 16px;
+}
+
+.add-category-container button {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+}
+
+.category-list {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  max-width: 600px; /* Set a max-width to control the width of the category list */
+}
+
+.category-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  background-color: #f9f9f9;
+}
+
+.category-item span {
+  font-size: 1.2em; /* Bigger font size */
+  font-weight: bold; /* Make text bold */
+  color: #333; /* Change color if needed */
+}
+
+.delete-button {
+  color: #d32f2f; /* Optional: Change color for delete button */
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
+  text-align: center; /* Center the error message text */
+}
+
+.no-categories-message {
+  text-align: center;
+  font-style: italic;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+.mat-tooltip {
+  font-size: 0.9em; /* Adjust the font size of the tooltip if needed */
+  color: #fff; /* Change tooltip text color */
+  background-color: #333; /* Change tooltip background color */
+}

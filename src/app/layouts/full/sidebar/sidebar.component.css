@@ -1,0 +1,46 @@
+.flex-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Full viewport height */
+}
+
+.sidebar-list {
+  flex: 1; /* Fills the available space */
+  padding: 16px; /* Add padding around the list */
+}
+
+.mat-list-item {
+  padding: 12px 16px; /* Increase padding for list items */
+  font-size: 18px; /* Larger font size */
+  font-weight: 500; /* Medium font weight for better readability */
+}
+
+.mat-list-item .mat-icon {
+  font-size: 24px; /* Larger icons */
+  margin-right: 16px; /* More space between icon and text */
+}
+
+.sidebar-footer {
+  padding: 20px; /* More space around the buttons */
+  display: flex;
+  flex-direction: row; /* Align buttons side by side */
+  align-items: center;
+  justify-content: center; /* Center buttons horizontally */
+  background-color: #f1f1f1; /* Light background color */
+  border-top: 1px solid #e0e0e0; /* Subtle border for separation */
+}
+
+.sidebar-footer button {
+  margin: 0 12px; /* Increase space between buttons */
+  padding: 10px 16px; /* Larger buttons */
+  font-size: 16px; /* Larger text size */
+  color: #007bff; /* Blue text color */
+  border: 2px solid #007bff; /* Thicker blue border */
+  background-color: transparent;
+  border-radius: 4px; /* Rounded corners */
+  font-weight: 600; /* Slightly bolder font */
+}
+
+.sidebar-footer button:hover {
+  background-color: #e0e0e0; /* Light grey background on hover */
+}

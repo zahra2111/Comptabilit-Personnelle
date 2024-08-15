@@ -1,0 +1,53 @@
+<div class="category-container">
+  <!-- Search Field -->
+  <div class="search-container">
+    <mat-form-field appearance="fill" class="search-field">
+      <mat-label>{{ 'SEARCH_CATEGORIES' | translate }}</mat-label>
+      <input matInput [(ngModel)]="searchQuery" (ngModelChange)="filterCategories()" placeholder="{{ 'SEARCH_CATEGORIES' | translate }}">
+    </mat-form-field>
+  </div>
+
+  <!-- Add New Category Button -->
+  <div class="add-category-container">
+    <button mat-fab color="primary" (click)="openAddCategoryDialog()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
+  <!-- Error Message -->
+  <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+
+  <!-- Loading Spinner -->
+  <div *ngIf="isLoading" class="spinner-container">
+    <mat-spinner [diameter]="50" mode="indeterminate"></mat-spinner>
+  </div>
+
+  <ul *ngIf="!isLoading && filteredCategories.length > 0" class="category-list">
+    <li *ngFor="let category of filteredCategories" class="category-item">
+      <span>{{ category.nom }}</span>
+      <button mat-icon-button color="warn" (click)="deleteCategory(category.id)" class="delete-button" matTooltip="{{ 'DELETE' | translate }}" aria-label="Supprimer">
+        <mat-icon>backspace</mat-icon>
+      </button>
+    </li>
+  </ul>
+  
+  <!-- No Categories Message -->
+  <p *ngIf="!isLoading && filteredCategories.length === 0" class="no-categories-message">
+    {{ 'NO_CATEGORIES_FOUND' | translate }}
+  </p>
+</div>
+
+<!-- Dialog Template for Adding a Category -->
+<ng-template #addCategoryDialog>
+  <h1 mat-dialog-title>{{ 'ADD_CATEGORY' | translate }}</h1>
+  <div mat-dialog-content>
+    <mat-form-field appearance="fill">
+      <mat-label>{{ 'ENTER_CATEGORY_NAME' | translate }}</mat-label>
+      <input matInput [(ngModel)]="newCategory.nom" placeholder="{{ 'ENTER_CATEGORY_NAME' | translate }}">
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="closeDialog()">{{ 'CANCEL' | translate }}</button>
+    <button mat-raised-button color="primary" (click)="addCategory()">{{ 'ADD_CATEGORY' | translate }}</button>
+  </div>
+</ng-template>

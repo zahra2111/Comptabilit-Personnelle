@@ -1,0 +1,41 @@
+<div class="blank-layout-container justify-content-center align-items-center bg-light-primary">
+  <div class="position-relative row w-100 h-100 bg-gradient justify-content-center">
+    <div class="col-lg-4 d-flex align-items-center">
+      <mat-card class="cardWithShadow boxed-auth">
+        <mat-card-content class="p-32">
+          <div class="text-center">
+            <img src="./assets/images/logos/favicon.png" width="60px" alt="logo" />
+            <span class="brand-name">udgetPro</span>
+          </div>
+          <form (ngSubmit)="onSubmit(userForm)" #userForm="ngForm">
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" id="email" name="email" ngModel required email class="form-control" />
+              <div *ngIf="userForm.submitted && !userForm.controls['email'].valid" class="text-danger">
+                Email valide est requis.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input type="password" id="password" name="password" ngModel required minlength="6" class="form-control" />
+              <div *ngIf="userForm.submitted && !userForm.controls['password'].valid" class="text-danger">
+                Mot de passe (minimum 6 caractères) est requis.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="confirmPassword">Confirm Password:</label>
+              <input type="password" id="confirmPassword" name="confirmPassword" ngModel required class="form-control" />
+              <div *ngIf="userForm.submitted && !passwordsMatch" class="text-danger">
+                Les mots de passe ne correspondent pas.
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">S'inscrire</button>
+          </form>
+          <span class="d-block f-w-500 text-center m-t-24">Vous avez déjà un compte?
+            <a [routerLink]="['/authentification/login']" class="text-decoration-none text-primary f-w-500 f-s-14">Se connecter</a>
+          </span>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

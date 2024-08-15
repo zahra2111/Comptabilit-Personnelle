@@ -1,0 +1,89 @@
+/* Frame around the filter section */
+.filter-frame {
+  border: 1px solid #d3d3d3; /* Light gray border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 16px; /* Padding inside the frame */
+  margin-bottom: 8px; /* Space below the filter frame */
+  background-color: #f9f9f9; /* Light background color */
+}
+
+/* Frame around the table section */
+.table-frame {
+  border: 1px solid #d3d3d3; /* Light gray border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 16px; /* Padding inside the frame */
+  background-color: #fff; /* White background color */
+}
+
+/* Position filter container outside the table */
+.filter-container {
+  display: flex;
+  justify-content: flex-start; /* Align items to the left */
+  align-items: right;
+  margin: 2px 0; /* Adjust margin as needed */
+}
+.search-container {
+  width: 100%; // Allow the container to use full width
+  display: flex; // Optional: Ensure the search field stretches properly
+  justify-content: center; // Optional: Center the search field if desired
+}
+
+.search-field {
+  width: 100%; // Make the search field take full width of the container
+  max-width: 600px; // Set a max-width to control the maximum width
+}
+.filter-buttons {
+  display: flex;
+  gap: 20px; /* Space between filters */
+}
+
+/* Floating action buttons styles */
+.button-container {
+  position: fixed;
+  bottom: 20px; /* Distance from the bottom */
+  right: 20px;  /* Distance from the right */
+  display: flex; /* Flexbox for vertical alignment */
+  flex-direction: column; /* Stack buttons vertically */
+  gap: 20px; /* Space between buttons */
+  z-index: 1000; /* Ensure buttons are on top of other content */
+}
+
+/* Style for the Crediter button */
+.crediter-button {
+  background-color: #34c16d; /* Green color for Crediter */
+}
+
+/* Style for the Debiter button */
+.debiter-button {
+  background-color: #e23030; /* Red color for Debiter */
+}
+
+/* Style for the Virement button */
+.virement-button {
+  background-color: #3888dd; /* Blue color for Virement */
+}
+
+/* Spinner container styles */
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px; /* Adjust height as needed */
+}
+
+/* Custom tooltip styles */
+.mat-tooltip {
+  background-color: #333 !important; /* Dark background color */
+  color: #fff !important; /* White text color */
+  font-size: 14px !important; /* Font size */
+  border-radius: 4px !important; /* Rounded corners */
+  padding: 8px 12px !important; /* Padding around text */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important; /* Shadow effect */
+  max-width: 150px !important; /* Maximum width */
+  z-index: 1000 !important; /* Ensure tooltip appears on top */
+}
+
+/* Tooltip arrow customization */
+.mat-tooltip-arrow {
+  color: #333 !important; /* Arrow color (match the tooltip background) */
+}

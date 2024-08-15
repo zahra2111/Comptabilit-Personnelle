@@ -1,0 +1,128 @@
+<div class="row">
+  <div class="col-lg-12">
+    <mat-card class="cardWithShadow">
+      {{ formattedDate }}
+      
+      <!-- Filter Section -->
+      <div class="filter-frame">
+        <div class="filter-container">
+          <div class="filter-buttons">
+            <div class="search-container">
+              <mat-form-field class="search-field" appearance="fill">
+                <mat-label>{{ 'SEARCH' | translate }}</mat-label>
+                <input matInput [(ngModel)]="searchQuery" (ngModelChange)="search()" placeholder="Search transactions">
+              </mat-form-field>
+            </div>
+
+            <mat-form-field appearance="fill">
+              <mat-label>{{ 'DATE_LABEL' | translate }}</mat-label>
+              <input matInput [matDatepicker]="picker" (dateChange)="filterByDate($event.value)">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            
+            <mat-form-field appearance="fill">
+              <mat-label>{{ 'TIERS_LABEL' | translate }}</mat-label>
+              <mat-select (selectionChange)="filterByTiers($event.value)">
+                <mat-option *ngFor="let tier of tiers" [value]="tier">{{ tier }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table Section -->
+      <mat-card-content class="p-24">
+        <!-- Spinner while loading -->
+        <div *ngIf="isLoading" class="spinner-container">
+          <mat-spinner></mat-spinner>
+        </div>
+
+        <div class="table-frame" *ngIf="!isLoading">
+          <div class="table-responsive m-t-16">
+            <table mat-table [dataSource]="filteredTransactions" class="w-100">
+              <!-- Define columns here -->
+              <ng-container matColumnDef="n°">
+                <th mat-header-cell *matHeaderCellDef>{{ 'NUMBER_HEADER' | translate }}</th>
+                <td mat-cell *matCellDef="let transaction; let i = index">{{ i + 1 }}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef>{{ 'DATE_HEADER' | translate }}</th>
+                <td mat-cell *matCellDef="let transaction">{{ transaction.formattedDate }}</td>
+              </ng-container>
+              
+              <ng-container matColumnDef="Compte">
+                <th mat-header-cell *matHeaderCellDef>{{ 'ACCOUNT_HEADER' | translate }}</th>
+                <td mat-cell *matCellDef="let transaction">
+                  {{ transaction.Compte || ( 'LOADING' | translate ) }}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Montant">
+                <th mat-header-cell *matHeaderCellDef>{{ 'AMOUNT_HEADER' | translate }}</th>
+                <td mat-cell *matCellDef="let transaction">
+                  <ng-container *ngIf="transaction.type === 'debit'; else credit">
+                    -{{ transaction.amount }}$
+                  </ng-container>
+                  <ng-template #credit>
+                    +{{ transaction.amount }}$
+                  </ng-template>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="tiers">
+                <th mat-header-cell *matHeaderCellDef>{{ 'PARTY_HEADER' | translate }}</th>
+                <td mat-cell *matCellDef="let transaction">
+                  {{ tierMap[transaction.tiers] || ( 'LOADING' | translate ) }}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="description">
+                <th mat-header-cell *matHeaderCellDef>{{ 'PAYMENT_METHOD_HEADER' | translate }}</th>
+                <td mat-cell *matCellDef="let transaction">{{ transaction.notes }}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>{{ 'ACTIONS_HEADER' | translate }}</th>
+                <td mat-cell *matCellDef="let transaction">
+                  <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="modifierTransaction(transaction)">
+                      <mat-icon>edit</mat-icon>
+                      <span>{{ 'EDIT_ACTION' | translate }}</span>
+                    </button>
+                    <button mat-menu-item (click)="supprimerTransaction(transaction)">
+                      <mat-icon>delete</mat-icon>
+                      <span>{{ 'DELETE_ACTION' | translate }}</span>
+                    </button>
+                  </mat-menu>
+                  <button mat-icon-button [matMenuTriggerFor]="menu">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+<!-- Floating Action Buttons -->
+<div class="button-container">
+  <button mat-fab color="primary" class="crediter-button" (click)="openAddCreditDialog()" matTooltip="{{ 'CREDIT_TOOLTIP' | translate }}" matTooltipPosition="left">
+    <mat-icon>add</mat-icon>
+  </button>
+
+  <button mat-fab color="primary" class="debiter-button" (click)="openAddDebitDialog()" matTooltip="{{ 'DEBIT_TOOLTIP' | translate }}" matTooltipPosition="left">
+    <mat-icon>remove</mat-icon>
+  </button>
+
+  <button mat-fab color="primary" class="virement-button" (click)="openAddVirementDialog()" matTooltip="{{ 'TRANSFER_TOOLTIP' | translate }}" matTooltipPosition="left">
+    <mat-icon>swap_horiz</mat-icon>
+  </button>
+</div>

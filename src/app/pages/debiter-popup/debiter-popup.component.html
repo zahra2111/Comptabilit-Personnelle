@@ -1,0 +1,54 @@
+<div class="popup-overlay" (click)="closePopup()">
+  <div class="popup-content" (click)="$event.stopPropagation()">
+    <h2>Debiter</h2>
+    <form [formGroup]="debitForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="date">Date</label>
+        <input id="date" formControlName="date" type="date" />
+      </div>
+    
+      <div class="form-group">
+        <label for="amount">Montant</label>
+        <input id="amount" formControlName="amount" type="number" />
+      </div>
+      <div>
+        <label for="model-select">Select Model:</label>
+        <select id="model-select" [(ngModel)]="selectedModel">
+          <option *ngFor="let model of models" [ngValue]="model">{{ model.description }}</option>
+        </select>
+        <button *ngIf="selectedModel" (click)="useModel(selectedModel)">Use Selected Model</button>
+      </div>
+      
+      <div class="form-group">
+        <label for="description">Mode de paiement</label>
+        <select id="description" formControlName="description">
+          <option value="carte bancaire">carte bancaire</option>
+          <option value="espèces">espèces</option>
+          <option value="portefeuille électronique">portefeuille électronique</option>
+          <option value="paiement mobile">paiement mobile</option>
+          <option value="virement bancaire">virement bancaire</option>
+          <option value="chèque">chèque</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="tiers">Tiers</label>
+        <select id="tiers" formControlName="tiers" (change)="onTierChange($event)">
+          <option *ngFor="let tier of tiers" [value]="tier.id">{{ tier.nom }}</option>
+        </select>
+      </div>
+   
+      <div class="form-group">
+        <label for="compte">Compte</label>
+        <select id="compte" formControlName="compte" (change)="onCompteChange($event)">
+          <option *ngFor="let compte of comptes" [value]="compte.id">{{ compte.nom }}</option>
+        </select>
+      </div>
+
+      <div mat-dialog-actions>
+        <button mat-button (click)="closePopup()">{{ 'CLOSE' | translate }}</button>
+        <button mat-raised-button color="primary" type="submit">{{ 'SUBMIT' | translate }}</button>
+      </div>
+    </form>
+  </div>
+</div>

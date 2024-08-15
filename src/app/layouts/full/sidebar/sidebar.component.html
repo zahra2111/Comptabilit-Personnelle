@@ -1,0 +1,14 @@
+<div class="flex-layout">
+  <app-branding></app-branding>
+  <mat-nav-list class="sidebar-list">
+    <app-nav-item 
+      *ngFor="let item of navItems" 
+      [item]="item" 
+      (selectedItem)="onNavItemSelected($event)">
+    </app-nav-item>
+  </mat-nav-list>
+  <div class="sidebar-footer">
+    <button mat-button (click)="changeLanguage('en')">{{ 'ENGLISH' | translate }}</button>
+    <button mat-button (click)="changeLanguage('fr')">{{ 'FRENCH' | translate }}</button>
+  </div>
+</div>

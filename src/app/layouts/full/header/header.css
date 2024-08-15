@@ -1,0 +1,10 @@
+.selected-sidebar-name {
+    position: absolute;
+    top:30px; /* Distance from the top */
+    left: 40px; /* Distance from the right edge */
+    color: #1329a5; /* Dark blue color */
+    font-size: 28px; /* Font size */
+    font-weight: 600; /* Font weight for emphasis */
+    text-shadow: 1px 1px 2px #f3eeee, 0.1; /* Subtle shadow for depth */
+  }
+  

@@ -1,0 +1,37 @@
+<div class="popup-overlay" (click)="closePopup()">
+  <div class="popup-content" (click)="$event.stopPropagation()">
+    <h2>{{ 'VIREMENT_HEADER' | translate }}</h2>
+    <form [formGroup]="virementForm" (ngSubmit)="onSubmit()">
+      
+      <div class="form-group">
+        <label for="date">{{ 'DATE_LABEL' | translate }}</label>
+        <input id="date" formControlName="date" type="date" />
+      </div>
+      
+      <div class="form-group">
+        <label for="amount">{{ 'AMOUNT_LABEL' | translate }}</label>
+        <input id="amount" formControlName="amount" type="number" />
+      </div>
+      
+      <div class="form-group">
+        <label for="mode">{{ 'PAYMENT_MODE_LABEL' | translate }}</label>
+        <select id="mode" formControlName="mode" >
+          <option value="virement">{{ 'BANK_TRANSFER' | translate }}</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="duCompte">{{ 'FROM_ACCOUNT_LABEL' | translate }}</label>
+        <select id="duCompte" formControlName="duCompte" >
+        </select>
+      </div>
+      
+      
+      
+      <div mat-dialog-actions>
+        <button mat-button (click)="closePopup()">{{ 'CLOSE_BUTTON' | translate }}</button>
+        <button mat-raised-button color="primary" type="submit">{{ 'SUBMIT_BUTTON' | translate }}</button>
+      </div>
+    </form>
+  </div>
+</div>

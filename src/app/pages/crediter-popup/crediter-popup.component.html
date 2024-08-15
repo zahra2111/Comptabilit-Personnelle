@@ -1,0 +1,44 @@
+<div class="popup-overlay" (click)="closePopup()">
+  <div class="popup-content" (click)="$event.stopPropagation()">
+    <h2>{{ 'CREDIT_HEADER' | translate }}</h2>
+    <form [formGroup]="creditForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="date">{{ 'DATE_LABEL' | translate }}</label>
+        <input id="date" formControlName="date" type="date" />
+      </div>
+     
+      <div class="form-group">
+        <label for="amount">{{ 'AMOUNT_LABEL' | translate }}</label>
+        <input id="amount" formControlName="amount" type="number" />
+      </div>
+      <div class="form-group">
+        <label for="description">{{ 'PAYMENT_MODE_LABEL' | translate }}</label>
+        <select id="description" formControlName="description">
+          <option value="carte bancaire">{{ 'CREDIT_CARD' | translate }}</option>
+          <option value="espèces">{{ 'CASH' | translate }}</option>
+          <option value="portefeuille électronique">{{ 'E_WALLET' | translate }}</option>
+          <option value="paiement mobile">{{ 'MOBILE_PAYMENT' | translate }}</option>
+          <option value="virement bancaire">{{ 'BANK_TRANSFER' | translate }}</option>
+          <option value="chèque">{{ 'CHECK' | translate }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="tiers">{{ 'THIRD_PARTY_LABEL' | translate }}</label>
+        <select id="tiers" formControlName="tiers" (change)="onTierChange($event)">
+          <option *ngFor="let tier of tiers" [value]="tier.id">{{ tier.nom }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="compte">{{ 'ACCOUNT_LABEL' | translate }}</label>
+        <select id="compte" formControlName="compte" (change)="onCompteChange($event)">
+          <option *ngFor="let compte of comptes" [value]="compte.id">{{ compte.nom }}</option>
+        </select>
+      </div>
+     
+      <div mat-dialog-actions>
+        <button mat-button (click)="closePopup()">{{ 'CLOSE_BUTTON' | translate }}</button>
+        <button mat-raised-button color="primary" type="submit">{{ 'SUBMIT_BUTTON' | translate }}</button>
+      </div>
+    </form>
+  </div>
+</div>

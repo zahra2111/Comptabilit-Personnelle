@@ -1,0 +1,43 @@
+<h1 mat-dialog-title class="dialog-title">{{ bankAccount?.nom }}</h1>
+<div mat-dialog-content class="dialog-content">
+  <div *ngIf="bankAccount" class="bank-account-details">
+    <p><strong>Initial Sum:</strong> {{ bankAccount.initialSum | currency: bankAccount.monnaie }}</p>
+    <p *ngIf="bankAccount.type"><strong>Notes:</strong> {{ bankAccount.type }}</p>
+    <p><strong>Transactions:</strong></p>
+
+    <div *ngIf="isLoading; else content" class="spinner-container">
+      <mat-spinner [diameter]="50" mode="indeterminate" class="spinner"></mat-spinner>
+    </div>
+    
+    <ng-template #content>
+      <div *ngIf="transactions.length; else noTransactions" class="transactions-container">
+        <div class="total-container">
+            <p class="total-amount"><strong>Total:</strong> {{ calculateTotal() | currency: bankAccount.monnaie }}</p>
+          </div>
+          <div class="transactions-scrollable">
+          <ul class="transactions-list">
+            <li *ngFor="let transaction of transactions; let i = index"
+                [ngClass]="{ 'debit': transaction.type === 'debit', 'credit': transaction.type === 'credit' }"
+                class="transaction-item">
+              <div class="transaction-info">
+                <p><strong>Transaction {{ i + 1 }}:</strong></p>
+                <p><strong>Date:</strong> {{ transaction.date | date: 'shortDate' }}</p>
+                <p><strong>Amount:</strong>
+                  <span [ngStyle]="{ 'color': transaction.type === 'debit' ? 'red' : 'green' }">
+                    {{ transaction.type === 'debit' ? '-' : '+' }}{{ transaction.amount | currency: bankAccount.monnaie }}
+                  </span>
+                </p>
+          </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <ng-template #noTransactions>
+        <p>No transactions yet</p>
+      </ng-template>
+    </ng-template>
+  </div>
+</div>
+<div mat-dialog-actions class="dialog-actions">
+  <button mat-button class="close-button" (click)="close()">Close</button>
+</div>

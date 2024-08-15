@@ -1,0 +1,64 @@
+<div class="budget-management">
+  <!-- Filter and Search Section -->
+  <div class="filter-search-container">
+    <div class="filter-section">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'SELECT_DATE' | translate }}</mat-label>
+        <input matInput [matDatepicker]="picker" (dateChange)="filterByDate($event.value)" placeholder="{{ 'CHOOSE_DATE' | translate }}">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline">
+      <mat-label>{{ 'SEARCH_PLACEHOLDER' | translate }}</mat-label>
+      <input matInput [(ngModel)]="searchQuery" (ngModelChange)="filterBudgets()" placeholder="{{ 'SEARCH_PLACEHOLDER' | translate }}">
+    </mat-form-field>
+  </div>
+
+  <!-- Spinner to show while loading -->
+  <div *ngIf="isLoading" class="spinner-container">
+    <mat-spinner [diameter]="50" mode="indeterminate" class="spinner"></mat-spinner>
+  </div>
+
+  <!-- Budget List -->
+  <div class="budget-list" *ngIf="!isLoading">
+    <ng-container *ngFor="let budget of filteredBudgets">
+      <mat-card class="budget-item-card">
+        <mat-card-content>
+          <div class="budget-header">
+            <div class="budget-amount">
+              <mat-icon class="budget-icon">attach_money</mat-icon>
+              <span>{{ budget.montant }}</span>
+            </div>
+            <div class="budget-date">
+              <mat-icon class="budget-icon">event</mat-icon>
+              <span>{{ formatDate(budget.APartirDe) }}</span>
+            </div>
+          </div>
+          <div class="budget-details">
+            <div class="budget-category">
+              <mat-icon class="details-icon">category</mat-icon>
+              <span>{{ 'BUDGET.CATEGORY' | translate }}: <strong>{{ budget.category }}</strong></span>
+            </div>
+            <div class="budget-repeats">
+              <mat-icon class="details-icon">repeat</mat-icon>
+              <span>{{ 'BUDGET.REPEATS' | translate }}: <strong>{{ budget.duree | translate }}</strong></span>
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-icon-button color="warn" (click)="deleteBudget(budget?.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </ng-container>
+  </div>
+
+  <!-- Add Budget Button -->
+  <button mat-fab color="primary" class="add-budget-button" (click)="openAddBudgetDialog()">
+    <mat-icon>add</mat-icon>
+    <span class="sr-only">{{ 'BUDGET.ADD_BUDGET' | translate }}</span>
+  </button>
+</div>

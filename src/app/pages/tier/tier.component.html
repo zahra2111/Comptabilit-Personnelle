@@ -1,0 +1,43 @@
+<div class="tier-management">
+  <!-- Search Field -->
+  <div class="search-container">
+    <mat-form-field class="search-field" appearance="fill">
+      <mat-label>{{ 'SEARCH_TIER' | translate }}</mat-label>
+      <input matInput [(ngModel)]="searchQuery" (ngModelChange)="filterTiers()" placeholder="Search tiers">
+    </mat-form-field>
+  </div>
+
+  <div class="tier-list">
+    <ng-container *ngFor="let tier of filteredTiers">
+      <mat-card class="tier-item-card">
+        <mat-card-content>
+          <div class="tier-header">
+            <div class="tier-name">
+              <mat-icon class="tier-icon">account_circle</mat-icon>
+              <span>{{ tier.nom }}</span>
+            </div>
+            <div class="tier-address">
+              <mat-icon class="tier-icon">place</mat-icon>
+              <span>{{ tier.adresse }}</span>
+            </div>
+          </div>
+          <div class="tier-details">
+            <mat-icon class="comment-icon">note</mat-icon>
+            <p class="tier-comment">{{ tier.commentaire }}</p>
+          </div>
+          
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-icon-button color="warn" (click)="deleteTier(tier?.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </ng-container>
+  </div>
+
+  <!-- Add Tier Button -->
+  <button mat-fab color="primary" class="add-tier-button" (click)="openAddTierDialog()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>

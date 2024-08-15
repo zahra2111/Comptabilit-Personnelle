@@ -1,0 +1,45 @@
+.menu-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  navCap {
+    font-weight: bold;
+    color: #333;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  .menu-list-item:hover {
+    background-color: #f0f0f0; /* Light gray background on hover */
+  }
+  
+  .routeIcon {
+    margin-right: 10px;
+  }
+  
+  .expand-icon {
+    margin-left: auto;
+  }
+  
+  .hide-menu {
+    flex-grow: 1;
+    text-align: left;
+  }
+  
+  .submenu {
+    padding-left: 20px;
+    background-color: #fafafa; /* Slightly different background for submenu items */
+  }
+  
+  .submenu .menu-list-item {
+    padding: 8px 10px; /* Padding for submenu items */
+  }
+  
+  .submenu .menu-list-item:hover {
+    background-color: #e0e0e0; /* Slightly different gray for submenu items */
+  }
+  

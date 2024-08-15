@@ -1,0 +1,41 @@
+<mat-toolbar class="topbar">
+
+  <!-- Display Selected Sidebar Name -->
+  <span class="selected-sidebar-name">{{ selectedSidebarName | translate }}</span>
+
+  <!-- Mobile Menu -->
+  <button mat-icon-button (click)="toggleMobileNav.emit()" *ngIf="!showToggle">
+    <i-tabler name="menu-2" class="icon-20 d-flex"></i-tabler>
+  </button>
+
+  <span class="flex-1-auto"></span>
+
+  <!-- Profile Dropdown -->
+  <button
+    mat-icon-button
+    [matMenuTriggerFor]="profilemenu"
+    [attr.aria-label]="'PROFILE' | translate"
+  >
+    <img
+      src="/assets/images/profile/user.png"
+      class="rounded-circle object-cover"
+      width="35"
+    />
+  </button>
+  
+  <mat-menu #profilemenu="matMenu" class="topbar-dd cardWithShadow">
+    <button mat-menu-item (click)="onProfilClick()">
+      <mat-icon class="d-flex align-items-center">
+        <i-tabler name="user" class="icon-18 d-flex"></i-tabler>
+      </mat-icon>{{ 'PROFILE' | translate }}
+    </button>
+  
+    <div class="p-x-12 m-t-12">
+      <a (click)="onLogout()"
+        mat-stroked-button
+        color="primary"
+        class="w-100"
+      >{{ 'LOGOUT' | translate }}</a>
+    </div>
+  </mat-menu>
+</mat-toolbar>

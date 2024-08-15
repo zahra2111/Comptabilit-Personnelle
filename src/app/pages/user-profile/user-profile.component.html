@@ -1,0 +1,74 @@
+<mat-card class="cardWithShadow">
+  <mat-card-content>
+    <!-- Profile Section -->
+    <div class="container profile-container">
+      <h2 class="text-center mb-4">{{ 'MY_ACCOUNT' | translate }}</h2>
+      
+      <!-- Profile Information -->
+      <div class="profile-info card mb-4">
+        <div class="card-body">
+          <h4 class="card-title mb-3">{{ 'PERSONAL_INFORMATION' | translate }}</h4>        
+          <div class="form-group mb-3">
+            <label for="email">{{ 'EMAIL' | translate }}</label>
+            <div *ngIf="userInfo">
+              <input id="email" [(ngModel)]="userInfo.email" type="email" class="form-control" />
+            </div> 
+          </div>
+          <div class="text-center">
+            <button mat-flat-button color="primary">
+              <mat-icon><i-tabler name="check" class="icon-18"></i-tabler></mat-icon>
+              {{ 'SAVE' | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Security Section -->
+      <div class="security-section card mb-4">
+        <div class="card-body">
+          <h4 class="card-title mb-3">{{ 'CHANGE_PASSWORD' | translate }}</h4>
+          <form (ngSubmit)="changePassword()">
+            <div class="form-group mb-3">
+              <label for="currentPassword">{{ 'CURRENT_PASSWORD' | translate }}</label>
+              <input type="password" class="form-control" id="currentPassword" [(ngModel)]="currentPassword" name="currentPassword" required>
+            </div>
+            <div class="form-group mb-3">
+              <label for="newPassword">{{ 'NEW_PASSWORD' | translate }}</label>
+              <input type="password" class="form-control" id="newPassword" [(ngModel)]="newPassword" name="newPassword" required>
+            </div>
+            <div class="form-group mb-3">
+              <label for="confirmPassword">{{ 'CONFIRM_NEW_PASSWORD' | translate }}</label>
+              <input type="password" class="form-control" id="confirmPassword" [(ngModel)]="confirmPassword" name="confirmPassword" required>
+            </div>
+            <div class="text-center">
+              <button mat-flat-button color="primary" type="submit">
+                <mat-icon><i-tabler name="check" class="icon-18"></i-tabler></mat-icon>
+                {{ 'UPDATE_PASSWORD' | translate }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      
+      <!-- Account Deactivation -->
+      <div class="account-deactivation card">
+        <div class="card-body">
+          <h4 class="card-title mb-3">{{ 'DELETE_ACCOUNT' | translate }}</h4>
+          <div class="alert alert-warning mb-4">
+            <h6 class="alert-heading fw-medium mb-1">{{ 'ARE_YOU_SURE' | translate }}</h6>
+            <p>{{ 'DELETE_ACCOUNT_WARNING' | translate }}</p>
+          </div>
+          <form id="formAccountDeactivation" (ngSubmit)="deleteAccount()">
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" [(ngModel)]="accountActivation" name="accountActivation" id="accountActivation">
+              <label class="form-check-label" for="accountActivation">{{ 'CONFIRM_ACCOUNT_DELETION' | translate }}</label>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-danger" [disabled]="!accountActivation">{{ 'DELETE' | translate }}</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
